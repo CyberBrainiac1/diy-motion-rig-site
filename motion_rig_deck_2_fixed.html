@@ -86,12 +86,16 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 .speaker-notes p{margin:0;font-size:.8rem;line-height:1.6;color:#475569}
 .speaker-notes p + p{margin-top:.35rem}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
-@media (max-width:640px){.build-ver{top:calc(8px + env(safe-area-inset-top));right:calc(8px + env(safe-area-inset-right));font-size:9px;padding:5px 8px}}
+.viewer-badge{position:fixed;top:calc(12px + env(safe-area-inset-top));left:calc(12px + env(safe-area-inset-left));z-index:190;display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid #e5e7eb;box-shadow:0 10px 28px rgba(15,23,42,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b;pointer-events:none}
+.viewer-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:vdot 2s ease-in-out infinite}
+@keyframes vdot{0%,100%{opacity:1}50%{opacity:.35}}
+@media (max-width:640px){.build-ver{top:calc(8px + env(safe-area-inset-top));right:calc(8px + env(safe-area-inset-right));font-size:9px;padding:5px 8px}.viewer-badge{top:calc(8px + env(safe-area-inset-top));left:calc(8px + env(safe-area-inset-left));font-size:9px;padding:5px 8px}}
 </style>
 </head>
 <body>
 <div id="prog"></div>
 <div class="build-ver">HTML updated <strong id="build-version">checking...</strong></div>
+<div class="viewer-badge"><span class="viewer-dot"></span><span id="viewer-count">—</span>&nbsp;online now</div>
 <div id="deck">
 
 
@@ -559,7 +563,8 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   </div>
   <div class="flex gap-3 p-3.5 bg-red-50 border border-red-200 border-l-4 border-l-red-500 rounded-r-xl mb-4">
     <i class="fa-solid fa-hand text-red-500 mt-0.5 shrink-0 text-sm"></i>
-    <div><div class="font-semibold text-red-700 text-xs mb-0.5">E-STOP button — 22mm mushroom pushbutton, 2 NC contacts</div><p class="text-xs text-red-600 leading-relaxed">This is the physical emergency-stop button the user hits to shut the rig down instantly. It cuts 12V to the contactor coil, which drops the contactor open and removes motor power without switching the motor leads directly. <strong>Hardware always wins over software.</strong></p></div>
+    <div class="flex-1"><div class="font-semibold text-red-700 text-xs mb-0.5">E-STOP button — 22mm mushroom pushbutton, 2 NC contacts</div><p class="text-xs text-red-600 leading-relaxed">This is the physical emergency-stop button the user hits to shut the rig down instantly. It cuts 12V to the contactor coil, which drops the contactor open and removes motor power without switching the motor leads directly. <strong>Hardware always wins over software.</strong></p></div>
+    <img src="assets/estop-button.png" alt="E-stop button" class="shrink-0 rounded-lg border border-red-200 object-contain" style="max-height:110px;max-width:90px">
   </div>
   <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
     <div class="p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center"><div class="text-xs font-semibold text-gray-700">60A ANL</div><div class="text-xs text-gray-400 mt-0.5">Wiring protection</div></div>
@@ -1046,7 +1051,16 @@ function setBuildBadge(){
     el.textContent=`${y}-${m}-${day} ${t}`;
   }else el.textContent='unknown';
 }
-window.addEventListener('load',()=>{setBuildBadge();initCAD();window.addEventListener('resize',resizeCAD);});
+window.addEventListener('load',()=>{setBuildBadge();initCAD();window.addEventListener('resize',resizeCAD);loadViewerCount();});
+function loadViewerCount(){
+  const el=document.getElementById('viewer-count');if(!el)return;
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>{ctrl.abort();el.textContent='?';},5000);
+  fetch('https://api.countapi.xyz/hit/diy-motion-rig-site/visitors',{signal:ctrl.signal})
+    .then(r=>r.json())
+    .then(d=>{clearTimeout(t);if(d&&d.value!=null)el.textContent=d.value.toLocaleString();})
+    .catch(()=>{clearTimeout(t);el.textContent='?';});
+}
 </script>
 </body>
 </html>
