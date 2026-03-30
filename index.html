@@ -335,55 +335,84 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
       </div>
       <div id="motion-pane-roll" class="motion-pane hidden">
-        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
-          <div class="text-xs font-bold text-brand uppercase tracking-widest mb-3">SIMPLE ROLL DIAGRAM</div>
-          <svg viewBox="0 0 520 300" width="100%" style="max-width:560px;overflow:visible" aria-label="Simple diagram showing roll with opposite rear motor motion">
-            <ellipse cx="260" cy="280" rx="180" ry="10" fill="#f3f4f6" opacity="0.85"/>
-            <polygon points="80,212 430,212 448,194 98,194" fill="#FDE68A" stroke="#D97706" stroke-width="1.2"/>
-            <polygon points="80,212 98,194 98,252 80,270" fill="#F59E0B" stroke="#D97706" stroke-width="1.2"/>
-            <polygon points="430,212 448,194 448,252 430,270" fill="#FBBF24" stroke="#D97706" stroke-width="1.2"/>
-            <polygon points="80,270 430,270 448,252 98,252" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.1"/>
-            <text x="260" y="217" font-family="Inter,sans-serif" font-size="9" fill="#92400E" text-anchor="middle" font-weight="600">fixed base stays on floor</text>
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 flex flex-col items-center">
+          <div class="text-xs font-bold text-brand uppercase tracking-widest mb-3">FRONT/BACK VIEW — ROLL ANIMATION</div>
+          <svg id="kin" viewBox="0 0 500 290" width="100%" style="max-width:560px;overflow:visible" aria-label="Animated front/back view showing roll motion with front U-joint pivot point">
+            <ellipse cx="250" cy="276" rx="180" ry="10" fill="#f3f4f6" opacity="0.85"/>
+            <text x="250" y="26" font-family="Inter,sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle" font-weight="700" letter-spacing="2">FRONT/BACK VIEW OF REAR LINKAGE LAYOUT</text>
 
-            <circle cx="150" cy="206" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
-            <circle cx="150" cy="206" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
-            <circle cx="150" cy="206" r="3" fill="#9CA3AF"/>
-            <text x="150" y="240" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor L</text>
-            <circle cx="370" cy="206" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
-            <circle cx="370" cy="206" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
-            <circle cx="370" cy="206" r="3" fill="#9CA3AF"/>
-            <text x="370" y="240" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor R</text>
+            <!-- Fixed base -->
+            <polygon points="75,210 425,210 445,192 95,192" fill="#FDE68A" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="75,210 95,192 95,252 75,270" fill="#F59E0B" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="425,210 445,192 445,252 425,270" fill="#FBBF24" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="75,270 425,270 445,252 95,252" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.1"/>
+            <text x="250" y="216" font-family="Inter,sans-serif" font-size="9" fill="#92400E" text-anchor="middle" font-weight="600">fixed base — stays on floor</text>
 
-            <line x1="118" y1="156" x2="392" y2="134" stroke="#8B7355" stroke-width="12" stroke-linecap="round"/>
-            <line x1="126" y1="100" x2="388" y2="78" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
-            <line x1="132" y1="100" x2="132" y2="156" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
-            <line x1="386" y1="78" x2="386" y2="134" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
-            <line x1="185" y1="151" x2="185" y2="111" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
-            <line x1="275" y1="144" x2="275" y2="90" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
-            <line x1="335" y1="140" x2="335" y2="100" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+            <!-- Motors -->
+            <circle cx="150" cy="205" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
+            <circle cx="150" cy="205" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
+            <circle cx="150" cy="205" r="3" fill="#9CA3AF"/>
+            <text x="150" y="239" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor L</text>
+            <circle cx="350" cy="205" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
+            <circle cx="350" cy="205" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
+            <circle cx="350" cy="205" r="3" fill="#9CA3AF"/>
+            <circle cx="350" cy="205" r="3" fill="#9CA3AF"/>
+            <text x="350" y="239" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor R</text>
+            <path d="M 132,205 A 18,18 0 0,1 168,205" fill="none" stroke="#9CA3AF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.45"/>
+            <path d="M 332,205 A 18,18 0 0,1 368,205" fill="none" stroke="#9CA3AF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.45"/>
 
-            <line x1="150" y1="188" x2="184" y2="150" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
-            <circle cx="150" cy="188" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
-            <circle cx="184" cy="150" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
-            <line x1="370" y1="170" x2="334" y2="139" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
-            <circle cx="370" cy="170" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
-            <circle cx="334" cy="139" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <!-- Moving frame (animated) -->
+            <line id="k-beam-front" x1="118" y1="154" x2="382" y2="154" stroke="#8B7355" stroke-width="12" stroke-linecap="round"/>
+            <line id="k-beam-back" x1="124" y1="96" x2="376" y2="96" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
+            <rect id="k-upl1" x="124" y="96" width="13" height="58" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
+            <rect id="k-upl2" x="179" y="118" width="13" height="36" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
+            <rect id="k-upr2" x="308" y="118" width="13" height="36" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
+            <rect id="k-upr1" x="363" y="96" width="13" height="58" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
+            <line id="k-cross" x1="124" y1="96" x2="376" y2="96" stroke="#D4B896" stroke-width="9" stroke-linecap="round"/>
+            <line id="k-inner1" x1="160" y1="154" x2="160" y2="110" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+            <line id="k-inner2" x1="250" y1="154" x2="250" y2="96" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+            <line id="k-inner3" x1="340" y1="154" x2="340" y2="110" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
 
-            <path d="M116 232 L116 188" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
-            <path d="M116 232 L108 220 L124 220 Z" fill="#2563EB"/>
-            <text x="98" y="246" font-family="Inter,sans-serif" font-size="8" fill="#2563EB" text-anchor="middle" font-weight="700">left rear down</text>
+            <!-- Top gearbox (follows moving frame) -->
+            <rect id="k-rmot" x="222" y="58" width="56" height="26" rx="4" fill="#F97316" stroke="#EA580C" stroke-width="1.3"/>
+            <rect id="k-rmot-top" x="232" y="50" width="36" height="10" rx="2" fill="#FB923C" stroke="#EA580C" stroke-width="1"/>
+            <text id="k-rmot-label" x="250" y="75" font-family="Inter,sans-serif" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">Gearbox</text>
 
-            <path d="M404 182 L404 138" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
-            <path d="M404 138 L396 150 L412 150 Z" fill="#2563EB"/>
-            <text x="424" y="134" font-family="Inter,sans-serif" font-size="8" fill="#2563EB" text-anchor="middle" font-weight="700">right rear up</text>
+            <!-- Front U-joint pivot — the roll axis. Fixed to base; frame tilts around it. -->
+            <rect id="k-pivot-post" x="243" y="154" width="14" height="52" rx="3" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.3"/>
+            <rect id="k-pivot-cap" x="236" y="148" width="28" height="12" rx="3" fill="#7C3AED"/>
+            <circle id="k-pivot-pin" cx="250" cy="154" r="4" fill="#C4B5FD" stroke="#7C3AED" stroke-width="1"/>
+            <text id="k-pivot-label" x="250" y="184" font-family="Inter,sans-serif" font-size="8" fill="#7C3AED" text-anchor="middle" font-weight="600">front U-joint pivot</text>
+            <text x="250" y="195" font-family="Inter,sans-serif" font-size="7.5" fill="#A78BFA" text-anchor="middle">(roll axis — stays fixed)</text>
 
-            <text x="260" y="36" font-family="Inter,sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle" font-weight="700" letter-spacing="2">ROLL = OPPOSITE REAR MOTION</text>
-            <text x="260" y="286" font-family="Inter,sans-serif" font-size="8" fill="#9CA3AF" text-anchor="middle">The upper frame stays one rigid piece and leans side-to-side.</text>
+            <!-- Cranks (animated) -->
+            <line id="k-crankL" x1="150" y1="205" x2="150" y2="169" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
+            <circle id="k-tipL" cx="150" cy="169" r="5" fill="#374151" stroke="#9CA3AF" stroke-width="1.5"/>
+            <line id="k-crankR" x1="350" y1="205" x2="350" y2="169" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
+            <circle id="k-tipR" cx="350" cy="169" r="5" fill="#374151" stroke="#9CA3AF" stroke-width="1.5"/>
+
+            <!-- Blue linkage rods (animated) -->
+            <line id="k-linkL" x1="150" y1="169" x2="185" y2="118" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
+            <circle id="k-jointL1" cx="150" cy="169" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle id="k-jointL2" cx="185" cy="118" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <line id="k-linkR" x1="350" y1="169" x2="315" y2="118" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
+            <circle id="k-jointR1" cx="350" cy="169" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle id="k-jointR2" cx="315" cy="118" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle id="k-tabL" cx="185" cy="118" r="5.5" fill="#16A34A"/>
+            <circle id="k-tabR" cx="315" cy="118" r="5.5" fill="#16A34A"/>
+
+            <text x="250" y="285" font-family="Inter,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Crank R=279mm · Linkage L=385mm · Front pivot at center · Max tilt ±8.8°</text>
           </svg>
+          <div class="mt-2 grid grid-cols-4 gap-3 w-full" style="max-width:360px">
+            <div class="text-center"><div class="text-[10px] text-gray-400 uppercase tracking-wide">Roll</div><div class="font-mono font-bold text-sm text-amber-600" id="vr">0.0°</div></div>
+            <div class="text-center"><div class="text-[10px] text-gray-400 uppercase tracking-wide">Pitch</div><div class="font-mono font-bold text-sm text-gray-500" id="vp">0.0°</div></div>
+            <div class="text-center"><div class="text-[10px] text-blue-400 uppercase tracking-wide">Motor L</div><div class="font-mono font-bold text-sm text-blue-600" id="vl">0°</div></div>
+            <div class="text-center"><div class="text-[10px] text-blue-400 uppercase tracking-wide">Motor R</div><div class="font-mono font-bold text-sm text-blue-600" id="vrm">0°</div></div>
+          </div>
         </div>
         <div class="mt-3 card-blue rounded-xl p-4">
-          <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">What the diagram means</div>
-          <p class="text-sm text-blue-900 leading-relaxed">For roll, the rear motors move opposite ways. One rear side rises while the other drops, and that makes the whole upper frame lean like a car body in a turn.</p>
+          <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">What you're seeing</div>
+          <p class="text-sm text-blue-900 leading-relaxed">For roll, the rear motors go opposite directions — one side rises while the other drops. The whole upper frame tilts around the front U-joint pivot (purple), which stays fixed to the base. That lean is the cornering cue you feel in the sim.</p>
         </div>
       </div>
     </div>
@@ -392,8 +421,8 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
     <p>Use the pitch tab first because the real GIF is the most honest reference for the actual mechanism.</p>
-    <p>Then switch to the roll tab and say the diagram is there only because opposite rear motion is easier to understand in a simplified picture.</p>
-    <p>Keep the explanation short: pitch is forward/back tilt, roll is left/right lean, and the upper frame stays one rigid piece.</p>
+    <p>Then switch to the roll tab — the animated diagram shows the front/back view with the pivot point. Point out that the motors go opposite directions and the frame tilts around the fixed front U-joint pivot (purple).</p>
+    <p>Keep the explanation short: pitch is forward/back tilt, roll is left/right lean, and the frame tilts around the front U-joint pivot.</p>
   </div>
 </div>
 
@@ -849,7 +878,7 @@ function setMotionPane(mode, btn){
   if(copy){
     copy.textContent = mode === 'pitch'
       ? 'The Onshape GIF shows the real mechanism and motion path for pitch.'
-      : 'The roll diagram is simplified on purpose so the left and right lean are easier to see fast.';
+      : 'The animated diagram shows the front/back view with the pivot — motors go opposite directions, and the frame tilts around the front U-joint.';
   }
 }
 
@@ -940,6 +969,129 @@ function setPowerCard(key, btn){
 }
 
 function $$(id){return document.getElementById(id)}
+
+// ── ROLL ANIMATION ──────────────────────────────────────────────────────────
+// Constants match the actual rig geometry: 279mm crank, 385mm linkage, ±8.8° max tilt.
+const KIN_CRK = 36;
+const KIN_ML = {x:150,y:205}, KIN_MR = {x:350,y:205};
+const KIN_TAB_LX = 185, KIN_TAB_RX = 315;
+const KIN_NEUTRAL_Y = 155;
+const KIN_PIVOT_Y = 154;
+const KIN_FRAME_H = 58;
+const KIN_TAB_FROM_BOTTOM = 36;
+const KIN_FRAME_X1 = 118, KIN_FRAME_X2 = 382;
+const KIN_BASE_PIVOT_Y = 206;
+let kinT = 0, kinLastT = 0;
+
+function kinSetElem(id, attrs){
+  const el = document.getElementById(id);
+  if(!el) return;
+  Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k, v));
+}
+function kinLerp(a, b, t){ return a + (b - a) * t; }
+function kinYOnBeam(x, yL, yR){
+  return kinLerp(yL, yR, (x - KIN_FRAME_X1) / (KIN_FRAME_X2 - KIN_FRAME_X1));
+}
+
+function animateKin(ts){
+  requestAnimationFrame(animateKin);
+  // Only run when the roll pane is visible
+  const rollPane = document.getElementById('motion-pane-roll');
+  if(!rollPane || rollPane.classList.contains('hidden')) return;
+
+  const dt = Math.min((ts - kinLastT) / 1000, 0.05);
+  kinLastT = ts;
+  kinT = (kinT + dt * 0.28) % 1;
+
+  const osc = Math.sin(kinT * Math.PI * 2);
+  const maxAngle = 58;
+
+  // Roll mode: motors go opposite directions — one side up, other down
+  const lAng = osc * maxAngle;
+  const rAng = -osc * maxAngle;
+
+  const lRad = lAng * Math.PI / 180;
+  const rRad = rAng * Math.PI / 180;
+
+  // Crank tip positions (horizontal-neutral sweep)
+  const lTX = KIN_ML.x + KIN_CRK * Math.cos(lRad);
+  const lTY = KIN_ML.y - KIN_CRK * Math.sin(lRad);
+  const rTX = KIN_MR.x + KIN_CRK * Math.cos(rRad);
+  const rTY = KIN_MR.y - KIN_CRK * Math.sin(rRad);
+
+  // Map crank vertical travel into frame lift on each side
+  const liftScale = 0.88;
+  const lLift = (KIN_ML.y - lTY) * liftScale;
+  const rLift = (KIN_MR.y - rTY) * liftScale;
+
+  const frameLY = KIN_NEUTRAL_Y - lLift;
+  const frameRY = KIN_NEUTRAL_Y - rLift;
+  const lTopY  = frameLY - KIN_FRAME_H;
+  const rTopY  = frameRY - KIN_FRAME_H;
+  const lTabY  = frameLY - KIN_TAB_FROM_BOTTOM;
+  const rTabY  = frameRY - KIN_TAB_FROM_BOTTOM;
+
+  // Rigid frame beams — tilt as left/right sides lift independently
+  kinSetElem('k-beam-front', {x1:KIN_FRAME_X1, y1:frameLY.toFixed(1), x2:KIN_FRAME_X2, y2:frameRY.toFixed(1)});
+  kinSetElem('k-beam-back',  {x1:124, y1:lTopY.toFixed(1), x2:376, y2:rTopY.toFixed(1)});
+
+  // Uprights follow the tilting frame
+  kinSetElem('k-upl1', {x:124,                       y:lTopY.toFixed(1),  width:13, height:(frameLY-lTopY).toFixed(1), rx:2});
+  kinSetElem('k-upl2', {x:(KIN_TAB_LX-6).toFixed(1), y:lTabY.toFixed(1), width:13, height:(frameLY-lTabY).toFixed(1), rx:2});
+  kinSetElem('k-upr1', {x:363,                        y:rTopY.toFixed(1),  width:13, height:(frameRY-rTopY).toFixed(1), rx:2});
+  kinSetElem('k-upr2', {x:(KIN_TAB_RX-7).toFixed(1), y:rTabY.toFixed(1), width:13, height:(frameRY-rTabY).toFixed(1), rx:2});
+  kinSetElem('k-cross', {x1:124, y1:lTopY.toFixed(1), x2:376, y2:rTopY.toFixed(1)});
+
+  // Internal supports follow the rigid body tilt
+  [{id:'k-inner1', x:160, topOffset:16},
+   {id:'k-inner2', x:250, topOffset:0},
+   {id:'k-inner3', x:340, topOffset:16}
+  ].forEach(({id, x, topOffset}) => {
+    const bottom = kinYOnBeam(x, frameLY, frameRY);
+    const top    = kinYOnBeam(x, lTopY,  rTopY) + topOffset;
+    kinSetElem(id, {x1:x, y1:bottom.toFixed(1), x2:x, y2:top.toFixed(1)});
+  });
+
+  // Gearbox stays centred on the tilting top beam
+  const midTopY = kinYOnBeam(250, lTopY, rTopY);
+  const driveCY = midTopY - 38;
+  kinSetElem('k-rmot',     {x:(222).toString(),           y:driveCY.toFixed(1), width:56, height:24, rx:4});
+  kinSetElem('k-rmot-top', {x:(232).toString(),           y:(driveCY-8).toFixed(1), width:36, height:10, rx:2});
+  kinSetElem('k-rmot-label',{x:'250',                     y:(driveCY+15).toFixed(1)});
+
+  // Front U-joint pivot stays fixed — frame tilts around it
+  kinSetElem('k-pivot-post', {x:243, y:KIN_PIVOT_Y.toFixed(1), width:14, height:(KIN_BASE_PIVOT_Y-KIN_PIVOT_Y).toFixed(1), rx:3});
+  kinSetElem('k-pivot-cap',  {x:236, y:(KIN_PIVOT_Y-6).toFixed(1), width:28, height:12, rx:3});
+  kinSetElem('k-pivot-pin',  {cx:250, cy:KIN_PIVOT_Y.toFixed(1)});
+  kinSetElem('k-pivot-label',{x:250, y:(Math.min(KIN_BASE_PIVOT_Y-20, KIN_PIVOT_Y+30)).toFixed(1)});
+
+  // Cranks
+  kinSetElem('k-crankL', {x1:KIN_ML.x, y1:KIN_ML.y, x2:lTX.toFixed(1), y2:lTY.toFixed(1)});
+  kinSetElem('k-tipL',   {cx:lTX.toFixed(1), cy:lTY.toFixed(1)});
+  kinSetElem('k-crankR', {x1:KIN_MR.x, y1:KIN_MR.y, x2:rTX.toFixed(1), y2:rTY.toFixed(1)});
+  kinSetElem('k-tipR',   {cx:rTX.toFixed(1), cy:rTY.toFixed(1)});
+
+  // LEFT linkage rod: crank tip → left frame tab
+  kinSetElem('k-linkL',   {x1:lTX.toFixed(1), y1:lTY.toFixed(1), x2:KIN_TAB_LX, y2:lTabY.toFixed(1)});
+  kinSetElem('k-jointL1', {cx:lTX.toFixed(1), cy:lTY.toFixed(1)});
+  kinSetElem('k-jointL2', {cx:KIN_TAB_LX,     cy:lTabY.toFixed(1)});
+  kinSetElem('k-tabL',    {cx:KIN_TAB_LX,     cy:lTabY.toFixed(1)});
+
+  // RIGHT linkage rod: crank tip → right frame tab
+  kinSetElem('k-linkR',   {x1:rTX.toFixed(1), y1:rTY.toFixed(1), x2:KIN_TAB_RX, y2:rTabY.toFixed(1)});
+  kinSetElem('k-jointR1', {cx:rTX.toFixed(1), cy:rTY.toFixed(1)});
+  kinSetElem('k-jointR2', {cx:KIN_TAB_RX,     cy:rTabY.toFixed(1)});
+  kinSetElem('k-tabR',    {cx:KIN_TAB_RX,     cy:rTabY.toFixed(1)});
+
+  // Live readouts
+  const pitch = ((lLift + rLift) / 2) * 0.052;
+  const roll  = (lLift - rLift) * 0.038;
+  $$('vp').textContent  = pitch.toFixed(1) + '°';
+  $$('vr').textContent  = roll.toFixed(1)  + '°';
+  $$('vl').textContent  = lAng.toFixed(0)  + '°';
+  $$('vrm').textContent = rAng.toFixed(0)  + '°';
+}
+requestAnimationFrame(animateKin);
 
 // ── THREE.JS ─────────────────────────────────────────────────────────────────
 let renderer,camera,scene,cadDistance=1500;
