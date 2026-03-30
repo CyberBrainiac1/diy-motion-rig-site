@@ -570,79 +570,45 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <div class="si">
   <div class="sec"><i class="fa-solid fa-route text-brand"></i>Learning Plan</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">Connection to physics roadmap.</h2>
-  <p class="text-gray-500 text-sm mb-6">The rig is already designed in CAD. The school-year roadmap helps me understand the design more deeply, check it better, and know exactly what to improve before the physical build starts in summer.</p>
-  <div class="grid md:grid-cols-3 gap-4 mb-5">
-    <div class="rounded-2xl border-2 border-blue-200 bg-blue-50 p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Phase 1 • School Year</div>
-      <div class="text-sm font-semibold text-gray-900 mb-1">Mar 23 - May 31</div>
-      <p class="text-xs text-gray-600 leading-relaxed mb-2">Learn the physics while the rig is still in the design stage.</p>
-      <div class="text-xs text-blue-900 leading-relaxed">Use measurement, kinematics, forces, energy, circular motion, and rotation to check the design more intelligently before buying, cutting, and wiring parts.</div>
-    </div>
-    <div class="rounded-2xl border-2 border-amber-200 bg-amber-50 p-4">
-      <div class="text-xs font-bold text-amber-700 uppercase tracking-wide mb-2">Phase 2 • Summer</div>
-      <div class="text-sm font-semibold text-gray-900 mb-1">Jun 4 - Jul 20</div>
-      <p class="text-xs text-gray-600 leading-relaxed mb-2">This is when the real build can happen.</p>
-      <div class="text-xs text-amber-900 leading-relaxed">By summer, the physics from the school year should make the build better: smarter measurements, better checks, and more confidence in the motor, linkage, and frame choices.</div>
-    </div>
-    <div class="rounded-2xl border-2 border-emerald-200 bg-emerald-50 p-4">
-      <div class="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-2">Phase 3 • After Build</div>
-      <div class="text-sm font-semibold text-gray-900 mb-1">Test, compare, improve</div>
-      <p class="text-xs text-gray-600 leading-relaxed mb-2">Once the rig exists, the physics becomes visible.</p>
-      <div class="text-xs text-emerald-900 leading-relaxed">I can compare predictions to the real machine, see what matches, and improve the design instead of treating it like a one-time build.</div>
-    </div>
-  </div>
+  <p class="text-gray-500 text-sm mb-6">The rig is already designed in CAD, and the physical build should happen in summer. So during the school year, the value of the roadmap is this: each topic teaches me a specific way to improve the design before I build it.</p>
   <div class="rounded-2xl border border-gray-200 bg-white p-5 mb-5">
-    <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Specific school-year topics I can apply to this rig</div>
+    <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Once I learn each topic, here is what I can improve in the rig</div>
     <div class="grid md:grid-cols-2 gap-3">
       <div class="card p-4">
         <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Measurement &amp; Error</div>
-        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> frame dimensions, hole placement, linkage length, and CAD-vs-real tolerances.</p>
-        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> how carefully I check dimensions, where small errors would matter most, and what parts need adjustability.</p>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What I can improve:</strong> frame dimensions, hole placement, linkage length, and where I need adjustability if real parts are a little off from CAD.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>Why that matters:</strong> small build errors can change neutral position, alignment, and motion smoothness.</p>
       </div>
       <div class="card p-4">
         <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Kinematics</div>
-        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> crank path, linkage motion, tilt angle, and how pitch/roll are created.</p>
-        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> crank radius, neutral position, linkage geometry, and whether the motion is smooth through the full range.</p>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What I can improve:</strong> crank radius, linkage geometry, neutral position, and total tilt range.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>Why that matters:</strong> this decides whether the motion feels smooth and realistic instead of awkward or mechanically wrong.</p>
       </div>
       <div class="card p-4">
         <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Newton's Laws &amp; Friction</div>
-        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> load paths, pivot forces, moving mass, and where resistance shows up in the mechanism.</p>
-        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> frame support, pivot quality, friction points, and where the design might waste motor effort.</p>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What I can improve:</strong> frame support, pivot quality, moving-mass placement, and friction points that waste motor effort.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>Why that matters:</strong> better load paths mean less stress, less wasted power, and a more reliable rig.</p>
       </div>
       <div class="card p-4">
         <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Energy, Momentum &amp; Circular Motion</div>
-        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> braking feel, acceleration feel, cornering feel, and how motion cues should be interpreted.</p>
-        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> how I tune the motion later so pitch feels more like braking and roll feels more like turning instead of random movement.</p>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What I can improve:</strong> how I tune the motion so pitch feels more like braking/acceleration and roll feels more like actual turning.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>Why that matters:</strong> the rig should create believable driving cues, not just movement for the sake of movement.</p>
       </div>
       <div class="card p-4 md:col-span-2">
         <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Torque &amp; Rotation</div>
-        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> motor torque, lever arms, crank radius, rear load, and why the 250W motors are enough.</p>
-        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> my confidence in the motor choice, how I think about mechanical advantage, and whether I should change lever geometry before the build starts.</p>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What I can improve:</strong> motor sizing confidence, lever geometry, crank length, and how much rear load each motor really sees.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>Why that matters:</strong> this is what tells me whether the 250W motors are enough or whether the geometry should change before the summer build.</p>
       </div>
     </div>
   </div>
-  <div class="grid md:grid-cols-4 gap-3 mb-5">
-    <div class="card p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Already Designed</div>
-      <p class="text-xs text-gray-600 leading-relaxed">The rig is not just an idea now. The CAD, kinematics, BOM, and electrical plan already exist.</p>
-    </div>
-    <div class="card p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">School Year = Understand It Better</div>
-      <p class="text-xs text-gray-600 leading-relaxed">The roadmap gives me the physics language to explain and improve what is already in the design.</p>
-    </div>
-    <div class="card p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Summer = Build It</div>
-      <p class="text-xs text-gray-600 leading-relaxed">The physical rig can be built during summer, when there is enough time for cutting, drilling, wiring, and testing.</p>
-    </div>
-    <div class="card p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Then Improve It</div>
-      <p class="text-xs text-gray-600 leading-relaxed">After the build, I can compare the real rig to the design and use the same physics topics to tune and improve it.</p>
-    </div>
+  <div class="card-blue rounded-xl p-4">
+    <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Why this makes the roadmap useful for this project</div>
+    <p class="text-sm text-blue-900 leading-relaxed">I already have the design. The roadmap gives me specific tools to make it better before I build it. Then, when the rig is built in summer, I can test whether those improvements were actually correct.</p>
   </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
-    <p>Make the timeline clear: design is already done, school-year physics helps me understand and improve it, and summer is when the real build happens.</p>
-    <p>The point is not that physics comes before the idea. The point is that physics makes an already-designed rig smarter, safer, and easier to improve.</p>
+    <p>Frame this as a direct answer to: what do I get from learning these topics if the rig is already designed?</p>
+    <p>The answer is that each topic gives me one more way to improve the design before the summer build starts.</p>
   </div>
 </div>
 </div>
