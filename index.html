@@ -301,46 +301,99 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
-  SLIDE 5 — ROLL IN REAL CAD
+  SLIDE 5 — TABBED MOTION VIEW
 ══════════════════════════════════════════════════════════════════ -->
 <div class="slide" data-l="Roll Motion">
 <div class="si">
   <div class="sec"><i class="fa-solid fa-film text-brand"></i>Real Motion</div>
-  <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-2">How roll works in the real CAD.</h2>
-  <p class="text-gray-500 text-sm mb-6">This is the real Onshape Assem4 motion. For <strong class="text-gray-700">roll</strong>, the two rear sides move opposite ways: one side rises, the other side drops, and the whole upper frame leans like a car body in a turn.</p>
-  <div class="grid lg:grid-cols-[1.15fr,0.85fr] gap-6 items-start">
-    <div>
-      <div class="gif-wrap" style="height:360px">
-        <img src="assets/kinimatics.gif" alt="Onshape Assem4 motion showing the real rig mechanism">
-        <div class="gif-badge">Onshape Assem4 motion</div>
+  <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-2">Pitch and roll, shown two ways.</h2>
+  <p class="text-gray-500 text-sm mb-5">The real Onshape GIF is best for seeing <strong class="text-gray-700">pitch</strong>. The <strong class="text-gray-700">roll</strong> tab uses a simpler diagram, because opposite left/right rear motion is easier to understand there.</p>
+  <div class="grid md:grid-cols-12 gap-5 items-start">
+    <div class="md:col-span-4 space-y-2">
+      <button type="button" class="mbtn sel motion-tab" onclick="setMotionPane('pitch',this)" aria-pressed="true">
+        <div class="font-semibold text-gray-900 text-sm">1. Pitch — Nose Up/Down</div>
+        <div class="text-xs text-gray-400 mt-0.5">Use the real Onshape GIF for the forward/back tilt from braking and acceleration.</div>
+      </button>
+      <button type="button" class="mbtn motion-tab" onclick="setMotionPane('roll',this)" aria-pressed="false">
+        <div class="font-semibold text-gray-900 text-sm">2. Roll — Lean Left/Right</div>
+        <div class="text-xs text-gray-400 mt-0.5">Use the diagram for the left/right lean because the opposite rear motion is clearer there.</div>
+      </button>
+      <div class="card mt-3">
+        <div class="text-xs font-semibold text-gray-600 mb-2">Why this uses both</div>
+        <p id="motion-pane-copy" class="text-sm text-gray-600 leading-relaxed">The Onshape GIF shows the real mechanism and motion path for pitch. The roll diagram is simpler, so the left/right lean is easier to see quickly.</p>
       </div>
-      <div class="mt-3 text-xs text-gray-400">Watch the blue rods and the rear corners of the moving frame. This GIF is the accurate reference for how the mechanism really behaves.</div>
     </div>
-    <div class="space-y-3">
-      <div class="card">
-        <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">1. Opposite rear motion</div>
-        <p class="text-sm text-gray-600 leading-relaxed">For roll, the left and right rear sides do opposite things. One rear corner goes up while the other rear corner goes down.</p>
+    <div class="md:col-span-8">
+      <div id="motion-pane-pitch" class="motion-pane">
+        <div class="gif-wrap" style="height:360px">
+          <img src="assets/kinimatics.gif" alt="Onshape Assem4 motion showing the real pitch motion">
+          <div class="gif-badge">Onshape Assem4 motion</div>
+        </div>
+        <div class="mt-3 card-blue rounded-xl p-4">
+          <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">What to look at</div>
+          <p class="text-sm text-blue-900 leading-relaxed">This GIF is the accurate reference for the real mechanism. It is best for showing pitch, where the upper frame tips forward/back and gives the braking and acceleration feeling.</p>
+        </div>
       </div>
-      <div class="card">
-        <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">2. One rigid upper frame</div>
-        <p class="text-sm text-gray-600 leading-relaxed">The seat, wheel, and pedals are all on one upper frame. The rig is not splitting into two pieces. The whole upper frame leans as one unit.</p>
-      </div>
-      <div class="card">
-        <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">3. Front U-joint stays connected</div>
-        <p class="text-sm text-gray-600 leading-relaxed">The important real pivot is the front U-joint. The rear motors and blue rods tip the back of the rig around that front connection.</p>
-      </div>
-      <div class="card-blue rounded-xl p-4">
-        <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Relatable Version</div>
-        <p class="text-sm text-blue-900 leading-relaxed">Think of it like leaning your body in a turn. The motion does not need to be huge. A small left/right lean is enough to make cornering feel much more real.</p>
+      <div id="motion-pane-roll" class="motion-pane hidden">
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+          <div class="text-xs font-bold text-brand uppercase tracking-widest mb-3">SIMPLE ROLL DIAGRAM</div>
+          <svg viewBox="0 0 520 300" width="100%" style="max-width:560px;overflow:visible" aria-label="Simple diagram showing roll with opposite rear motor motion">
+            <ellipse cx="260" cy="280" rx="180" ry="10" fill="#f3f4f6" opacity="0.85"/>
+            <polygon points="80,212 430,212 448,194 98,194" fill="#FDE68A" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="80,212 98,194 98,252 80,270" fill="#F59E0B" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="430,212 448,194 448,252 430,270" fill="#FBBF24" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="80,270 430,270 448,252 98,252" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.1"/>
+            <text x="260" y="217" font-family="Inter,sans-serif" font-size="9" fill="#92400E" text-anchor="middle" font-weight="600">fixed base stays on floor</text>
+
+            <circle cx="150" cy="206" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
+            <circle cx="150" cy="206" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
+            <circle cx="150" cy="206" r="3" fill="#9CA3AF"/>
+            <text x="150" y="240" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor L</text>
+            <circle cx="370" cy="206" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
+            <circle cx="370" cy="206" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
+            <circle cx="370" cy="206" r="3" fill="#9CA3AF"/>
+            <text x="370" y="240" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor R</text>
+
+            <line x1="118" y1="156" x2="392" y2="134" stroke="#8B7355" stroke-width="12" stroke-linecap="round"/>
+            <line x1="126" y1="100" x2="388" y2="78" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
+            <line x1="132" y1="100" x2="132" y2="156" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
+            <line x1="386" y1="78" x2="386" y2="134" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
+            <line x1="185" y1="151" x2="185" y2="111" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+            <line x1="275" y1="144" x2="275" y2="90" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+            <line x1="335" y1="140" x2="335" y2="100" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+
+            <line x1="150" y1="188" x2="184" y2="150" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="150" cy="188" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle cx="184" cy="150" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <line x1="370" y1="170" x2="334" y2="139" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="370" cy="170" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle cx="334" cy="139" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+
+            <path d="M116 232 L116 188" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
+            <path d="M116 232 L108 220 L124 220 Z" fill="#2563EB"/>
+            <text x="98" y="246" font-family="Inter,sans-serif" font-size="8" fill="#2563EB" text-anchor="middle" font-weight="700">left rear down</text>
+
+            <path d="M404 182 L404 138" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
+            <path d="M404 138 L396 150 L412 150 Z" fill="#2563EB"/>
+            <text x="424" y="134" font-family="Inter,sans-serif" font-size="8" fill="#2563EB" text-anchor="middle" font-weight="700">right rear up</text>
+
+            <text x="260" y="36" font-family="Inter,sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle" font-weight="700" letter-spacing="2">ROLL = OPPOSITE REAR MOTION</text>
+            <text x="260" y="286" font-family="Inter,sans-serif" font-size="8" fill="#9CA3AF" text-anchor="middle">The upper frame stays one rigid piece and leans side-to-side.</text>
+          </svg>
+        </div>
+        <div class="mt-3 card-blue rounded-xl p-4">
+          <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">What the diagram means</div>
+          <p class="text-sm text-blue-900 leading-relaxed">For roll, the rear motors move opposite ways. One rear side rises while the other drops, and that makes the whole upper frame lean like a car body in a turn.</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
-    <p>Use the real GIF here instead of the old fake schematic. This is the cleanest way to explain the motion honestly.</p>
-    <p>Keep the story simple: opposite rear motion creates a left/right lean, and the upper frame stays one rigid piece the whole time.</p>
-    <p>Point out the front U-joint as the real connected pivot, then translate roll into the everyday feeling of leaning in a turn.</p>
+    <p>Use the pitch tab first because the real GIF is the most honest reference for the actual mechanism.</p>
+    <p>Then switch to the roll tab and say the diagram is there only because opposite rear motion is easier to understand in a simplified picture.</p>
+    <p>Keep the explanation short: pitch is forward/back tilt, roll is left/right lean, and the upper frame stays one rigid piece.</p>
   </div>
 </div>
 
@@ -762,6 +815,25 @@ document.addEventListener('touchend',e=>{
 
 // ── FAQ ─────────────────────────────────────────────────────────────────────
 function tFaq(btn){btn.parentElement.classList.toggle('open')}
+function setMotionPane(mode, btn){
+  document.querySelectorAll('.motion-tab').forEach(tab=>{
+    tab.classList.remove('sel');
+    tab.setAttribute('aria-pressed','false');
+  });
+  if(btn){
+    btn.classList.add('sel');
+    btn.setAttribute('aria-pressed','true');
+  }
+  document.querySelectorAll('.motion-pane').forEach(pane=>pane.classList.add('hidden'));
+  const pane = document.getElementById(`motion-pane-${mode}`);
+  if(pane) pane.classList.remove('hidden');
+  const copy = document.getElementById('motion-pane-copy');
+  if(copy){
+    copy.textContent = mode === 'pitch'
+      ? 'The Onshape GIF shows the real mechanism and motion path for pitch.'
+      : 'The roll diagram is simplified on purpose so the left and right lean are easier to see fast.';
+  }
+}
 
 // ── POWER PATH ───────────────────────────────────────────────────────────────
 const POWER_INFO = {
