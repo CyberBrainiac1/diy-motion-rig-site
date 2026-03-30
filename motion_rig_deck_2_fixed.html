@@ -189,10 +189,10 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <div class="si">
   <div class="sec"><i class="fa-solid fa-compass text-brand"></i>Motion Axes</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-2">Yaw, pitch, and roll.</h2>
-  <p class="text-gray-500 text-sm mb-6">Before explaining the mechanism, these are the three ways a simulator can rotate. This design starts with <strong class="text-gray-700">pitch + roll</strong> because they give the biggest driving feel for the least cost and complexity.</p>
+  <p class="text-gray-500 text-sm mb-6">Before explaining the mechanism, these are the three ways a simulator can rotate. For <strong class="text-gray-700">my sim</strong>, pitch and roll matter the most because they match braking, acceleration, and cornering, which are the feelings I want most in the first version.</p>
   <div class="card mb-5 p-3 md:p-4">
     <img src="Airplane_control_Roll_Pitch_Yaw.gif" alt="Airplane gif showing the difference between pitch, roll, and yaw" class="w-full rounded-xl border border-gray-100 bg-white">
-    <p class="text-xs text-gray-500 leading-relaxed mt-3">This airplane GIF shows the three motions more clearly: pitch tips the nose up/down, roll leans wing-to-wing, and yaw rotates left/right.</p>
+    <p class="text-xs text-gray-500 leading-relaxed mt-3">This airplane GIF makes the difference easy to see: pitch tips forward/back, roll leans side-to-side, and yaw rotates left/right around a vertical axis.</p>
   </div>
   <div class="grid md:grid-cols-3 gap-4 mb-5">
     <div class="card">
@@ -205,7 +205,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         <path d="M165 77 L154 68 L170 64 Z" fill="#2563EB"/>
         <text x="110" y="110" text-anchor="middle" font-size="12" fill="#64748B" font-family="Inter, sans-serif">Brake / accelerate feeling</text>
       </svg>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2">Pitch is the forward/back tilt. In a driving sim, this is the cue that helps braking, acceleration, hills, and weight shifting feel more believable.</p>
+      <p class="text-xs text-gray-500 leading-relaxed mt-2">Pitch is important in my sim because it gives the forward/back feeling of braking and acceleration. That is one of the biggest things that makes driving feel real.</p>
     </div>
     <div class="card">
       <div class="text-xs font-bold text-amber-600 uppercase tracking-wide mb-2">Roll</div>
@@ -217,7 +217,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         <path d="M154 38 L141 36 L149 24 Z" fill="#D97706"/>
         <text x="110" y="110" text-anchor="middle" font-size="12" fill="#64748B" font-family="Inter, sans-serif">Lean in a turn</text>
       </svg>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2">Roll is the side-to-side lean. This is the cue that helps cornering feel real, because your body expects some left/right lean in turns and over curbs.</p>
+      <p class="text-xs text-gray-500 leading-relaxed mt-2">Roll is important in my sim because it gives the left/right leaning feeling of cornering. That helps turns, curbs, and weight transfer feel much more believable.</p>
     </div>
     <div class="card">
       <div class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Yaw</div>
@@ -228,25 +228,25 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         <path d="M171 55 L159 47 L176 43 Z" fill="#64748B"/>
         <text x="110" y="110" text-anchor="middle" font-size="12" fill="#64748B" font-family="Inter, sans-serif">Rotate whole rig</text>
       </svg>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2">Yaw would rotate the whole simulator left/right. It is useful, but it needs a much bigger moving base and much more structure than this first version.</p>
+      <p class="text-xs text-gray-500 leading-relaxed mt-2">Yaw would rotate the whole simulator left/right. It can help with things like the rear of the car stepping out, but it was not my first choice because normal driving relies more on pitch and roll.</p>
     </div>
   </div>
   <div class="grid md:grid-cols-2 gap-4">
     <div class="card-blue rounded-xl p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">This Design Uses First</div>
+      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Why My Sim Uses These First</div>
       <div class="flex flex-wrap gap-2 mb-3">
         <span class="tag">Pitch</span>
         <span class="tag">Roll</span>
       </div>
-      <p class="text-sm text-blue-900 leading-relaxed">Pitch gives the brake / acceleration feeling. Roll gives the cornering / leaning feeling. Those are the two most important driving cues for a compact sim, so they are the best first choice for the money.</p>
+      <p class="text-sm text-blue-900 leading-relaxed">I chose pitch first for braking and acceleration, and roll for cornering and body lean. Those are the two most important motion cues for the kind of realistic driving experience I want, so they give the most value in V1.</p>
     </div>
     <div class="card rounded-xl p-4">
-      <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Why Yaw Waits Until Later</div>
-      <p class="text-sm text-gray-600 leading-relaxed mb-3">Yaw would mean rotating the whole simulator on a bigger base. That adds more structure, more torque, more wiring complexity, and more cost before it adds as much useful feeling as pitch + roll.</p>
+      <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Why I Did Not Do Yaw First</div>
+      <p class="text-sm text-gray-600 leading-relaxed mb-3">I did not do yaw in V1 because it would mean rotating the whole simulator on a bigger moving base. That adds more structure, more torque, more wiring complexity, and more cost, while pitch + roll already cover the most important everyday driving feelings.</p>
       <ul class="space-y-1.5 text-xs text-gray-500">
-        <li class="flex gap-2"><span class="text-gray-300 shrink-0">+</span>More expensive than pitch + roll for a first build</li>
-        <li class="flex gap-2"><span class="text-gray-300 shrink-0">+</span>Harder mechanically and electrically</li>
-        <li class="flex gap-2"><span class="text-gray-300 shrink-0">+</span>Pitch + roll already cover the biggest driving cues</li>
+        <li class="flex gap-2"><span class="text-gray-300 shrink-0">+</span>Bigger and more expensive moving base</li>
+        <li class="flex gap-2"><span class="text-gray-300 shrink-0">+</span>Harder mechanically and electrically for a first build</li>
+        <li class="flex gap-2"><span class="text-gray-300 shrink-0">+</span>Pitch + roll already cover braking, acceleration, and cornering</li>
       </ul>
     </div>
   </div>
@@ -254,8 +254,8 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
     <p>Put this before the mechanism slide so the audience knows the three motion words first.</p>
-    <p>Keep the explanation simple: pitch is braking and acceleration, roll is cornering, yaw is rotating the whole rig.</p>
-    <p>The main decision point is that pitch and roll give the most useful driving feel for the least cost in version one.</p>
+    <p>Keep the explanation simple: pitch is for braking and acceleration, roll is for cornering, and yaw is rotation of the whole rig.</p>
+    <p>The main decision point is that pitch and roll matter most for this sim, while yaw costs much more and adds less value in a first version.</p>
   </div>
 </div>
 
