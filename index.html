@@ -570,71 +570,79 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <div class="si">
   <div class="sec"><i class="fa-solid fa-route text-brand"></i>Learning Plan</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">Connection to physics roadmap.</h2>
-  <p class="text-gray-500 text-sm mb-6">My spreadsheet is not just a list of topics. It is a phased plan with tutor sessions, daily practice, revision tests, and a project that lets the ideas become real instead of staying on paper.</p>
+  <p class="text-gray-500 text-sm mb-6">The rig is already designed in CAD. The school-year roadmap helps me understand the design more deeply, check it better, and know exactly what to improve before the physical build starts in summer.</p>
   <div class="grid md:grid-cols-3 gap-4 mb-5">
     <div class="rounded-2xl border-2 border-blue-200 bg-blue-50 p-4">
       <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Phase 1 • School Year</div>
       <div class="text-sm font-semibold text-gray-900 mb-1">Mar 23 - May 31</div>
-      <p class="text-xs text-gray-600 leading-relaxed mb-2">10 weeks, tutor-led foundation, about 45-60 min/day.</p>
-      <div class="text-xs text-blue-900 leading-relaxed">Measurement + error → kinematics → Newton's laws + friction → energy → momentum → circular motion → rotation.</div>
+      <p class="text-xs text-gray-600 leading-relaxed mb-2">Learn the physics while the rig is still in the design stage.</p>
+      <div class="text-xs text-blue-900 leading-relaxed">Use measurement, kinematics, forces, energy, circular motion, and rotation to check the design more intelligently before buying, cutting, and wiring parts.</div>
     </div>
     <div class="rounded-2xl border-2 border-amber-200 bg-amber-50 p-4">
       <div class="text-xs font-bold text-amber-700 uppercase tracking-wide mb-2">Phase 2 • Summer</div>
       <div class="text-sm font-semibold text-gray-900 mb-1">Jun 4 - Jul 20</div>
-      <p class="text-xs text-gray-600 leading-relaxed mb-2">7 weeks, heavier practice, about 2-3 hours/day.</p>
-      <div class="text-xs text-amber-900 leading-relaxed">Deeper problem solving, rotation mastery, plus thermo, SHM, and fluids after the main mechanics base is strong.</div>
+      <p class="text-xs text-gray-600 leading-relaxed mb-2">This is when the real build can happen.</p>
+      <div class="text-xs text-amber-900 leading-relaxed">By summer, the physics from the school year should make the build better: smarter measurements, better checks, and more confidence in the motor, linkage, and frame choices.</div>
     </div>
     <div class="rounded-2xl border-2 border-emerald-200 bg-emerald-50 p-4">
-      <div class="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-2">Phase 3 • Fall</div>
-      <div class="text-sm font-semibold text-gray-900 mb-1">Sep - Dec 2026</div>
-      <p class="text-xs text-gray-600 leading-relaxed mb-2">Broader physics + mock exams.</p>
-      <div class="text-xs text-emerald-900 leading-relaxed">E&amp;M, optics, relativity, and full-review problem solving so the roadmap becomes a complete physics plan, not just one unit.</div>
+      <div class="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-2">Phase 3 • After Build</div>
+      <div class="text-sm font-semibold text-gray-900 mb-1">Test, compare, improve</div>
+      <p class="text-xs text-gray-600 leading-relaxed mb-2">Once the rig exists, the physics becomes visible.</p>
+      <div class="text-xs text-emerald-900 leading-relaxed">I can compare predictions to the real machine, see what matches, and improve the design instead of treating it like a one-time build.</div>
+    </div>
+  </div>
+  <div class="rounded-2xl border border-gray-200 bg-white p-5 mb-5">
+    <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Specific school-year topics I can apply to this rig</div>
+    <div class="grid md:grid-cols-2 gap-3">
+      <div class="card p-4">
+        <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Measurement &amp; Error</div>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> frame dimensions, hole placement, linkage length, and CAD-vs-real tolerances.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> how carefully I check dimensions, where small errors would matter most, and what parts need adjustability.</p>
+      </div>
+      <div class="card p-4">
+        <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Kinematics</div>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> crank path, linkage motion, tilt angle, and how pitch/roll are created.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> crank radius, neutral position, linkage geometry, and whether the motion is smooth through the full range.</p>
+      </div>
+      <div class="card p-4">
+        <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Newton's Laws &amp; Friction</div>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> load paths, pivot forces, moving mass, and where resistance shows up in the mechanism.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> frame support, pivot quality, friction points, and where the design might waste motor effort.</p>
+      </div>
+      <div class="card p-4">
+        <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Energy, Momentum &amp; Circular Motion</div>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> braking feel, acceleration feel, cornering feel, and how motion cues should be interpreted.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> how I tune the motion later so pitch feels more like braking and roll feels more like turning instead of random movement.</p>
+      </div>
+      <div class="card p-4 md:col-span-2">
+        <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Torque &amp; Rotation</div>
+        <p class="text-xs text-gray-600 leading-relaxed"><strong>What it connects to:</strong> motor torque, lever arms, crank radius, rear load, and why the 250W motors are enough.</p>
+        <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong>What I can improve:</strong> my confidence in the motor choice, how I think about mechanical advantage, and whether I should change lever geometry before the build starts.</p>
+      </div>
     </div>
   </div>
   <div class="grid md:grid-cols-4 gap-3 mb-5">
     <div class="card p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Measurement &amp; Error</div>
-      <p class="text-xs text-gray-600 leading-relaxed">This helps me dimension parts correctly, compare real builds to CAD, and understand how small errors change the final motion.</p>
+      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Already Designed</div>
+      <p class="text-xs text-gray-600 leading-relaxed">The rig is not just an idea now. The CAD, kinematics, BOM, and electrical plan already exist.</p>
     </div>
     <div class="card p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Kinematics</div>
-      <p class="text-xs text-gray-600 leading-relaxed">This is the motion of the rig itself: crank movement, linkage position, tilt angle, and how graphs connect to what the platform does.</p>
+      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">School Year = Understand It Better</div>
+      <p class="text-xs text-gray-600 leading-relaxed">The roadmap gives me the physics language to explain and improve what is already in the design.</p>
     </div>
     <div class="card p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Forces, Energy, Momentum</div>
-      <p class="text-xs text-gray-600 leading-relaxed">This explains load paths, braking feel, acceleration feel, friction, and why the frame and safety choices have to be calculated.</p>
+      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Summer = Build It</div>
+      <p class="text-xs text-gray-600 leading-relaxed">The physical rig can be built during summer, when there is enough time for cutting, drilling, wiring, and testing.</p>
     </div>
     <div class="card p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Torque &amp; Rotation</div>
-      <p class="text-xs text-gray-600 leading-relaxed">This is the most direct rig connection: motor torque, crank radius, lever arms, and how much work each rear motor really has to do.</p>
+      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Then Improve It</div>
+      <p class="text-xs text-gray-600 leading-relaxed">After the build, I can compare the real rig to the design and use the same physics topics to tune and improve it.</p>
     </div>
-  </div>
-  <div class="rounded-2xl border border-gray-200 bg-white p-5">
-    <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-3">Why this helps me learn better</div>
-    <div class="grid md:grid-cols-4 gap-3 items-stretch">
-      <div class="rounded-xl bg-gray-50 border border-gray-200 p-3">
-        <div class="text-sm font-semibold text-gray-900 mb-1">Tutor</div>
-        <p class="text-xs text-gray-500 leading-relaxed">Learn the concept clearly first.</p>
-      </div>
-      <div class="rounded-xl bg-gray-50 border border-gray-200 p-3">
-        <div class="text-sm font-semibold text-gray-900 mb-1">Problem Sets</div>
-        <p class="text-xs text-gray-500 leading-relaxed">Practice until the math actually sticks.</p>
-      </div>
-      <div class="rounded-xl bg-blue-50 border border-blue-200 p-3">
-        <div class="text-sm font-semibold text-blue-900 mb-1">This Rig</div>
-        <p class="text-xs text-blue-700 leading-relaxed">See the same ideas in CAD, part choices, and motion behavior.</p>
-      </div>
-      <div class="rounded-xl bg-gray-50 border border-gray-200 p-3">
-        <div class="text-sm font-semibold text-gray-900 mb-1">Testing</div>
-        <p class="text-xs text-gray-500 leading-relaxed">Check whether the prediction matches reality and improve it.</p>
-      </div>
-    </div>
-    <p class="text-sm text-gray-600 leading-relaxed mt-4">That is why this project helps me learn better than only reading or only doing worksheets: the rig gives the roadmap a physical application, and the roadmap gives the rig real academic depth.</p>
   </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
-    <p>Use this slide to show that the physics learning is organized already: tutor, daily practice, revision tests, and then the rig as the real-world application.</p>
-    <p>The strongest line here is that the project makes the physics visible. Instead of only solving for torque or motion on paper, I can connect it to a real mechanism I designed.</p>
+    <p>Make the timeline clear: design is already done, school-year physics helps me understand and improve it, and summer is when the real build happens.</p>
+    <p>The point is not that physics comes before the idea. The point is that physics makes an already-designed rig smarter, safer, and easier to improve.</p>
   </div>
 </div>
 </div>
