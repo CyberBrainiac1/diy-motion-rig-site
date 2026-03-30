@@ -356,7 +356,6 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
             <circle cx="350" cy="205" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
             <circle cx="350" cy="205" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
             <circle cx="350" cy="205" r="3" fill="#9CA3AF"/>
-            <circle cx="350" cy="205" r="3" fill="#9CA3AF"/>
             <text x="350" y="239" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor R</text>
             <path d="M 132,205 A 18,18 0 0,1 168,205" fill="none" stroke="#9CA3AF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.45"/>
             <path d="M 332,205 A 18,18 0 0,1 368,205" fill="none" stroke="#9CA3AF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.45"/>
@@ -1055,8 +1054,8 @@ function animateKin(ts){
   // Gearbox stays centred on the tilting top beam
   const midTopY = kinYOnBeam(250, lTopY, rTopY);
   const driveCY = midTopY - 38;
-  kinSetElem('k-rmot',     {x:(222).toString(),           y:driveCY.toFixed(1), width:56, height:24, rx:4});
-  kinSetElem('k-rmot-top', {x:(232).toString(),           y:(driveCY-8).toFixed(1), width:36, height:10, rx:2});
+  kinSetElem('k-rmot',     {x:'222',  y:driveCY.toFixed(1), width:56, height:24, rx:4});
+  kinSetElem('k-rmot-top', {x:'232',  y:(driveCY-8).toFixed(1), width:36, height:10, rx:2});
   kinSetElem('k-rmot-label',{x:'250',                     y:(driveCY+15).toFixed(1)});
 
   // Front U-joint pivot stays fixed — frame tilts around it
