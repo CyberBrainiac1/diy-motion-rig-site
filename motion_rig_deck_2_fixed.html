@@ -428,64 +428,82 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <div class="slide" data-l="Physics">
 <div class="si">
   <div class="sec"><i class="fa-solid fa-flask text-brand"></i>Simple Physics</div>
-  <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">Simple ideas behind the motion.</h2>
-  <p class="text-gray-500 text-sm mb-6">This slide is not about scary formulas. It is just the everyday logic behind why the rig can feel real: brake feeling, turn feeling, a front hinge, and lever arms.</p>
-  <div class="grid md:grid-cols-2 gap-4">
-    <div class="card">
-      <div class="text-xs font-bold text-blue-600 uppercase tracking-wide mb-2">Braking / accelerating</div>
-      <svg viewBox="0 0 220 110" width="100%" aria-label="Pitch feels like braking and accelerating">
-        <line x1="28" y1="84" x2="192" y2="84" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
-        <rect x="58" y="46" width="92" height="22" rx="9" fill="#DBEAFE" stroke="#2563EB" stroke-width="2" transform="rotate(-10 104 57)"/>
-        <path d="M152 38 H188" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
-        <path d="M188 38 L176 31 L176 45 Z" fill="#2563EB"/>
-        <circle cx="104" cy="57" r="4" fill="#2563EB"/>
-      </svg>
-      <p class="text-sm text-gray-600 leading-relaxed mt-2">When you brake, your body wants to move forward. When you accelerate, your body wants to move back. Pitch adds a small tilt to fake that feeling.</p>
+  <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">Simple physics behind the motion.</h2>
+  <p class="text-gray-500 text-sm mb-5">These are the same equations from class, but each one matches something easy to picture in real life: a clock hand, a fixed-length rod, a door hinge, and sharing a heavy box.</p>
+  <div class="grid md:grid-cols-4 gap-3 mb-4">
+    <div class="card-blue rounded-xl p-3">
+      <div class="text-[11px] font-bold text-blue-700 uppercase tracking-wide mb-1.5">Clock Hand</div>
+      <p class="text-xs text-blue-900 leading-relaxed">The crank arm moves in a circle, just like the end of a clock hand.</p>
     </div>
-    <div class="card">
-      <div class="text-xs font-bold text-amber-600 uppercase tracking-wide mb-2">Turning</div>
-      <svg viewBox="0 0 220 110" width="100%" aria-label="Roll feels like leaning in a turn">
-        <line x1="28" y1="84" x2="192" y2="84" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
-        <rect x="62" y="46" width="96" height="22" rx="9" fill="#FEF3C7" stroke="#D97706" stroke-width="2" transform="rotate(10 110 57)"/>
-        <path d="M60 34 C84 10, 138 10, 160 34" fill="none" stroke="#D97706" stroke-width="4" stroke-linecap="round"/>
-        <path d="M160 34 L147 32 L154 20 Z" fill="#D97706"/>
-        <circle cx="110" cy="57" r="4" fill="#D97706"/>
-      </svg>
-      <p class="text-sm text-gray-600 leading-relaxed mt-2">In a turn, your body expects some left/right lean. Roll adds that gentle lean so cornering feels more believable instead of totally flat.</p>
+    <div class="card-orange rounded-xl p-3">
+      <div class="text-[11px] font-bold text-orange-700 uppercase tracking-wide mb-1.5">Rigid Rod</div>
+      <p class="text-xs text-orange-900 leading-relaxed">The blue linkage cannot stretch, so the geometry has to stay honest.</p>
     </div>
-    <div class="card">
-      <div class="text-xs font-bold text-gray-600 uppercase tracking-wide mb-2">Front U-joint = hinge</div>
-      <svg viewBox="0 0 220 110" width="100%" aria-label="Front U-joint works like a hinge">
-        <rect x="42" y="34" width="22" height="50" rx="5" fill="#E5E7EB" stroke="#6B7280" stroke-width="2"/>
-        <circle cx="53" cy="59" r="5" fill="#6B7280"/>
-        <rect x="62" y="48" width="96" height="18" rx="8" fill="#F3F4F6" stroke="#6B7280" stroke-width="2" transform="rotate(-8 110 57)"/>
-        <path d="M168 58 H192" stroke="#6B7280" stroke-width="4" stroke-linecap="round"/>
-        <path d="M192 58 L181 51 L181 65 Z" fill="#6B7280"/>
-      </svg>
-      <p class="text-sm text-gray-600 leading-relaxed mt-2">Think of the front U-joint like a door hinge. The rear motors do not need to lift the whole rig straight up. They mainly tip it around that front connection.</p>
+    <div class="card rounded-xl p-3 bg-gray-50">
+      <div class="text-[11px] font-bold text-gray-700 uppercase tracking-wide mb-1.5">Door Hinge</div>
+      <p class="text-xs text-gray-600 leading-relaxed">The front U-joint acts like a hinge, so a small rear lift becomes tilt.</p>
     </div>
-    <div class="card">
-      <div class="text-xs font-bold text-emerald-600 uppercase tracking-wide mb-2">Levers save motor force</div>
-      <svg viewBox="0 0 220 110" width="100%" aria-label="Cranks and rods work like lever arms">
-        <polygon points="110,76 90,88 130,88" fill="#D1D5DB"/>
-        <line x1="54" y1="62" x2="166" y2="62" stroke="#10B981" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="110" cy="62" r="6" fill="#065F46"/>
-        <circle cx="74" cy="56" r="8" fill="#A7F3D0" stroke="#10B981" stroke-width="2"/>
-        <circle cx="146" cy="68" r="8" fill="#A7F3D0" stroke="#10B981" stroke-width="2"/>
-      </svg>
-      <p class="text-sm text-gray-600 leading-relaxed mt-2">The crank arms and rods work like lever arms. Good geometry helps the motors create enough useful motion without needing huge industrial hardware.</p>
+    <div class="rounded-xl p-3 border border-emerald-200 bg-emerald-50">
+      <div class="text-[11px] font-bold text-emerald-700 uppercase tracking-wide mb-1.5">Shared Weight</div>
+      <p class="text-xs text-emerald-900 leading-relaxed">The front pivot carries part of the load, so each rear motor does less work.</p>
+    </div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div class="card p-4">
+      <div class="flex items-start justify-between gap-3 mb-2">
+        <div>
+          <div class="font-semibold text-gray-900 text-sm">Rotational Motion</div>
+          <p class="text-xs text-gray-500 mt-1">The crank tip height changes with circular motion.</p>
+        </div>
+        <span class="tag">Like a clock hand</span>
+      </div>
+      <div class="math mb-2">Z<sub>end</sub> = Z<sub>motor</sub> + 279·sin(90°+θ)</div>
+      <p class="text-xs text-gray-600 leading-relaxed">As the motor turns, the crank end moves up and down in a circle. That is the first step that creates motion in the rig.</p>
+    </div>
+    <div class="card p-4">
+      <div class="flex items-start justify-between gap-3 mb-2">
+        <div>
+          <div class="font-semibold text-gray-900 text-sm">Rigid Link Constraint</div>
+          <p class="text-xs text-gray-500 mt-1">The 385mm rod has a fixed length, so it constrains the frame position.</p>
+        </div>
+        <span class="tag">Like a ruler</span>
+      </div>
+      <div class="math mb-2">L² = ΔX² + ΔY² + ΔZ²</div>
+      <p class="text-xs text-gray-600 leading-relaxed">The rod cannot magically get longer or shorter. That fixed length forces the upper frame to a real, predictable position.</p>
+    </div>
+    <div class="card p-4">
+      <div class="flex items-start justify-between gap-3 mb-2">
+        <div>
+          <div class="font-semibold text-gray-900 text-sm">Tilt From Rear Lift</div>
+          <p class="text-xs text-gray-500 mt-1">The rear lift turns into frame angle because the front acts like a hinge.</p>
+        </div>
+        <span class="tag">Like a door hinge</span>
+      </div>
+      <div class="math mb-2">φ = arctan(ΔZ ÷ 900mm) ≈ ±8.8°</div>
+      <p class="text-xs text-gray-600 leading-relaxed">A rear vertical change of about 141mm becomes about 8.8 degrees of tilt, which is enough to feel braking, acceleration, and cornering cues.</p>
+    </div>
+    <div class="card p-4">
+      <div class="flex items-start justify-between gap-3 mb-2">
+        <div>
+          <div class="font-semibold text-gray-900 text-sm">Load Distribution</div>
+          <p class="text-xs text-gray-500 mt-1">The pivot carries some weight, so the motors do not lift the full 180 lb alone.</p>
+        </div>
+        <span class="tag">Like sharing a box</span>
+      </div>
+      <div class="math mb-2">F<sub>rear</sub> = W × (d<sub>CG</sub>/d) ≈ 54 lb</div>
+      <p class="text-xs text-gray-600 leading-relaxed">Because the front pivot holds part of the rig, each rear motor only sees about 54 lb instead of the full combined weight.</p>
     </div>
   </div>
   <div class="card-blue rounded-xl p-4 mt-4">
     <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Why this matters for buying parts</div>
-    <p class="text-sm text-blue-900 leading-relaxed">The goal is not maximum motion. The goal is enough motion to feel realistic, while still staying safe, controllable, and affordable. That is why the design focuses on the most useful cues instead of the most extreme movement.</p>
+    <p class="text-sm text-blue-900 leading-relaxed">These formulas are why the part choices are not guesses. They show the motors, crank size, rod length, and motion range were picked because they work together, not because they looked about right.</p>
   </div>
 </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
-    <p>Keep this relatable: braking in a car, leaning in a turn, a door hinge, and a seesaw or lever.</p>
-    <p>The audience does not need formulas here. They just need to understand why the motion choices make sense.</p>
-    <p>Tie it back to the funding ask: the parts are being chosen to make the rig feel real without wasting money on unnecessary complexity.</p>
+    <p>Keep the formulas on screen, but translate each one immediately: clock hand, fixed rod, door hinge, and sharing a heavy box.</p>
+    <p>The point of this slide is that the design is calculated and understandable at the same time, not mysterious.</p>
+    <p>Tie it back to the funding ask: these calculations are why the parts list is worth trusting.</p>
   </div>
 </div>
 <!-- ══════════════════════════════════════════════════════════════
