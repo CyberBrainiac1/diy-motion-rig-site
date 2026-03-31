@@ -645,6 +645,9 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         <h3 id="power-title" class="text-lg font-bold text-gray-900 leading-tight">Power path detail</h3>
       </div>
       <div id="power-spec" class="power-spec">Tap a block</div>
+      <div class="shrink-0 w-full md:w-32">
+        <img id="power-image" alt="" class="w-full h-24 object-contain rounded-xl border border-gray-200 bg-white p-2 hidden">
+      </div>
     </div>
     <p id="power-copy" class="text-sm text-slate-600 leading-relaxed mb-3">Click one of the power blocks above to expand what that part does in the 12V system.</p>
     <div class="grid md:grid-cols-3 gap-2.5">
@@ -782,6 +785,31 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   </div>
   <div class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-xl text-center text-xs text-gray-500">
     <i class="fa-solid fa-sliders text-blue-500 mr-1"></i>Once the hardware exists, I can keep tuning motion profiles and safety limits without rebuying the big-ticket parts. <strong class="text-gray-700">The system can keep improving.</strong>
+  </div>
+  <div class="mt-4">
+    <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Actual parts this budget buys</div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <div class="card p-3 text-center">
+        <img src="assets/parts/meanwell-lrs-600-12.jpg" alt="Mean Well LRS-600-12 power supply" class="h-20 w-full object-contain mb-2">
+        <div class="text-[11px] font-semibold text-gray-800">Mean Well PSU</div>
+      </div>
+      <div class="card p-3 text-center">
+        <img src="assets/parts/sabertooth-2x32.webp" alt="Sabertooth 2x32 motor driver" class="h-20 w-full object-contain mb-2">
+        <div class="text-[11px] font-semibold text-gray-800">Sabertooth 2×32</div>
+      </div>
+      <div class="card p-3 text-center">
+        <img src="assets/parts/12v-100a-contactor.jpg" alt="12V 100A contactor" class="h-20 w-full object-contain mb-2">
+        <div class="text-[11px] font-semibold text-gray-800">100A Contactor</div>
+      </div>
+      <div class="card p-3 text-center">
+        <img src="assets/parts/12v-250w-motor.jpg" alt="12V 250W motor" class="h-20 w-full object-contain mb-2">
+        <div class="text-[11px] font-semibold text-gray-800">250W Motor</div>
+      </div>
+      <div class="card p-3 text-center">
+        <img src="assets/parts/aramox-adjustable-linkage.jpg" alt="Aramox adjustable linkage" class="h-20 w-full object-contain mb-2">
+        <div class="text-[11px] font-semibold text-gray-800">Adjustable Linkage</div>
+      </div>
+    </div>
   </div>
 </div>
   <div class="speaker-notes">
@@ -978,6 +1006,7 @@ const POWER_INFO = {
     kicker: 'Input power',
     title: 'Mean Well 12V 50A PSU',
     spec: 'Stable 600W DC bus',
+    image: 'assets/parts/meanwell-lrs-600-12.jpg',
     copy: 'This supply converts wall AC into the 12V DC bus that feeds the whole rig. It is sized so both motors can pull hard at the same time without the voltage sagging badly, and it is a well-known unit with consistently strong reviews.',
     role: 'Creates the main 12V rail for the motor controller, contactor, and both drive motors.',
     why: 'A properly sized PSU keeps the controller stable during acceleration spikes and prevents brownouts.',
@@ -987,6 +1016,7 @@ const POWER_INFO = {
     kicker: 'Primary protection',
     title: '60A ANL main fuse',
     spec: 'Mounted at PSU output',
+    image: 'assets/parts/60a-anl-fuse.jpg',
     copy: 'This is the first high-current protection device after the PSU. If something shorts downstream, this fuse opens before the wiring cooks.',
     role: 'Protects the main feed wire between the PSU and the rest of the 12V bus.',
     why: 'The fuse is placed right at the source so almost no unfused cable is left exposed, which is the standard safe way to start the high-current path.',
@@ -996,6 +1026,7 @@ const POWER_INFO = {
     kicker: 'Hard shutdown',
     title: '100A contactor',
     spec: 'Coil controlled by E-stop',
+    image: 'assets/parts/12v-100a-contactor.jpg',
     copy: 'The contactor is the big hardware kill stage. The E-stop button cuts power to its coil, the contactor drops open, and motor power is removed immediately. I chose a part with a solid review history because this is one of the most important safety components in the whole rig.',
     role: 'Disconnects high-current motor power using a dedicated hardware switch, not just software commands.',
     why: 'This gives the rig a real emergency stop path even if the PC freezes or the controller locks up.',
@@ -1005,6 +1036,7 @@ const POWER_INFO = {
     kicker: 'Motor control',
     title: 'Sabertooth 2×32 motor driver',
     spec: '32A per channel with regen',
+    image: 'assets/parts/sabertooth-2x32.webp',
     copy: 'This board takes the control signals and meters power to each motor independently. It also handles regenerative braking, which matters because slowing a moving rig can push energy back from the motors into the electrical system. It is also one of the best-known and best-reviewed sim motion drivers in this budget range.',
     role: 'Converts control input into bidirectional current for the left and right motors.',
     why: 'Independent left/right channels are what let the platform create pitch, roll, and asymmetric motion, and regen support helps absorb braking energy safely.',
@@ -1014,6 +1046,7 @@ const POWER_INFO = {
     kicker: 'Actuation',
     title: 'Left 250W drive motor',
     spec: 'Protected by 30A branch fuse',
+    image: 'assets/parts/12v-250w-motor.jpg',
     copy: 'This motor turns the left crank arm and lifts one side of the frame through the blue linkage. Matching it with the right motor is what makes the motion feel balanced. I also did not pick a random motor listing here; the goal was to use a model people have actually had good results with.',
     role: 'Provides left-side torque for pitch and roll movement.',
     why: 'The left motor shares the rear load, so neither side has to lift the whole rig alone.',
@@ -1023,6 +1056,7 @@ const POWER_INFO = {
     kicker: 'Actuation',
     title: 'Right 250W drive motor',
     spec: 'Protected by 30A branch fuse',
+    image: 'assets/parts/12v-250w-motor.jpg',
     copy: 'This is the mirrored motor on the right side of the rig. Running it together or opposite to the left motor is how the design creates different motion cues. Using the same reviewed motor on both sides keeps the motion balanced and the replacement path simple.',
     role: 'Provides right-side torque so the platform can move symmetrically or differentially.',
     why: 'The second motor is what gives the design controlled roll instead of just simple single-axis lift.',
@@ -1055,6 +1089,18 @@ function setPowerCard(key, btn){
   $$('power-role').textContent = info.role;
   $$('power-why').textContent = info.why;
   $$('power-risk').textContent = info.risk;
+  const image = $$('power-image');
+  if(image){
+    if(info.image){
+      image.src = info.image;
+      image.alt = info.title;
+      image.classList.remove('hidden');
+    } else {
+      image.removeAttribute('src');
+      image.alt = '';
+      image.classList.add('hidden');
+    }
+  }
   panel.classList.add('open');
 }
 
