@@ -91,6 +91,15 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 .scenario-title{margin-top:.12rem;font-size:.77rem;font-weight:700;color:#1f2937;line-height:1.35}
 .scenario-detail{margin-top:1rem;border:1px solid #dbeafe;background:linear-gradient(180deg,#f8fbff 0%,#eff6ff 100%);border-radius:14px;padding:1rem}
 .scenario-badge{display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid #bfdbfe;font-size:.7rem;font-weight:700;color:#1d4ed8;white-space:nowrap}
+.kin-view{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:.45rem .55rem}
+.kin-label{font-size:.63rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#64748b;margin-bottom:.2rem}
+.kin-fixed{stroke:#7c3aed;stroke-width:2.4;fill:none}
+.kin-moving{stroke:#0f766e;stroke-width:2.2;fill:none}
+.kin-link{stroke:#2563eb;stroke-width:2.8;fill:none}
+.kin-joint{fill:#fff;stroke:#1d4ed8;stroke-width:1.6}
+.kin-dim{stroke:#94a3b8;stroke-width:1;stroke-dasharray:3 3;fill:none}
+.wire-hot{stroke:#f59e0b!important;filter:drop-shadow(0 0 4px rgba(245,158,11,.45))}
+.wire-off{stroke:#cbd5e1!important;opacity:.65}
 
 /* GIF container */
 .gif-wrap{border-radius:12px;overflow:hidden;border:1px solid #e5e7eb;background:#f8faff;position:relative}
@@ -322,6 +331,10 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         <div class="text-xs font-bold text-brand uppercase tracking-wide mb-1">4. Rear Motors + Blue Linkages</div>
         <p class="text-xs text-gray-500 leading-relaxed">The rear motors spin crank arms, and the blue rods push and pull the back of the moving frame. That is what creates pitch and roll.</p>
       </div>
+      <div class="card">
+        <div class="text-xs font-bold text-brand uppercase tracking-wide mb-1">5. Easy Neutral/Upright Adjustment</div>
+        <p class="text-xs text-gray-500 leading-relaxed">The adjustable rear linkages let me re-center the upright position after assembly, maintenance, or part swaps. I can fine-tune neutral without rebuilding the frame.</p>
+      </div>
     </div>
     <div class="gif-wrap" style="height:320px">
       <img src="assets/kinimatics.gif" alt="Onshape Assem4 motion of the simulator rig">
@@ -357,7 +370,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
       </button>
       <div class="card mt-3">
         <div class="text-xs font-semibold text-gray-600 mb-2">Why this uses both</div>
-        <p id="motion-pane-copy" class="text-sm text-gray-600 leading-relaxed">The Onshape GIF shows the real mechanism and motion path for pitch. The roll diagram is simpler, so the left/right lean is easier to see quickly.</p>
+        <p id="motion-pane-copy" class="text-sm text-gray-600 leading-relaxed">The Onshape GIF shows full CAD motion for pitch. The roll tab now uses one shared kinematics model projected into side/front/top/isometric views.</p>
       </div>
     </div>
     <div class="md:col-span-8">
@@ -372,74 +385,35 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
       </div>
       <div id="motion-pane-roll" class="motion-pane hidden">
-        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 flex flex-col items-center">
-          <div class="text-xs font-bold text-brand uppercase tracking-widest mb-3">FRONT/BACK VIEW — ROLL ANIMATION</div>
-          <svg id="kin" viewBox="0 0 500 290" width="100%" style="max-width:560px;overflow:visible" aria-label="Animated front/back view showing roll motion with fixed front pivot point">
-            <ellipse cx="250" cy="276" rx="180" ry="10" fill="#f3f4f6" opacity="0.85"/>
-            <text x="250" y="26" font-family="Inter,sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle" font-weight="700" letter-spacing="2">FRONT/BACK VIEW OF REAR LINKAGE LAYOUT</text>
-
-            <!-- Fixed base -->
-            <polygon points="75,210 425,210 445,192 95,192" fill="#FDE68A" stroke="#D97706" stroke-width="1.2"/>
-            <polygon points="75,210 95,192 95,252 75,270" fill="#F59E0B" stroke="#D97706" stroke-width="1.2"/>
-            <polygon points="425,210 445,192 445,252 425,270" fill="#FBBF24" stroke="#D97706" stroke-width="1.2"/>
-            <polygon points="75,270 425,270 445,252 95,252" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.1"/>
-            <text x="250" y="216" font-family="Inter,sans-serif" font-size="9" fill="#92400E" text-anchor="middle" font-weight="600">fixed base — stays on floor</text>
-
-            <!-- Motors -->
-            <circle cx="150" cy="205" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
-            <circle cx="150" cy="205" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
-            <circle cx="150" cy="205" r="3" fill="#9CA3AF"/>
-            <text x="150" y="239" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor L</text>
-            <circle cx="350" cy="205" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
-            <circle cx="350" cy="205" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
-            <circle cx="350" cy="205" r="3" fill="#9CA3AF"/>
-            <text x="350" y="239" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor R</text>
-            <path d="M 132,205 A 18,18 0 0,1 168,205" fill="none" stroke="#9CA3AF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.45"/>
-            <path d="M 332,205 A 18,18 0 0,1 368,205" fill="none" stroke="#9CA3AF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.45"/>
-
-            <!-- Moving frame (animated) -->
-            <line id="k-beam-front" x1="118" y1="154" x2="382" y2="154" stroke="#8B7355" stroke-width="12" stroke-linecap="round"/>
-            <line id="k-beam-back" x1="124" y1="96" x2="376" y2="96" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
-            <rect id="k-upl1" x="124" y="96" width="13" height="58" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
-            <rect id="k-upl2" x="179" y="118" width="13" height="36" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
-            <rect id="k-upr2" x="308" y="118" width="13" height="36" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
-            <rect id="k-upr1" x="363" y="96" width="13" height="58" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
-            <line id="k-cross" x1="124" y1="96" x2="376" y2="96" stroke="#D4B896" stroke-width="9" stroke-linecap="round"/>
-            <line id="k-inner1" x1="160" y1="154" x2="160" y2="110" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
-            <line id="k-inner2" x1="250" y1="154" x2="250" y2="96" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
-            <line id="k-inner3" x1="340" y1="154" x2="340" y2="110" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
-
-            <!-- Top gearbox (follows moving frame) -->
-            <rect id="k-rmot" x="222" y="58" width="56" height="26" rx="4" fill="#F97316" stroke="#EA580C" stroke-width="1.3"/>
-            <rect id="k-rmot-top" x="232" y="50" width="36" height="10" rx="2" fill="#FB923C" stroke="#EA580C" stroke-width="1"/>
-            <text id="k-rmot-label" x="250" y="75" font-family="Inter,sans-serif" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">Gearbox</text>
-
-            <!-- Front pivot point — the roll axis. Fixed to base; frame tilts around it. -->
-            <rect id="k-pivot-post" x="243" y="154" width="14" height="52" rx="3" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.3"/>
-            <rect id="k-pivot-cap" x="236" y="148" width="28" height="12" rx="3" fill="#7C3AED"/>
-            <circle id="k-pivot-pin" cx="250" cy="154" r="4" fill="#C4B5FD" stroke="#7C3AED" stroke-width="1"/>
-            <text id="k-pivot-label" x="250" y="184" font-family="Inter,sans-serif" font-size="8" fill="#7C3AED" text-anchor="middle" font-weight="600">front pivot point</text>
-            <text x="250" y="195" font-family="Inter,sans-serif" font-size="7.5" fill="#A78BFA" text-anchor="middle">(roll axis — stays fixed)</text>
-
-            <!-- Cranks (animated) -->
-            <line id="k-crankL" x1="150" y1="205" x2="150" y2="169" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
-            <circle id="k-tipL" cx="150" cy="169" r="5" fill="#374151" stroke="#9CA3AF" stroke-width="1.5"/>
-            <line id="k-crankR" x1="350" y1="205" x2="350" y2="169" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
-            <circle id="k-tipR" cx="350" cy="169" r="5" fill="#374151" stroke="#9CA3AF" stroke-width="1.5"/>
-
-            <!-- Blue linkage rods (animated) -->
-            <line id="k-linkL" x1="150" y1="169" x2="185" y2="118" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
-            <circle id="k-jointL1" cx="150" cy="169" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
-            <circle id="k-jointL2" cx="185" cy="118" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
-            <line id="k-linkR" x1="350" y1="169" x2="315" y2="118" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
-            <circle id="k-jointR1" cx="350" cy="169" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
-            <circle id="k-jointR2" cx="315" cy="118" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
-            <circle id="k-tabL" cx="185" cy="118" r="5.5" fill="#16A34A"/>
-            <circle id="k-tabR" cx="315" cy="118" r="5.5" fill="#16A34A"/>
-
-            <text x="250" y="285" font-family="Inter,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Crank R=279mm · Linkage L=385mm · Front pivot at center · Max tilt ±8.8°</text>
-          </svg>
-          <div class="mt-2 grid grid-cols-4 gap-3 w-full" style="max-width:360px">
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+          <div class="text-xs font-bold text-brand uppercase tracking-widest mb-3">KINEMATICS MODEL — ONE GEOMETRY, FOUR SYNCHRONIZED VIEWS</div>
+          <div class="grid md:grid-cols-2 gap-3">
+            <div class="kin-view"><div class="kin-label">Side View (truth)</div><svg id="kin-side" viewBox="0 0 320 220" class="w-full h-[190px]"></svg></div>
+            <div class="kin-view"><div class="kin-label">Front View (width / packaging)</div><svg id="kin-front" viewBox="0 0 320 220" class="w-full h-[190px]"></svg></div>
+            <div class="kin-view"><div class="kin-label">Top View (footprint / offsets)</div><svg id="kin-top" viewBox="0 0 320 220" class="w-full h-[190px]"></svg></div>
+            <div class="kin-view"><div class="kin-label">Isometric (same model)</div><svg id="kin-iso" viewBox="0 0 320 220" class="w-full h-[190px]"></svg></div>
+          </div>
+          <div class="mt-3 grid md:grid-cols-2 gap-3">
+            <div class="card p-3">
+              <div class="text-[11px] font-semibold text-gray-700 uppercase tracking-wide mb-2">Linkage controls</div>
+              <label class="text-xs text-gray-500">Left crank angle <span id="kin-left-val" class="font-mono text-gray-700">0°</span></label>
+              <input id="kin-left" type="range" min="-75" max="75" value="0" class="w-full">
+              <label class="text-xs text-gray-500">Right crank angle <span id="kin-right-val" class="font-mono text-gray-700">0°</span></label>
+              <input id="kin-right" type="range" min="-75" max="75" value="0" class="w-full">
+              <div class="flex flex-wrap gap-2 mt-2">
+                <button class="vb" type="button" onclick="setKinMode('roll-opposite',this)">Roll mode</button>
+                <button class="vb" type="button" onclick="setKinMode('pitch-same',this)">Pitch mode</button>
+                <button class="vb" type="button" onclick="setKinMode('manual',this)">Manual split</button>
+              </div>
+            </div>
+            <div class="card p-3">
+              <div class="text-[11px] font-semibold text-gray-700 uppercase tracking-wide mb-2">Model validation (debug)</div>
+              <div class="text-xs text-gray-500 leading-relaxed mb-2">Checks run each frame: fixed pivots stay fixed, rod lengths stay constant, rear span stays rigid, and all views are projected from one coordinate model.</div>
+              <label class="text-xs text-gray-600"><input id="kin-debug" type="checkbox" class="mr-1 align-middle">Show debug checks</label>
+              <div id="kin-debug-out" class="mt-2 text-[11px] text-gray-500 font-mono"></div>
+            </div>
+          </div>
+          <div class="mt-2 grid grid-cols-4 gap-3 w-full" style="max-width:420px">
             <div class="text-center"><div class="text-[10px] text-gray-400 uppercase tracking-wide">Roll</div><div class="font-mono font-bold text-sm text-amber-600" id="vr">0.0°</div></div>
             <div class="text-center"><div class="text-[10px] text-gray-400 uppercase tracking-wide">Pitch</div><div class="font-mono font-bold text-sm text-gray-500" id="vp">0.0°</div></div>
             <div class="text-center"><div class="text-[10px] text-blue-400 uppercase tracking-wide">Motor L</div><div class="font-mono font-bold text-sm text-blue-600" id="vl">0°</div></div>
@@ -448,7 +422,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
         <div class="mt-3 card-blue rounded-xl p-4">
           <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">What you're seeing</div>
-          <p class="text-sm text-blue-900 leading-relaxed">For roll, the rear motors go opposite directions. One side rises while the other drops, and the whole upper frame leans around the fixed front pivot point (purple). That lean is the cornering cue you feel in the sim.</p>
+          <p class="text-sm text-blue-900 leading-relaxed">This is one shared kinematics model calibrated to the same Assembly 4 dimensions used in the deck (crank radius, rod length, and frame spacing). Side/front/top/isometric are all projections of the same live joint coordinates.</p>
         </div>
       </div>
     </div>
@@ -742,11 +716,12 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <div class="si">
   <div class="sec"><i class="fa-solid fa-bolt text-brand"></i>Electrical Systems</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-2">A real 12V power system.</h2>
-  <p class="text-gray-500 text-sm mb-2">2×250W motors, up to 50A combined = 600W total. Designed like industrial equipment.</p>
+  <p class="text-gray-500 text-sm mb-2">2×250W motors on a 12V bus with layered protection. Built to be understandable, serviceable, and safer to debug.</p>
+  <p class="text-xs text-gray-400 mb-2">Flow-wise, this slide is where the motion concept turns into practical wiring, protection, and shutdown decisions.</p>
   <p class="text-xs text-gray-400 mb-1">I also chose the core electrical parts from models with strong reviews and a known track record, not random no-name listings.</p>
   <p class="text-xs text-gray-400 mb-4">Click any block in the power path to expand more info about what it does.</p>
   <div class="flex items-stretch gap-1.5 mb-4 overflow-x-auto pb-1">
-    <button type="button" class="cbox pnode shrink-0 pt-3 pb-3" data-power="psu" aria-expanded="false" onclick="setPowerCard('psu',this)"><img src="assets/parts/meanwell-lrs-600-12.jpg" alt="Mean Well power supply" class="h-16 w-full object-contain mb-1 rounded-lg"><div class="text-xs font-bold text-gray-700">PSU</div><div class="text-xs text-gray-400 mt-0.5">Mean Well<br>12V 50A</div></button>
+    <button type="button" class="cbox pnode shrink-0 pt-3 pb-3" data-power="psu" aria-expanded="false" onclick="setPowerCard('psu',this)"><img src="assets/parts/meanwell-lrs-600-12.jpg" alt="Mean Well power supply" class="h-16 w-full object-contain mb-1 rounded-lg"><div class="text-xs font-bold text-gray-700">PSU</div><div class="text-xs text-gray-400 mt-0.5">LRS-600-12<br>12V 50A</div></button>
     <div class="carr">→</div>
     <button type="button" class="cbox pnode shrink-0 pt-3 pb-3" data-power="fuse-main" aria-expanded="false" onclick="setPowerCard('fuse-main',this)"><img src="assets/parts/60a-anl-fuse.jpg" alt="60A ANL fuse" class="h-16 w-full object-contain mb-1 rounded-lg"><div class="text-xs font-bold text-gray-700">60A ANL Fuse</div><div class="text-xs text-gray-400 mt-0.5">At PSU<br>output</div></button>
     <div class="carr">→</div>
@@ -786,6 +761,30 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
       </div>
     </div>
   </div>
+  <div class="card p-3 mb-4">
+    <div class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Interactive wiring + safety layer map</div>
+    <p class="text-xs text-gray-500 mb-2">Click a mode to highlight what is energized and what safety stage is expected to react first.</p>
+    <div class="flex flex-wrap gap-2 mb-2">
+      <button class="vb av wire-mode" type="button" onclick="setWireScenario('normal',this)">Normal run</button>
+      <button class="vb wire-mode" type="button" onclick="setWireScenario('estop',this)">E-stop pressed</button>
+      <button class="vb wire-mode" type="button" onclick="setWireScenario('branch-fault',this)">Branch short</button>
+      <button class="vb wire-mode" type="button" onclick="setWireScenario('main-fault',this)">Main short</button>
+    </div>
+    <svg id="wire-diagram" viewBox="0 0 860 210" class="w-full border border-gray-200 rounded-lg bg-gray-50">
+      <path id="wire-main" d="M70 105 H740" stroke="#2563eb" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path id="wire-branch-l" d="M610 105 V65 H760" stroke="#3b82f6" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path id="wire-branch-r" d="M610 105 V145 H760" stroke="#3b82f6" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <g class="wire-node" id="wire-psu" transform="translate(30,78)"><rect width="70" height="54" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="35" y="24" text-anchor="middle" font-size="11" fill="#334155">PSU</text><text x="35" y="39" text-anchor="middle" font-size="9" fill="#64748b">12V 50A</text></g>
+      <g class="wire-node" id="wire-main-fuse" transform="translate(150,78)"><rect width="86" height="54" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="43" y="24" text-anchor="middle" font-size="11" fill="#334155">Main Fuse</text><text x="43" y="39" text-anchor="middle" font-size="9" fill="#64748b">60A ANL</text></g>
+      <g class="wire-node" id="wire-contactor" transform="translate(290,78)"><rect width="90" height="54" rx="8" fill="#fff" stroke="#fca5a5"/><text x="45" y="24" text-anchor="middle" font-size="11" fill="#b91c1c">Contactor</text><text x="45" y="39" text-anchor="middle" font-size="9" fill="#ef4444">E-stop coil</text></g>
+      <g class="wire-node" id="wire-driver" transform="translate(450,78)"><rect width="104" height="54" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="52" y="24" text-anchor="middle" font-size="11" fill="#334155">Sabertooth 2×32</text><text x="52" y="39" text-anchor="middle" font-size="9" fill="#64748b">10-24 AWG term.</text></g>
+      <g class="wire-node" id="wire-lfuse" transform="translate(640,36)"><rect width="80" height="40" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="40" y="18" text-anchor="middle" font-size="10" fill="#334155">30A Fuse L</text><text x="40" y="31" text-anchor="middle" font-size="9" fill="#64748b">branch</text></g>
+      <g class="wire-node" id="wire-rfuse" transform="translate(640,132)"><rect width="80" height="40" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="40" y="18" text-anchor="middle" font-size="10" fill="#334155">30A Fuse R</text><text x="40" y="31" text-anchor="middle" font-size="9" fill="#64748b">branch</text></g>
+      <g class="wire-node" id="wire-motor-l" transform="translate(760,38)"><rect width="72" height="40" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="36" y="24" text-anchor="middle" font-size="10" fill="#334155">Motor L</text></g>
+      <g class="wire-node" id="wire-motor-r" transform="translate(760,132)"><rect width="72" height="40" rx="8" fill="#fff" stroke="#cbd5e1"/><text x="36" y="24" text-anchor="middle" font-size="10" fill="#334155">Motor R</text></g>
+    </svg>
+    <div id="wire-caption" class="text-xs text-gray-500 mt-2">Normal run: current path is energized through PSU → fuses → contactor → driver → branch fuses → motors.</div>
+  </div>
   <div class="flex gap-3 p-3.5 bg-red-50 border border-red-200 border-l-4 border-l-red-500 rounded-r-xl mb-4">
     <i class="fa-solid fa-hand text-red-500 mt-0.5 shrink-0 text-sm"></i>
     <div class="flex-1"><div class="font-semibold text-red-700 text-xs mb-0.5">E-STOP button — 22mm mushroom pushbutton, 2 NC contacts</div><p class="text-xs text-red-600 leading-relaxed">This is the physical emergency-stop button the user hits to shut the rig down instantly. It cuts 12V to the contactor coil, which drops the contactor open and removes motor power without switching the motor leads directly. <strong>Hardware always wins over software.</strong></p></div>
@@ -797,8 +796,12 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
     <div class="p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center"><div class="text-xs font-semibold text-gray-700">30A Branch</div><div class="text-xs text-gray-400 mt-0.5">Per-motor fuse</div></div>
     <div class="p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center"><div class="text-xs font-semibold text-gray-700">Regen Braking</div><div class="text-xs text-gray-400 mt-0.5">No EMF spikes</div></div>
     <div class="p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center"><div class="text-xs font-semibold text-gray-700">Isolation</div><div class="text-xs text-gray-400 mt-0.5">5V logic sep.</div></div>
-    <div class="p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center"><div class="text-xs font-semibold text-gray-700">8 AWG Wire</div><div class="text-xs text-gray-400 mt-0.5">Rated 50A+</div></div>
+    <div class="p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-center"><div class="text-xs font-semibold text-gray-700">Wire Strategy</div><div class="text-xs text-gray-400 mt-0.5">Bus heavy, terminals matched</div></div>
 </div>
+  <div class="card p-3 mt-3">
+    <div class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-1.5">Safety philosophy (layered, not magic)</div>
+    <p class="text-xs text-gray-600 leading-relaxed">Protect electronics with PSU and driver safeguards, limit fault energy with fuses, drop motion power with a contactor, and <strong>latch faults until a human reset</strong>. Good enclosure design, strain relief, abrasion protection, and inspection are still required.</p>
+  </div>
   <div class="card-blue rounded-xl p-4 mt-4">
     <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">What regen braking means here</div>
     <p class="text-sm text-blue-900 leading-relaxed">When the rig slows a motor down, that motor can act like a generator and push energy back into the system. A driver with regen braking is built to handle that energy cleanly instead of letting voltage spikes hit the power supply and electronics.</p>
@@ -821,7 +824,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <div class="si">
   <div class="sec"><i class="fa-solid fa-shield-halved text-brand"></i>Safety Scenarios</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">If something goes wrong, what stops it?</h2>
-  <p class="text-gray-500 text-sm mb-5">Most of the serious cases below are meant to be reduced automatically by <strong class="text-gray-700">fuses</strong>, <strong class="text-gray-700">fail-safe contactor behavior</strong>, <strong class="text-gray-700">PSU protection</strong>, or simple <strong class="text-gray-700">loss of power</strong>. Only the true motion emergencies depend on the operator using the <strong class="text-gray-700">E-stop</strong>.</p>
+  <p class="text-gray-500 text-sm mb-5">These scenarios show a layered response: the system <strong class="text-gray-700">automatically mitigates many electrical and control faults</strong>, while build quality, enclosure choices, and inspection still decide whether hazards are contained in real life.</p>
   <div class="grid md:grid-cols-2 gap-3">
     <div class="card p-3">
       <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Electrical Faults</div>
@@ -874,25 +877,25 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
     </div>
     <div class="grid md:grid-cols-3 gap-2.5">
       <div class="power-meta">
-        <div class="power-meta-label">Primary Response</div>
-        <div id="safety-response" class="power-meta-copy">The slide will explain whether the answer is an automatic fuse reaction, fail-safe power loss, PSU protection, or a manual stop.</div>
+        <div class="power-meta-label">Issue</div>
+        <div id="safety-response" class="power-meta-copy">Select a scenario to see the specific fault or hazard.</div>
       </div>
       <div class="power-meta">
-        <div class="power-meta-label">Automatic Protection</div>
-        <div id="safety-backup" class="power-meta-copy">Clicking a scenario shows the exact part of the safety plan that matters most.</div>
+        <div class="power-meta-label">What catches it automatically</div>
+        <div id="safety-backup" class="power-meta-copy">Fuses, PSU protection, driver limits, contactor drop, and logic checks handle many cases.</div>
       </div>
       <div class="power-meta">
-        <div class="power-meta-label">Honest Limit</div>
-        <div id="safety-honest" class="power-meta-copy">Some cases are reduced automatically. Some still depend on the operator stopping the rig or cutting wall power.</div>
+        <div class="power-meta-label">What still depends on build quality / inspection</div>
+        <div id="safety-honest" class="power-meta-copy">Enclosure sealing, cable routing, strain relief, fastening, and maintenance are still human responsibilities.</div>
       </div>
     </div>
   </div>
 </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
-    <p>This is the family reassurance slide. Lead with the fact that most electrical fault cases are reduced automatically by fuses, fail-safe power loss, and PSU protection.</p>
+    <p>This is the family reassurance slide. Lead with the fact that many electrical and control faults are automatically mitigated by fuses, fail-safe power loss, PSU protection, and controller limits.</p>
     <p>The strongest automatic cases are main short, branch short, power outage, contactor coil power loss, and PSU protection.</p>
-    <p>Only the true motion emergencies should be framed as E-stop cases. Smoke and fire are human emergency response cases, not pretend automatic ones.</p>
+    <p>Be explicit that enclosure design, strain relief, abrasion protection, and inspection are still required. Electronics reduce risk; they do not replace build quality.</p>
   </div>
 </div>
 
@@ -912,6 +915,11 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
     <div class="card p-4"><div class="text-xs text-gray-400 mb-1.5">Sabertooth vs Cytron MDDS30?</div><p class="text-sm text-gray-600 mb-3">Cytron ($79) has no regen braking → back-EMF spikes PSU on deceleration. $46 premium on a 50A system is worth it.</p><span class="tag">Chose: Sabertooth 2×32</span></div>
     <div class="card p-4"><div class="text-xs text-gray-400 mb-1.5">Fixed vs adjustable linkage?</div><p class="text-sm text-gray-600 mb-3">Fixed rods: off by 5mm → re-drill the crank. Aramox adjustable: dial in neutral after assembly. ~$5 more. No reason not to.</p><span class="tag">Chose: Aramox 370–400mm</span></div>
 </div>
+  <div class="grid md:grid-cols-3 gap-3 mt-3">
+    <div class="card p-4"><div class="text-xs text-gray-400 mb-1.5">What might fail first?</div><p class="text-sm text-gray-600 mb-3">Most likely early issues are loose hardware, linkage alignment drift, and connector/crimp mistakes — not exotic electronics failures.</p><span class="tag">Plan: inspect + retorque</span></div>
+    <div class="card p-4"><div class="text-xs text-gray-400 mb-1.5">What is reusable long-term?</div><p class="text-sm text-gray-600 mb-3">PSU, Sabertooth, motors, contactor, E-stop, and a lot of harness hardware transfer directly to V2 even if the frame geometry evolves.</p><span class="tag">Protect high-value parts</span></div>
+    <div class="card p-4"><div class="text-xs text-gray-400 mb-1.5">Minimum viable version?</div><p class="text-sm text-gray-600 mb-3">MVP is controlled 2DOF pitch/roll with conservative limits, E-stop path verified, and repeatable low-speed operation before full tuning.</p><span class="tag">Build in stages</span></div>
+  </div>
 </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
@@ -929,6 +937,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   <div class="sec"><i class="fa-solid fa-road text-brand"></i>Funding Plan</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">What this purchase buys first.</h2>
   <p class="text-gray-500 text-sm mb-7">Nothing is built yet. This deck is asking for the parts to build V1 first, then tune and improve it over time. The core parts were picked so later upgrades reuse them instead of replacing everything.</p>
+  <p class="text-xs text-gray-400 mb-5">Project flow: prove a safe, controllable MVP first → validate repeatability → then open performance and upgrade headroom.</p>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
     <div class="border-2 border-blue-500 rounded-xl p-4 bg-blue-50">
       <div class="text-xs font-bold text-blue-600 uppercase tracking-wide mb-3">This Purchase</div>
@@ -975,19 +984,39 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
     </div>
   </div>
   <div class="mt-5 p-3 bg-gray-50 border border-gray-200 rounded-xl text-center text-xs text-gray-500">
-    <i class="fa-solid fa-bolt text-yellow-500 mr-1"></i>Mean Well LRS-600-12 = 50A continuous, so the first PSU choice still leaves room for future upgrades. <strong class="text-gray-700">The first purchase is being picked to stay useful later.</strong>
+    <i class="fa-solid fa-bolt text-yellow-500 mr-1"></i>Mean Well LRS-600-12 = <strong class="text-gray-700">12V, 50A, 600W</strong> (225 × 124 × 41 mm), so the first PSU choice is correctly sized for V1 and still useful later.
   </div>
   <div class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-xl text-center text-xs text-gray-500">
     <i class="fa-solid fa-link text-blue-500 mr-1"></i>I started this design after seeing other motion systems that use a <strong class="text-gray-700">front pivot + rear crank-linkage</strong> strategy. Similar linkage ideas show up in compact seat movers, DIY motion platforms, and other crank-and-rod tilt systems. <strong class="text-gray-700">My version adapts that idea into my own full-rig design.</strong>
   </div>
   <div class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-xl text-center text-xs text-gray-500">
-    <i class="fa-solid fa-microchip text-blue-500 mr-1"></i>Sabertooth 2×32 is not a throwaway beginner part. It fits <strong class="text-gray-700">V1 now</strong> and still stays useful later as I improve profiles, limits, and response.
+    <i class="fa-solid fa-microchip text-blue-500 mr-1"></i>Sabertooth 2×32 gives <strong class="text-gray-700">32A continuous / 64A peak per channel</strong>, so it works for V1 now and leaves room for tuning and safer current limits later.
   </div>
   <div class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-xl text-center text-xs text-gray-500">
     <i class="fa-solid fa-screwdriver-wrench text-blue-500 mr-1"></i>If I revise brackets, linkage geometry, or the chassis later, the <strong class="text-gray-700">motors, electronics, and core motion layout still carry over.</strong>
   </div>
   <div class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-xl text-center text-xs text-gray-500">
     <i class="fa-solid fa-sliders text-blue-500 mr-1"></i>Once the hardware exists, I can keep tuning motion profiles and safety limits without rebuying the big-ticket parts. <strong class="text-gray-700">The system can keep improving.</strong>
+  </div>
+  <div class="grid md:grid-cols-2 gap-3 mt-3">
+    <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+      <div class="text-xs font-bold text-emerald-800 uppercase tracking-wide mb-1.5">Validation stages</div>
+      <ul class="text-xs text-emerald-700 space-y-1.5">
+        <li>1) Bench test PSU, fuses, contactor, and E-stop logic with no motion load</li>
+        <li>2) Single-motor low-current test and direction/limit verification</li>
+        <li>3) Two-motor low-angle motion with supervised stop checks</li>
+        <li>4) Incremental tuning with logs, retorque checks, and thermal checks</li>
+      </ul>
+    </div>
+    <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl">
+      <div class="text-xs font-bold text-amber-800 uppercase tracking-wide mb-1.5">Maintenance mindset</div>
+      <ul class="text-xs text-amber-700 space-y-1.5">
+        <li>Pre-session: visual wire/hardware check + E-stop reachability</li>
+        <li>Weekly: retorque key fasteners, inspect rod ends and cable abrasion points</li>
+        <li>After faults: no auto-restart; inspect, repair root cause, then re-test at low power</li>
+        <li>Track drift over time (noise, heat, looseness) before it becomes a larger failure</li>
+      </ul>
+    </div>
   </div>
   <div class="mt-4">
     <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Actual parts this budget buys</div>
@@ -1065,7 +1094,12 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   <div class="grid md:grid-cols-2 gap-7">
     <div><h3 class="font-semibold text-gray-900 mb-4 text-sm">What this project actually teaches</h3><div class="space-y-2.5"><div class="flex gap-2.5 text-sm"><i class="fa-solid fa-circle-dot text-blue-500 mt-0.5 text-xs shrink-0"></i><div><span class="font-medium text-gray-800">Mechanical design</span><span class="text-gray-500"> — kinematics, linkage sizing, DOF analysis. Calculated, not guessed.</span></div></div><div class="flex gap-2.5 text-sm"><i class="fa-solid fa-circle-dot text-blue-500 mt-0.5 text-xs shrink-0"></i><div><span class="font-medium text-gray-800">Applied physics</span><span class="text-gray-500"> — rotational motion, torque, lever arms. Same class equations on real hardware.</span></div></div><div class="flex gap-2.5 text-sm"><i class="fa-solid fa-circle-dot text-blue-500 mt-0.5 text-xs shrink-0"></i><div><span class="font-medium text-gray-800">Electrical safety</span><span class="text-gray-500"> — fuse coordination, wire sizing, relay design, E-stop architecture.</span></div></div><div class="flex gap-2.5 text-sm"><i class="fa-solid fa-circle-dot text-blue-500 mt-0.5 text-xs shrink-0"></i><div><span class="font-medium text-gray-800">Fabrication</span><span class="text-gray-500"> — drilling steel, cutting lumber, assembling a structure that survives vibration.</span></div></div><div class="flex gap-2.5 text-sm"><i class="fa-solid fa-circle-dot text-blue-500 mt-0.5 text-xs shrink-0"></i><div><span class="font-medium text-gray-800">Debugging</span><span class="text-gray-500"> — when it doesn't move right: geometry? wiring? firmware? software? No answer key.</span></div></div><div class="flex gap-2.5 text-sm"><i class="fa-solid fa-circle-dot text-blue-500 mt-0.5 text-xs shrink-0"></i><div><span class="font-medium text-gray-800">Planning</span><span class="text-gray-500"> — fully sourced BOM with links and prices. A real plan.</span></div></div></div></div>
     <div><h3 class="font-semibold text-gray-900 mb-4 text-sm">Why this funding ask makes sense</h3><div class="space-y-2.5"><div class="p-3 bg-gray-50 border border-gray-200 rounded-xl"><div class="font-medium text-gray-800 text-sm mb-0.5">Real hardware, not random extras</div><p class="text-xs text-gray-500">The money goes to motors, safety parts, a 600W PSU, controller hardware, and the frame materials needed to actually build V1.</p></div><div class="p-3 bg-gray-50 border border-gray-200 rounded-xl"><div class="font-medium text-gray-800 text-sm mb-0.5">Inspired by proven linkage ideas</div><p class="text-xs text-gray-500">I got the idea after seeing compact motion systems that use one front pivot with two rear crank linkages. Similar linkage strategies show up in seat movers, DIY motion platforms, and other motor-driven tilt rigs, then I turned that idea into my own full-rig layout.</p></div><div class="p-3 bg-gray-50 border border-gray-200 rounded-xl"><div class="font-medium text-gray-800 text-sm mb-0.5">My version is optimized for this budget</div><p class="text-xs text-gray-500">Instead of copying an expensive commercial rig, I kept the full-rig motion concept and removed the costly finish, extra DOF, and heavy fabrication that are not needed for V1.</p></div><div class="p-3 bg-blue-50 border border-blue-200 rounded-xl"><div class="font-medium text-blue-800 text-sm mb-0.5">Something I can build and show</div><p class="text-xs text-blue-600">A working 2DOF motion platform with the CAD, BOM, tuning, and safety design behind it is a real portfolio piece, not just a purchase.</p></div></div></div>
-</div>
+  </div>
+  <div class="grid md:grid-cols-3 gap-3 mt-5">
+    <div class="card p-3"><div class="text-xs font-semibold text-gray-800 mb-1">Cost/value logic</div><p class="text-xs text-gray-500">This is not just spending on entertainment. It buys reusable power electronics, controls, and a test platform for future engineering iterations.</p></div>
+    <div class="card p-3"><div class="text-xs font-semibold text-gray-800 mb-1">Reliability over time</div><p class="text-xs text-gray-500">The plan assumes parts loosen and drift. Reliability comes from inspection intervals, retuning, and staged re-validation, not one perfect build day.</p></div>
+    <div class="card p-3"><div class="text-xs font-semibold text-gray-800 mb-1">Systems-engineering growth</div><p class="text-xs text-gray-500">This project teaches requirements, tradeoffs, failure analysis, validation planning, and maintenance decisions — the same thinking used in real engineering teams.</p></div>
+  </div>
 </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
@@ -1117,11 +1151,16 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   <div class="sec"><i class="fa-solid fa-circle-question text-brand"></i>FAQ</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6">Frequently asked questions.</h2>
   <div id="faql">
-    <div class="faq-item open"><button class="fq" onclick="tFaq(this)"><span>Is this safe?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">E-stop cuts all motor power in &lt;50ms via 100A contactor relay. 60A main fuse, 30A branch fuses, 8 AWG wire, isolation between logic and power, and a fixed floor base all reduce risk.</div></div>
+    <div class="faq-item open"><button class="fq" onclick="tFaq(this)"><span>Is this safe?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">It is designed with layered safety: E-stop + contactor hard power drop, 60A main fuse, 30A branch fuses, and controller/PSU protections. Main bus wiring can be heavier gauge, while Sabertooth screw terminals are matched to their supported 10–24 AWG range (typically 10 AWG for high-current terminal connections).</div></div>
     <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>Will it break things in the room?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">No. Footprint is compact, the motion range is small, and the base stays on the floor. This is a controlled lean-and-tilt rig, not something that jumps across the room.</div></div>
     <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>Is ~$480 the real number?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">Yes. The live Google Sheets BOM in the deck is the real parts list. The final budget is about $480, and the embedded sheet is the exact source for the current parts and totals.</div></div>
     <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>Why should I buy now?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">Some of the key parts, especially the motors, show up in limited quantities and low stock. Buying the main parts now lowers the chance of the BOM changing later because one important part disappears or jumps in price.</div></div>
     <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>How long will this take?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">Nothing is built yet. Once the parts are bought, CAD cleanup, wiring prep, and documentation can happen during school weeks, while the heavier physical build work happens during breaks like summer break.</div></div>
+    <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>How do you prove it works safely?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">By staged validation: bench-test power and E-stop first, then low-current single-motor checks, then low-angle dual-motor motion, then gradual tuning with inspections and thermal checks between stages.</div></div>
+    <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>What if behavior changes over time?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">That is expected in real hardware. The plan includes retorque intervals, wear checks on rod ends and wiring, and retuning when backlash/noise/heat trends appear instead of ignoring drift.</div></div>
+    <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>What assumptions does the design depend on?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">Main assumptions: conservative motion range, rigid base attachment, correct wiring practices, and regular inspection. If those assumptions change, limits are reduced and the system is re-validated before normal use.</div></div>
+    <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>Can upright/neutral position be changed later?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">Yes. The adjustable linkage setup is there specifically so neutral/upright can be re-centered without redesigning the rig. That helps after assembly tolerances, wear-in, seat changes, or geometry tweaks.</div></div>
+    <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>If V1 changes, is money wasted?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">Not much. The high-value parts (PSU, motor driver, motors, contactor, E-stop, and much of the wiring hardware) are intentionally selected to carry into improved versions.</div></div>
     <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>Does this mean neglecting school?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">No. School comes first. The plan is to do lighter design work during normal weeks and save the bigger hands-on construction for breaks like summer break.</div></div>
     <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>Isn't this just for video games?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">The context is sim racing, but the engineering is real: structure, motion geometry, load paths, power electronics, safety hardware, and physical testing.</div></div>
     <div class="faq-item"><button class="fq" onclick="tFaq(this)"><span>Can't you just buy one?</span><i class="fa-solid fa-plus fi"></i></button><div class="fa2">Commercial 2DOF rigs usually cost far more than this full BOM. Buying one would skip the part that actually teaches the most: designing, sourcing, building, wiring, and tuning the system.</div></div>
@@ -1209,7 +1248,7 @@ function setMotionPane(mode, btn){
   if(copy){
     copy.textContent = mode === 'pitch'
       ? 'The Onshape GIF shows the real mechanism and motion path for pitch.'
-      : 'The animated diagram shows the front/back view with the fixed front pivot — motors go opposite directions, and the frame leans around that point.';
+      : 'The kinematics model keeps link lengths and fixed pivots honest while all four views stay synchronized in real time.';
   }
 }
 
@@ -1217,58 +1256,58 @@ function setMotionPane(mode, btn){
 const POWER_INFO = {
   'psu': {
     kicker: 'Input power',
-    title: 'Mean Well 12V 50A PSU',
-    spec: 'Stable 600W DC bus',
+    title: 'Mean Well LRS-600-12 PSU',
+    spec: '12V, 50A, 600W • 225×124×41 mm',
     image: 'assets/parts/meanwell-lrs-600-12.jpg',
-    copy: 'This supply converts wall AC into the 12V DC bus that feeds the whole rig. It is sized so both motors can pull hard at the same time without the voltage sagging badly, and it is a well-known unit with consistently strong reviews.',
+    copy: 'This supply converts wall AC into the 12V DC bus that feeds the rig. Its local protections (overload, overvoltage, and thermal) help protect the PSU itself while keeping a stable rail under combined motor load.',
     role: 'Creates the main 12V rail for the motor controller, contactor, and both drive motors.',
-    why: 'A properly sized PSU keeps the controller stable during acceleration spikes and prevents brownouts.',
-    risk: 'An undersized supply can drop voltage, glitch the controller, or overheat under combined motor load.'
+    why: 'A properly sized PSU keeps control electronics stable and reduces brownout-related glitches during aggressive moves.',
+    risk: 'PSU protections are real, but they are local to the supply and do not replace external fusing or good wiring.'
   },
   'fuse-main': {
     kicker: 'Primary protection',
     title: '60A ANL main fuse',
     spec: 'Mounted at PSU output',
     image: 'assets/parts/60a-anl-fuse.jpg',
-    copy: 'This is the first high-current protection device after the PSU. If something shorts downstream, this fuse opens before the wiring cooks.',
+    copy: 'This is the first high-current protection stage after the PSU. It limits fault energy in downstream wiring if a hard short happens.',
     role: 'Protects the main feed wire between the PSU and the rest of the 12V bus.',
-    why: 'The fuse is placed right at the source so almost no unfused cable is left exposed, which is the standard safe way to start the high-current path.',
-    risk: 'Without it, a short in the harness could dump the full PSU current into the wire and start melting insulation.'
+    why: 'Placed near the source, it leaves very little unfused cable in the highest-energy section.',
+    risk: 'A fuse is not a smart detector for loose crimps or rubbed insulation; it mainly reacts once fault current is high.'
   },
   'contactor': {
     kicker: 'Hard shutdown',
     title: '100A contactor',
     spec: 'Coil controlled by E-stop',
     image: 'assets/parts/12v-100a-contactor.jpg',
-    copy: 'The contactor is the big hardware kill stage. The E-stop button cuts power to its coil, the contactor drops open, and motor power is removed immediately. I chose a part with a solid review history because this is one of the most important safety components in the whole rig.',
+    copy: 'The contactor is the hard power-drop stage. The E-stop cuts power to its coil, the contactor drops open, and motor power is removed without asking software for permission.',
     role: 'Disconnects high-current motor power using a dedicated hardware switch, not just software commands.',
-    why: 'This gives the rig a real emergency stop path even if the PC freezes or the controller locks up.',
+    why: 'This gives a fail-safe hardware shutdown path even if the PC freezes, comms fail, or control logic crashes.',
     risk: 'Without a contactor, a software failure could leave the motors powered when you most need them off.'
   },
   'controller': {
     kicker: 'Motor control',
     title: 'Sabertooth 2×32 motor driver',
-    spec: '32A per channel with regen',
+    spec: '32A continuous/ch, 64A peak/ch, regen',
     image: 'assets/parts/sabertooth-2x32.webp',
-    copy: 'This board takes the control signals and meters power to each motor independently. It also handles regenerative braking, which matters because slowing a moving rig can push energy back from the motors into the electrical system. It is also one of the best-known and best-reviewed sim motion drivers in this budget range.',
-    role: 'Converts control input into bidirectional current for the left and right motors.',
-    why: 'Independent left/right channels are what let the platform create pitch, roll, and asymmetric motion, and regen support helps absorb braking energy safely.',
-    risk: 'A weak driver or one without good braking behavior can create back-EMF spikes and unstable motion.'
+    copy: 'This driver takes control signals and meters bidirectional motor current on two channels. It includes thermal/current protections and configurable current limiting, plus regenerative braking to handle energy pushed back during deceleration. Its main power terminals are sized for 10–24 AWG, so high-current terminal runs are planned around 10 AWG while larger bus cable can stay upstream.',
+    role: 'Converts control input into bidirectional current for left and right motors while supervising driver-side limits.',
+    why: 'Independent channels create pitch/roll cues, and current limiting + regen help reduce electrical stress during aggressive moves.',
+    risk: 'Driver protections reduce risk, but they do not make every mechanical or wiring failure automatically safe.'
   },
   'motor-l': {
     kicker: 'Actuation',
     title: 'Left 250W drive motor',
-    spec: 'Protected by 30A branch fuse',
+    spec: '30A branch fuse • power path sized separately',
     image: 'assets/parts/12v-250w-motor.jpg',
     copy: 'This motor turns the left crank arm and lifts one side of the frame through the blue linkage. Matching it with the right motor is what makes the motion feel balanced. I also did not pick a random motor listing here; the goal was to use a model people have actually had good results with.',
     role: 'Provides left-side torque for pitch and roll movement.',
     why: 'The left motor shares the rear load, so neither side has to lift the whole rig alone.',
-    risk: 'If it stalls or is unfused, the current can spike and damage the wiring or driver on that branch.'
+    risk: 'If it stalls or the branch is poorly protected, current can spike and overheat wiring or stress the driver.'
   },
   'motor-r': {
     kicker: 'Actuation',
     title: 'Right 250W drive motor',
-    spec: 'Protected by 30A branch fuse',
+    spec: '30A branch fuse • power path sized separately',
     image: 'assets/parts/12v-250w-motor.jpg',
     copy: 'This is the mirrored motor on the right side of the rig. Running it together or opposite to the left motor is how the design creates different motion cues. Using the same reviewed motor on both sides keeps the motion balanced and the replacement path simple.',
     role: 'Provides right-side torque so the platform can move symmetrically or differentially.',
@@ -1282,65 +1321,65 @@ const SAFETY_CASES = {
     kicker: 'Electrical faults',
     title: 'Main power wire shorts',
     badge: '60A main fuse',
-    response: 'The 60A ANL fuse should open automatically if the main high-current line hard-shorts after the PSU.',
-    backup: 'The fuse is placed right after the PSU so there is very little unfused cable.',
-    honest: 'It saves the system from becoming a worse wiring failure, but the rig still stays off until the fault is repaired.'
+    response: 'Issue: Main high-current wire hard-shorts after the PSU.',
+    backup: 'Auto mitigation: 60A ANL should open quickly and contain fault energy in the main feed.',
+    honest: 'Still manual/build-dependent: root cause repair, wire replacement, and inspection before re-power.'
   },
   'branch-short': {
     kicker: 'Electrical faults',
     title: 'One motor branch shorts',
     badge: '30A branch fuse',
-    response: 'The branch fuse on that motor side should open automatically before the short can keep dumping current into one branch.',
-    backup: 'That isolates the bad side instead of waiting for the full-system fuse to react.',
-    honest: 'The damaged branch still needs repair before use.'
+    response: 'Issue: One motor branch shorts.',
+    backup: 'Auto mitigation: branch fuse should isolate that side before the full bus is stressed.',
+    honest: 'Still manual/build-dependent: repair branch wiring and verify harness routing/abrasion protection.'
   },
   'water-wires': {
     kicker: 'Electrical faults',
     title: 'Water falls on wires',
     badge: 'Fuse if it becomes a short',
-    response: 'If the water creates a real short, the fuse path is the automatic protection that should react first.',
-    backup: 'Fuses and insulated wiring reduce the chance that water turns into a worse fault instantly.',
-    honest: 'There is no water sensor here. Even if the fuse saves it, the rig should be powered down and dried before use.'
+    response: 'Issue: Water reaches exposed wiring.',
+    backup: 'Auto mitigation: if it becomes a hard short, fuse protection may clear that fault.',
+    honest: 'Still manual/build-dependent: sealed enclosure, cable glands, loom, routing, and dry-out inspection. Exposed wire is a build/maintenance issue, not something a fuse “predicts.”'
   },
   'tool-terminals': {
     kicker: 'Electrical faults',
     title: 'Metal tool falls across terminals',
     badge: 'Fuse reacts to short',
-    response: 'If a tool bridges live terminals, that becomes a direct short and the fuse path is supposed to react automatically.',
-    backup: 'That is exactly the kind of fault the main protection is there for.',
-    honest: 'A direct short can still be violent. The fuse helps, but the system must be checked before re-powering.'
+    response: 'Issue: A metal tool bridges live terminals.',
+    backup: 'Auto mitigation: fuse path should react to the short and limit sustained fault current.',
+    honest: 'Still manual/build-dependent: insulated covers, spacing, and disciplined maintenance practices.'
   },
   'wire-frame': {
     kicker: 'Electrical faults',
     title: 'Loose wire touches frame',
     badge: 'Fuse if frame contact causes short',
-    response: 'If a loose conductor touches the frame and creates a real short path, the fuse protection should trip automatically.',
-    backup: 'Proper insulation, routing, and fusing are what keep this from escalating faster.',
-    honest: 'If it has only rubbed through and not blown a fuse yet, it is still unsafe and needs repair.'
+    response: 'Issue: Loose/damaged wire contacts frame.',
+    backup: 'Auto mitigation: if it creates enough fault current, branch/main fuse can trip.',
+    honest: 'Still manual/build-dependent: strain relief, abrasion sleeves, and inspections catch damage before hard faults.'
   },
   'water-psu': {
     kicker: 'Power and heat',
     title: 'Water splashes on PSU',
     badge: 'Manual power-down',
-    response: 'The safe response is to cut power and unplug the rig. This is not a case where I should pretend the system automatically fixes itself.',
-    backup: 'The real protection here is prevention: keep liquids away and mount the PSU where spills are less likely to hit it.',
-    honest: 'Water on mains-powered hardware is a stop-now situation, not a “wait and see” situation.'
+    response: 'Issue: Water splashes on PSU (mains-side hardware).',
+    backup: 'Auto mitigation: none to trust here as a normal strategy — immediate shutdown is the intended action.',
+    honest: 'Still manual/build-dependent: weather-resistant enclosure placement and keeping liquids away from mains components.'
   },
   'psu-overload': {
     kicker: 'Power and heat',
     title: 'PSU overloads',
     badge: 'Built-in overload protection',
-    response: 'The Mean Well PSU has overload protection, so if demand goes too far outside normal limits it should protect itself automatically.',
-    backup: 'That gives the system another protection layer beyond the external fuses.',
-    honest: 'If overload protection triggers, that means something about the setup still needs to be corrected.'
+    response: 'Issue: Total load exceeds PSU operating range.',
+    backup: 'Auto mitigation: PSU overload protection should limit/shut output to protect the supply.',
+    honest: 'Still manual/build-dependent: reduce load, retune limits, and verify no hidden mechanical bind.'
   },
   'psu-thermal': {
     kicker: 'Power and heat',
     title: 'PSU overheats',
     badge: 'Thermal shutdown path',
-    response: 'If the PSU overheats badly enough, its thermal protection should shut it down rather than keep pushing power.',
-    backup: 'That is one reason for choosing a known PSU instead of a random no-name unit.',
-    honest: 'If it ever reaches thermal shutdown, the rig should stay off until the cause is understood.'
+    response: 'Issue: PSU temperature rises too high.',
+    backup: 'Auto mitigation: PSU thermal shutdown should cut output before severe internal damage.',
+    honest: 'Still manual/build-dependent: airflow, dust control, and enclosure ventilation must be designed and maintained.'
   },
   'smoke': {
     kicker: 'Power and heat',
@@ -1362,9 +1401,9 @@ const SAFETY_CASES = {
     kicker: 'Mechanical faults',
     title: 'Motor jams hard',
     badge: 'Protection helps, then stop use',
-    response: 'A hard jam can drive current up, so the driver and fuse path reduce how bad the electrical side can get.',
-    backup: 'The system is not relying on the motor to survive unlimited abuse with no protection around it.',
-    honest: 'A jam is still a stop-and-inspect case. Automatic protection reduces escalation, but it does not make a jam harmless.'
+    response: 'Issue: Motor or linkage jams under load.',
+    backup: 'Auto mitigation: driver current limits + branch fuses reduce escalation on the electrical side.',
+    honest: 'Still manual/build-dependent: stop use, clear the jam, inspect linkage alignment, and verify no hardware damage.'
   },
   'loose-linkage': {
     kicker: 'Mechanical faults',
@@ -1434,9 +1473,9 @@ const SAFETY_CASES = {
     kicker: 'Motion and surroundings',
     title: 'House power cuts out',
     badge: 'Motors de-energize',
-    response: 'If house power dies, the motors lose power too. The rig cannot keep driving itself with no electrical power.',
-    backup: 'The fixed base and small travel keep this from becoming a giant moving-platform problem.',
-    honest: 'The user may still need to get out carefully if the rig settles in a tilted position.'
+    response: 'Issue: House AC power is lost.',
+    backup: 'Auto mitigation: contactor/driver de-energize, so motors cannot continue active motion.',
+    honest: 'Still manual/build-dependent: user exits carefully if platform settles off-level; no auto-restart after power return.'
   }
 };
 
@@ -1496,128 +1535,280 @@ function setSafetyCase(key, btn){
 function $$(id){return document.getElementById(id)}
 setSafetyCase('water-wires', document.querySelector(".scenario-btn[onclick*='water-wires']"));
 
-// ── ROLL ANIMATION ──────────────────────────────────────────────────────────
-// Constants match the actual rig geometry: 279mm crank, 385mm linkage, ±8.8° max tilt.
-const KIN_CRK = 36;
-const KIN_ML = {x:150,y:205}, KIN_MR = {x:350,y:205};
-const KIN_TAB_LX = 185, KIN_TAB_RX = 315;
-const KIN_NEUTRAL_Y = 155;
-const KIN_PIVOT_Y = 154;
-const KIN_FRAME_H = 58;
-const KIN_TAB_FROM_BOTTOM = 36;
-const KIN_FRAME_X1 = 118, KIN_FRAME_X2 = 382;
-const KIN_BASE_PIVOT_Y = 206;
-let kinT = 0, kinLastT = 0;
+// ── SHARED KINEMATICS MODEL (ONE SOURCE OF TRUTH) ─────────────────────────
+const KIN = {
+  geo: {
+    // Canonical axes: X left↔right, Y fore↔aft, Z up.
+    frontPivot: {x:0, y:330, z:150},
+    frameAnchors: {
+      fl:{x:-220, y:95, z:150}, fr:{x:220, y:95, z:150},
+      rl:{x:-220, y:345, z:150}, rr:{x:220, y:345, z:150}
+    },
+    motorLeft: {x:-250, y:430, z:40},
+    motorRight:{x:250, y:430, z:40},
+    crankRadius: 279,
+    rodLength: 385,
+    frameHalfWidth: 220,
+    frameLength: 520,
+    rearYOffset: 345,
+    frontYOffset: 95
+  },
+  state: { leftDeg: 0, rightDeg: 0, mode: 'roll-opposite', autoplay: true, t: 0 },
+  neutral: null,
+  pose: null,
+  viewSize: 320
+};
 
-function kinSetElem(id, attrs){
-  const el = document.getElementById(id);
-  if(!el) return;
-  Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k, v));
+function kVec(x,y,z){ return {x,y,z}; }
+function kAdd(a,b){ return {x:a.x+b.x,y:a.y+b.y,z:a.z+b.z}; }
+function kSub(a,b){ return {x:a.x-b.x,y:a.y-b.y,z:a.z-b.z}; }
+function kDot(a,b){ return a.x*b.x+a.y*b.y+a.z*b.z; }
+function kCross(a,b){ return {x:a.y*b.z-a.z*b.y,y:a.z*b.x-a.x*b.z,z:a.x*b.y-a.y*b.x}; }
+function kLen(v){ return Math.hypot(v.x,v.y,v.z); }
+function kNorm(v){ const l=kLen(v)||1; return {x:v.x/l,y:v.y/l,z:v.z/l}; }
+function kScale(v,s){ return {x:v.x*s,y:v.y*s,z:v.z*s}; }
+function kDist(a,b){ return kLen(kSub(a,b)); }
+function kRotX(v,a){ const c=Math.cos(a),s=Math.sin(a); return {x:v.x,y:v.y*c-v.z*s,z:v.y*s+v.z*c}; }
+function kRotY(v,a){ const c=Math.cos(a),s=Math.sin(a); return {x:v.x*c+v.z*s,y:v.y,z:-v.x*s+v.z*c}; }
+
+function makeBasis(origin, pX, pY){
+  const xAxis = kNorm(kSub(pX, origin));
+  const tempY = kSub(pY, origin);
+  const zAxis = kNorm(kCross(xAxis, tempY));
+  const yAxis = kNorm(kCross(zAxis, xAxis));
+  return {origin, xAxis, yAxis, zAxis};
 }
-function kinLerp(a, b, t){ return a + (b - a) * t; }
-function kinYOnBeam(x, yL, yR){
-  return kinLerp(yL, yR, (x - KIN_FRAME_X1) / (KIN_FRAME_X2 - KIN_FRAME_X1));
+
+function basisToWorld(basis, local){
+  return kAdd(
+    basis.origin,
+    kAdd(
+      kScale(basis.xAxis, local.x),
+      kAdd(kScale(basis.yAxis, local.y), kScale(basis.zAxis, local.z))
+    )
+  );
+}
+
+function worldToBasis(basis, world){
+  const v = kSub(world, basis.origin);
+  return {x:kDot(v,basis.xAxis), y:kDot(v,basis.yAxis), z:kDot(v,basis.zAxis)};
+}
+
+function solveFramePose(frontPivot, rearLeft, rearRight){
+  const g=KIN.geo;
+  const neutral = makeBasis(g.frontPivot, g.frameAnchors.rr, g.frameAnchors.rl);
+  const live = makeBasis(frontPivot, rearRight, rearLeft);
+  const localRearL = worldToBasis(neutral, g.frameAnchors.rl);
+  const localRearR = worldToBasis(neutral, g.frameAnchors.rr);
+  const liveRearL = worldToBasis(live, rearLeft);
+  const liveRearR = worldToBasis(live, rearRight);
+  const roll = Math.atan2(liveRearL.z - liveRearR.z, localRearR.x - localRearL.x || 1);
+  const pitch = Math.atan2((liveRearL.z + liveRearR.z) / 2, g.rearYOffset - g.frontYOffset);
+  return {roll, pitch, neutralBasis:neutral, liveBasis:live};
+}
+
+function solvePose(){
+  const g=KIN.geo;
+  const lRad = KIN.state.leftDeg*Math.PI/180;
+  const rRad = KIN.state.rightDeg*Math.PI/180;
+
+  const leftTip = kAdd(g.motorLeft, kVec(0, g.crankRadius*Math.cos(lRad), g.crankRadius*Math.sin(lRad)));
+  const rightTip = kAdd(g.motorRight, kVec(0, g.crankRadius*Math.cos(rRad), g.crankRadius*Math.sin(rRad)));
+
+  const rearLeft = sphereFromFrontPivot(g.frontPivot, g.frameAnchors.rl, leftTip, g.rodLength);
+  const rearRight= sphereFromFrontPivot(g.frontPivot, g.frameAnchors.rr, rightTip,g.rodLength);
+  const pose = solveFramePose(g.frontPivot, rearLeft, rearRight);
+
+  return {leftTip,rightTip,rearLeft,rearRight,roll:pose.roll,pitch:pose.pitch,neutralBasis:pose.neutralBasis,liveBasis:pose.liveBasis};
+}
+
+function sphereFromFrontPivot(frontPivot, anchor, crankTip, rodLen){
+  const fromFront = kSub(anchor, {x:0,y:0,z:0});
+  const dx=fromFront.x, dy=fromFront.y;
+  const localXY = {x:dx,y:dy};
+  const base = {x:frontPivot.x+localXY.x,y:frontPivot.y+localXY.y,z:frontPivot.z};
+  const horiz = Math.hypot(base.x-crankTip.x, base.y-crankTip.y);
+  const under = Math.max(0, rodLen*rodLen - horiz*horiz);
+  const dz = Math.sqrt(under);
+  const zA = crankTip.z + dz;
+  const zB = crankTip.z - dz;
+  const chosen = Math.abs(zA-frontPivot.z) < Math.abs(zB-frontPivot.z) ? zA : zB;
+  return {x:base.x,y:base.y,z:chosen};
+}
+
+function applyModeFromLeft(leftVal){
+  if(KIN.state.mode==='roll-opposite'){ KIN.state.rightDeg = -leftVal; }
+  else if(KIN.state.mode==='pitch-same'){ KIN.state.rightDeg = leftVal; }
+}
+
+function projectPoint(v, view){
+  let x=0,y=0;
+  if(view==='side'){ x=v.y; y=v.z; }
+  if(view==='front'){ x=v.x; y=v.z; }
+  if(view==='top'){ x=v.x; y=v.y; }
+  if(view==='iso'){
+    const isoX = (v.x - v.y) * 0.72;
+    const isoY = (v.x + v.y) * 0.35;
+    x=isoX; y=v.z - isoY;
+  }
+  return {x:160 + x*0.23, y:170 - y*0.23};
+}
+
+function kinDrawLine(svgId, a,b, cls){
+  const svg=document.getElementById(svgId); if(!svg) return;
+  const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
+  ln.setAttribute('x1',a.x.toFixed(1)); ln.setAttribute('y1',a.y.toFixed(1));
+  ln.setAttribute('x2',b.x.toFixed(1)); ln.setAttribute('y2',b.y.toFixed(1));
+  ln.setAttribute('class',cls); svg.appendChild(ln);
+}
+function kinDrawCircle(svgId, c, r, cls){
+  const svg=document.getElementById(svgId); if(!svg) return;
+  const el=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  el.setAttribute('cx',c.x.toFixed(1)); el.setAttribute('cy',c.y.toFixed(1));
+  el.setAttribute('r',r); el.setAttribute('class',cls); svg.appendChild(el);
+}
+function kinLabel(svgId, text, at){
+  const svg=document.getElementById(svgId); if(!svg) return;
+  const el=document.createElementNS('http://www.w3.org/2000/svg','text');
+  el.textContent=text; el.setAttribute('x',at.x.toFixed(1)); el.setAttribute('y',at.y.toFixed(1));
+  el.setAttribute('fill','#64748b'); el.setAttribute('font-size','9'); el.setAttribute('font-family','Inter,sans-serif');
+  svg.appendChild(el);
+}
+
+function renderKinematics(){
+  const rollPane=document.getElementById('motion-pane-roll');
+  if(!rollPane || rollPane.classList.contains('hidden')) return;
+
+  KIN.pose = solvePose();
+  const p=KIN.pose;
+  const g=KIN.geo;
+  const localFL = worldToBasis(p.neutralBasis, g.frameAnchors.fl);
+  const localFR = worldToBasis(p.neutralBasis, g.frameAnchors.fr);
+  const localRL = worldToBasis(p.neutralBasis, g.frameAnchors.rl);
+  const localRR = worldToBasis(p.neutralBasis, g.frameAnchors.rr);
+  const worldFL = basisToWorld(p.liveBasis, localFL);
+  const worldFR = basisToWorld(p.liveBasis, localFR);
+  const worldRL = basisToWorld(p.liveBasis, localRL);
+  const worldRR = basisToWorld(p.liveBasis, localRR);
+
+  ['kin-side','kin-front','kin-top','kin-iso'].forEach((id)=>{
+    const svg=document.getElementById(id); if(!svg) return; svg.innerHTML='';
+    const view=id.split('-')[1];
+    const pFP=projectPoint(g.frontPivot,view);
+    const pML=projectPoint(g.motorLeft,view), pMR=projectPoint(g.motorRight,view);
+    const pLT=projectPoint(p.leftTip,view), pRT=projectPoint(p.rightTip,view);
+    const pFL=projectPoint(worldFL,view), pFR=projectPoint(worldFR,view), pRL=projectPoint(worldRL,view), pRR=projectPoint(worldRR,view);
+    if(KIN.neutral){
+      const n=KIN.neutral;
+      kinDrawLine(id, projectPoint(n.worldRL,view), projectPoint(n.worldRR,view), 'kin-dim');
+      kinDrawLine(id, projectPoint(n.worldFL,view), projectPoint(n.worldFR,view), 'kin-dim');
+    }
+    kinDrawLine(id,pFL,pFR,'kin-moving'); kinDrawLine(id,pRL,pRR,'kin-moving');
+    kinDrawLine(id,pFL,pRL,'kin-moving'); kinDrawLine(id,pFR,pRR,'kin-moving');
+    kinDrawLine(id,pML,pLT,'kin-fixed'); kinDrawLine(id,pMR,pRT,'kin-fixed');
+    kinDrawLine(id,pLT,pRL,'kin-link'); kinDrawLine(id,pRT,pRR,'kin-link');
+    kinDrawCircle(id,pFP,3.5,'kin-joint'); kinDrawCircle(id,pLT,3,'kin-joint'); kinDrawCircle(id,pRT,3,'kin-joint');
+    kinDrawCircle(id,pRL,3,'kin-joint'); kinDrawCircle(id,pRR,3,'kin-joint');
+    kinLabel(id,'FP', {x:pFP.x+5,y:pFP.y-6});
+  });
+
+  $$('vp').textContent  = (p.pitch*180/Math.PI).toFixed(1)+'°';
+  $$('vr').textContent  = (p.roll*180/Math.PI).toFixed(1)+'°';
+  $$('vl').textContent  = KIN.state.leftDeg.toFixed(0)+'°';
+  $$('vrm').textContent = KIN.state.rightDeg.toFixed(0)+'°';
+  $$('kin-left-val').textContent = KIN.state.leftDeg.toFixed(0)+'°';
+  $$('kin-right-val').textContent = KIN.state.rightDeg.toFixed(0)+'°';
+
+  const rodL = kDist(p.leftTip, worldRL), rodR = kDist(p.rightTip, worldRR);
+  const frameWidthErr = kDist(worldRL, worldRR) - kDist(g.frameAnchors.rl, g.frameAnchors.rr);
+  if(document.getElementById('kin-debug')?.checked){
+    const msg = [
+      `rodL ${(rodL-KIN.geo.rodLength).toFixed(2)} mm`,
+      `rodR ${(rodR-KIN.geo.rodLength).toFixed(2)} mm`,
+      `rear span ${(frameWidthErr).toFixed(2)} mm`,
+      `frontPivot drift 0.00 mm`,
+      `views synced from canonical XYZ`
+    ].join(' | ');
+    $$('kin-debug-out').textContent = msg;
+  } else {
+    $$('kin-debug-out').textContent = '';
+  }
+}
+
+function setKinMode(mode, btn){
+  KIN.state.mode=mode;
+  KIN.state.autoplay = mode!=='manual';
+  document.querySelectorAll('#motion-pane-roll .vb').forEach(b=>b.classList.remove('av'));
+  if(btn) btn.classList.add('av');
 }
 
 function animateKin(ts){
   requestAnimationFrame(animateKin);
-  // Only run when the roll pane is visible
-  const rollPane = document.getElementById('motion-pane-roll');
+  const rollPane=document.getElementById('motion-pane-roll');
   if(!rollPane || rollPane.classList.contains('hidden')) return;
-
-  const dt = Math.min((ts - kinLastT) / 1000, 0.05);
-  kinLastT = ts;
-  kinT = (kinT + dt * 0.28) % 1;
-
-  const osc = Math.sin(kinT * Math.PI * 2);
-  const maxAngle = 58;
-
-  // Roll mode: motors go opposite directions — one side up, other down
-  const lAng = osc * maxAngle;
-  const rAng = -osc * maxAngle;
-
-  const lRad = lAng * Math.PI / 180;
-  const rRad = rAng * Math.PI / 180;
-
-  // Crank tip positions (horizontal-neutral sweep)
-  const lTX = KIN_ML.x + KIN_CRK * Math.cos(lRad);
-  const lTY = KIN_ML.y - KIN_CRK * Math.sin(lRad);
-  const rTX = KIN_MR.x + KIN_CRK * Math.cos(rRad);
-  const rTY = KIN_MR.y - KIN_CRK * Math.sin(rRad);
-
-  // Map crank vertical travel into frame lift on each side
-  const liftScale = 0.88;
-  const lLift = (KIN_ML.y - lTY) * liftScale;
-  const rLift = (KIN_MR.y - rTY) * liftScale;
-
-  const frameLY = KIN_NEUTRAL_Y - lLift;
-  const frameRY = KIN_NEUTRAL_Y - rLift;
-  const lTopY  = frameLY - KIN_FRAME_H;
-  const rTopY  = frameRY - KIN_FRAME_H;
-  const lTabY  = frameLY - KIN_TAB_FROM_BOTTOM;
-  const rTabY  = frameRY - KIN_TAB_FROM_BOTTOM;
-
-  // Rigid frame beams — tilt as left/right sides lift independently
-  kinSetElem('k-beam-front', {x1:KIN_FRAME_X1, y1:frameLY.toFixed(1), x2:KIN_FRAME_X2, y2:frameRY.toFixed(1)});
-  kinSetElem('k-beam-back',  {x1:124, y1:lTopY.toFixed(1), x2:376, y2:rTopY.toFixed(1)});
-
-  // Uprights follow the tilting frame
-  kinSetElem('k-upl1', {x:124,                       y:lTopY.toFixed(1),  width:13, height:(frameLY-lTopY).toFixed(1), rx:2});
-  kinSetElem('k-upl2', {x:(KIN_TAB_LX-6).toFixed(1), y:lTabY.toFixed(1), width:13, height:(frameLY-lTabY).toFixed(1), rx:2});
-  kinSetElem('k-upr1', {x:363,                        y:rTopY.toFixed(1),  width:13, height:(frameRY-rTopY).toFixed(1), rx:2});
-  kinSetElem('k-upr2', {x:(KIN_TAB_RX-7).toFixed(1), y:rTabY.toFixed(1), width:13, height:(frameRY-rTabY).toFixed(1), rx:2});
-  kinSetElem('k-cross', {x1:124, y1:lTopY.toFixed(1), x2:376, y2:rTopY.toFixed(1)});
-
-  // Internal supports follow the rigid body tilt
-  [{id:'k-inner1', x:160, topOffset:16},
-   {id:'k-inner2', x:250, topOffset:0},
-   {id:'k-inner3', x:340, topOffset:16}
-  ].forEach(({id, x, topOffset}) => {
-    const bottom = kinYOnBeam(x, frameLY, frameRY);
-    const top    = kinYOnBeam(x, lTopY,  rTopY) + topOffset;
-    kinSetElem(id, {x1:x, y1:bottom.toFixed(1), x2:x, y2:top.toFixed(1)});
-  });
-
-  // Gearbox stays centred on the tilting top beam
-  const midTopY = kinYOnBeam(250, lTopY, rTopY);
-  const driveCY = midTopY - 38;
-  kinSetElem('k-rmot',     {x:'222',  y:driveCY.toFixed(1), width:56, height:24, rx:4});
-  kinSetElem('k-rmot-top', {x:'232',  y:(driveCY-8).toFixed(1), width:36, height:10, rx:2});
-  kinSetElem('k-rmot-label',{x:'250',                     y:(driveCY+15).toFixed(1)});
-
-  // Front pivot point stays fixed — frame tilts around it
-  kinSetElem('k-pivot-post', {x:243, y:KIN_PIVOT_Y.toFixed(1), width:14, height:(KIN_BASE_PIVOT_Y-KIN_PIVOT_Y).toFixed(1), rx:3});
-  kinSetElem('k-pivot-cap',  {x:236, y:(KIN_PIVOT_Y-6).toFixed(1), width:28, height:12, rx:3});
-  kinSetElem('k-pivot-pin',  {cx:250, cy:KIN_PIVOT_Y.toFixed(1)});
-  kinSetElem('k-pivot-label',{x:250, y:(Math.min(KIN_BASE_PIVOT_Y-20, KIN_PIVOT_Y+30)).toFixed(1)});
-
-  // Cranks
-  kinSetElem('k-crankL', {x1:KIN_ML.x, y1:KIN_ML.y, x2:lTX.toFixed(1), y2:lTY.toFixed(1)});
-  kinSetElem('k-tipL',   {cx:lTX.toFixed(1), cy:lTY.toFixed(1)});
-  kinSetElem('k-crankR', {x1:KIN_MR.x, y1:KIN_MR.y, x2:rTX.toFixed(1), y2:rTY.toFixed(1)});
-  kinSetElem('k-tipR',   {cx:rTX.toFixed(1), cy:rTY.toFixed(1)});
-
-  // LEFT linkage rod: crank tip → left frame tab
-  kinSetElem('k-linkL',   {x1:lTX.toFixed(1), y1:lTY.toFixed(1), x2:KIN_TAB_LX, y2:lTabY.toFixed(1)});
-  kinSetElem('k-jointL1', {cx:lTX.toFixed(1), cy:lTY.toFixed(1)});
-  kinSetElem('k-jointL2', {cx:KIN_TAB_LX,     cy:lTabY.toFixed(1)});
-  kinSetElem('k-tabL',    {cx:KIN_TAB_LX,     cy:lTabY.toFixed(1)});
-
-  // RIGHT linkage rod: crank tip → right frame tab
-  kinSetElem('k-linkR',   {x1:rTX.toFixed(1), y1:rTY.toFixed(1), x2:KIN_TAB_RX, y2:rTabY.toFixed(1)});
-  kinSetElem('k-jointR1', {cx:rTX.toFixed(1), cy:rTY.toFixed(1)});
-  kinSetElem('k-jointR2', {cx:KIN_TAB_RX,     cy:rTabY.toFixed(1)});
-  kinSetElem('k-tabR',    {cx:KIN_TAB_RX,     cy:rTabY.toFixed(1)});
-
-  // Live readouts
-  const pitch = ((lLift + rLift) / 2) * 0.052;
-  const roll  = (lLift - rLift) * 0.038;
-  $$('vp').textContent  = pitch.toFixed(1) + '°';
-  $$('vr').textContent  = roll.toFixed(1)  + '°';
-  $$('vl').textContent  = lAng.toFixed(0)  + '°';
-  $$('vrm').textContent = rAng.toFixed(0)  + '°';
+  if(KIN.state.autoplay){
+    KIN.state.t = (KIN.state.t + 0.016*0.3) % 1;
+    const drive = Math.sin(KIN.state.t*Math.PI*2)*58;
+    KIN.state.leftDeg = drive;
+    applyModeFromLeft(drive);
+    const lEl=$$('kin-left'), rEl=$$('kin-right');
+    if(lEl) lEl.value = KIN.state.leftDeg.toFixed(0);
+    if(rEl) rEl.value = KIN.state.rightDeg.toFixed(0);
+  }
+  renderKinematics();
 }
-requestAnimationFrame(animateKin);
+
+function initKinControls(){
+  const l=$$('kin-left'), r=$$('kin-right');
+  if(l){
+    l.addEventListener('input',()=>{
+      KIN.state.leftDeg = Number(l.value);
+      if(KIN.state.mode!=='manual') applyModeFromLeft(KIN.state.leftDeg);
+      else if(r) KIN.state.rightDeg = Number(r.value);
+      renderKinematics();
+    });
+  }
+  if(r){
+    r.addEventListener('input',()=>{
+      KIN.state.mode='manual'; KIN.state.autoplay=false;
+      document.querySelectorAll('#motion-pane-roll .vb').forEach(b=>b.classList.remove('av'));
+      KIN.state.rightDeg = Number(r.value);
+      if(l) KIN.state.leftDeg = Number(l.value);
+      renderKinematics();
+    });
+  }
+  const zeroPose=solvePose();
+  const g=KIN.geo;
+  const zeroFL=kAdd(g.frontPivot,kSub(g.frameAnchors.fl,g.frontPivot));
+  const zeroFR=kAdd(g.frontPivot,kSub(g.frameAnchors.fr,g.frontPivot));
+  const zeroRL=kAdd(g.frontPivot,kSub(g.frameAnchors.rl,g.frontPivot));
+  const zeroRR=kAdd(g.frontPivot,kSub(g.frameAnchors.rr,g.frontPivot));
+  KIN.neutral={worldFL:zeroFL,worldFR:zeroFR,worldRL:zeroRL,worldRR:zeroRR,pose:zeroPose};
+  renderKinematics();
+  requestAnimationFrame(animateKin);
+}
+
+// ── INTERACTIVE WIRING SCENARIOS ───────────────────────────────────────────
+const WIRE_SCENARIOS={
+  normal:{caption:'Normal run: current path is energized through PSU → fuses → contactor → driver → branch fuses → motors.',hot:['wire-main','wire-branch-l','wire-branch-r']},
+  estop:{caption:'E-stop pressed: contactor opens, motor bus de-energizes, and motion power drops without relying on software.',hot:[],off:['wire-main','wire-branch-l','wire-branch-r']},
+  'branch-fault':{caption:'Branch short: affected branch fuse is expected to clear first, limiting fault energy on that branch.',hot:['wire-main','wire-branch-l'],off:['wire-branch-r']},
+  'main-fault':{caption:'Main short: the 60A ANL main fuse is expected to clear to contain high-energy bus faults.',hot:['wire-main'],off:['wire-branch-l','wire-branch-r']}
+};
+function setWireScenario(key,btn){
+  const s=WIRE_SCENARIOS[key]; if(!s) return;
+  document.querySelectorAll('.wire-mode').forEach(b=>b.classList.remove('av'));
+  if(btn) btn.classList.add('av');
+  ['wire-main','wire-branch-l','wire-branch-r'].forEach(id=>{
+    const el=$$(id); if(!el) return; el.classList.remove('wire-hot','wire-off');
+  });
+  (s.hot||[]).forEach(id=>$$(id)?.classList.add('wire-hot'));
+  (s.off||[]).forEach(id=>$$(id)?.classList.add('wire-off'));
+  $$('wire-caption').textContent=s.caption;
+}
+
+initKinControls();
+setWireScenario('normal', document.querySelector(".wire-mode"));
 
 // ── THREE.JS ─────────────────────────────────────────────────────────────────
 let renderer,camera,scene,cadDistance=1500;
