@@ -829,28 +829,28 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <div class="si">
   <div class="sec"><i class="fa-solid fa-shield-halved text-brand"></i>Safety Scenarios</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">If something goes wrong, what stops it?</h2>
-  <p class="text-gray-500 text-sm mb-5">These are realistic scenarios a family member might worry about. Click any one to see what part of the system stops it, reduces it, or still depends on the operator using the <strong class="text-gray-700">E-stop</strong>.</p>
+  <p class="text-gray-500 text-sm mb-5">These are the more serious scenarios family usually worries about: <strong class="text-gray-700">smoke</strong>, <strong class="text-gray-700">fire</strong>, <strong class="text-gray-700">shorts</strong>, <strong class="text-gray-700">runaway motion</strong>, and <strong class="text-gray-700">overheating</strong>. Click any one to see what part of the system stops it, reduces it, or still depends on the operator using the <strong class="text-gray-700">E-stop</strong>.</p>
   <div class="grid md:grid-cols-4 lg:grid-cols-5 gap-2.5">
     <button type="button" class="scenario-btn" onclick="setSafetyCase('pc-freeze',this)"><div class="scenario-kicker">Scenario 1</div><div class="scenario-title">PC freezes</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('game-crash',this)"><div class="scenario-kicker">Scenario 2</div><div class="scenario-title">Game crashes</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('bad-command',this)"><div class="scenario-kicker">Scenario 3</div><div class="scenario-title">Bad software command</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('panic-stop',this)"><div class="scenario-kicker">Scenario 4</div><div class="scenario-title">User panics</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('too-strong',this)"><div class="scenario-kicker">Scenario 5</div><div class="scenario-title">Motion feels too strong</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('psu-short',this)"><div class="scenario-kicker">Scenario 6</div><div class="scenario-title">Short after PSU</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('game-crash',this)"><div class="scenario-kicker">Scenario 2</div><div class="scenario-title">Game crashes mid-motion</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('bad-command',this)"><div class="scenario-kicker">Scenario 3</div><div class="scenario-title">Rig suddenly moves wrong</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('panic-stop',this)"><div class="scenario-kicker">Scenario 4</div><div class="scenario-title">Need emergency stop now</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('too-strong',this)"><div class="scenario-kicker">Scenario 5</div><div class="scenario-title">Motion feels dangerous</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('psu-short',this)"><div class="scenario-kicker">Scenario 6</div><div class="scenario-title">Main power wire shorts</div></button>
     <button type="button" class="scenario-btn" onclick="setSafetyCase('branch-short',this)"><div class="scenario-kicker">Scenario 7</div><div class="scenario-title">One motor branch shorts</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('wire-damage',this)"><div class="scenario-kicker">Scenario 8</div><div class="scenario-title">Wire gets damaged</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('motor-stall',this)"><div class="scenario-kicker">Scenario 9</div><div class="scenario-title">Motor stalls</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('regen-spike',this)"><div class="scenario-kicker">Scenario 10</div><div class="scenario-title">Regen voltage spike</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('psu-overload',this)"><div class="scenario-kicker">Scenario 11</div><div class="scenario-title">PSU overload</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('wire-damage',this)"><div class="scenario-kicker">Scenario 8</div><div class="scenario-title">Wire starts smoking</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('motor-stall',this)"><div class="scenario-kicker">Scenario 9</div><div class="scenario-title">Motor jams hard</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('regen-spike',this)"><div class="scenario-kicker">Scenario 10</div><div class="scenario-title">Voltage spike on braking</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('psu-overload',this)"><div class="scenario-kicker">Scenario 11</div><div class="scenario-title">PSU smells hot</div></button>
     <button type="button" class="scenario-btn" onclick="setSafetyCase('contactor-coil',this)"><div class="scenario-kicker">Scenario 12</div><div class="scenario-title">Contactor coil loses power</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('controller-fault',this)"><div class="scenario-kicker">Scenario 13</div><div class="scenario-title">Controller faults</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('controller-fault',this)"><div class="scenario-kicker">Scenario 13</div><div class="scenario-title">Controller keeps driving</div></button>
     <button type="button" class="scenario-btn" onclick="setSafetyCase('wrong-direction',this)"><div class="scenario-kicker">Scenario 14</div><div class="scenario-title">Motor runs wrong direction</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('one-side-fails',this)"><div class="scenario-kicker">Scenario 15</div><div class="scenario-title">One side stops, one side moves</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('power-outage',this)"><div class="scenario-kicker">Scenario 16</div><div class="scenario-title">Power outage</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('maintenance',this)"><div class="scenario-kicker">Scenario 17</div><div class="scenario-title">Need to work on rig</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('one-side-fails',this)"><div class="scenario-kicker">Scenario 15</div><div class="scenario-title">One side moves by itself</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('power-outage',this)"><div class="scenario-kicker">Scenario 16</div><div class="scenario-title">House power cuts out</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('maintenance',this)"><div class="scenario-kicker">Scenario 17</div><div class="scenario-title">Hand or tool is inside</div></button>
     <button type="button" class="scenario-btn" onclick="setSafetyCase('loose-linkage',this)"><div class="scenario-kicker">Scenario 18</div><div class="scenario-title">Linkage bolt loosens</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('child-pet',this)"><div class="scenario-kicker">Scenario 19</div><div class="scenario-title">Child or pet near rig</div></button>
-    <button type="button" class="scenario-btn" onclick="setSafetyCase('overheat',this)"><div class="scenario-kicker">Scenario 20</div><div class="scenario-title">Something overheats</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('child-pet',this)"><div class="scenario-kicker">Scenario 19</div><div class="scenario-title">Child or pet gets close</div></button>
+    <button type="button" class="scenario-btn" onclick="setSafetyCase('overheat',this)"><div class="scenario-kicker">Scenario 20</div><div class="scenario-title">Something catches fire</div></button>
   </div>
   <div class="scenario-detail" aria-live="polite">
     <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-3">
@@ -878,9 +878,9 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
-    <p>This is the family reassurance slide. Press through a few realistic scenarios instead of just saying “it is safe.”</p>
-    <p>The strongest cases are PC freeze, bad command, short circuit, branch fuse, E-stop pressed, and controller fault.</p>
-    <p>Be honest on the operator-dependent cases. The point is a realistic safety plan, not pretending the rig is magically self-protecting in every situation.</p>
+    <p>This is the family reassurance slide. Press through the scarier cases instead of just saying “it is safe.”</p>
+    <p>The strongest cases are wire starts smoking, something catches fire, main short, controller keeps driving, and emergency stop.</p>
+    <p>Be honest on the worst cases: once there is real smoke or flame, the answer is human emergency action, not pretending the rig magically solves it alone.</p>
   </div>
 </div>
 
@@ -1276,7 +1276,7 @@ const SAFETY_CASES = {
   },
   'game-crash': {
     kicker: 'Software problem',
-    title: 'Game crashes',
+    title: 'Game crashes mid-motion',
     badge: 'Hardware overrides software',
     response: 'If the game crashes and the output becomes unsafe, the E-stop and contactor still remove motor power the same way.',
     backup: 'The stop path is independent of the game. That is the main reason for using a real contactor instead of trusting software only.',
@@ -1284,7 +1284,7 @@ const SAFETY_CASES = {
   },
   'bad-command': {
     kicker: 'Software problem',
-    title: 'Bad software command',
+    title: 'Rig suddenly moves wrong',
     badge: 'Hardware shutdown path',
     response: 'If bad software output tells the rig to move incorrectly, the answer is the same: E-stop cuts the contactor coil, and motor power drops.',
     backup: 'This is why the deck says hardware always wins over software.',
@@ -1292,7 +1292,7 @@ const SAFETY_CASES = {
   },
   'panic-stop': {
     kicker: 'User action',
-    title: 'User panics mid-run',
+    title: 'Need emergency stop now',
     badge: 'Immediate E-stop',
     response: 'The user hits the mushroom E-stop button. That drops the contactor open and removes motor power fast without switching the motor leads directly.',
     backup: 'The button is large, physical, and simple. Family members do not need to know software menus to stop the rig.',
@@ -1300,15 +1300,15 @@ const SAFETY_CASES = {
   },
   'too-strong': {
     kicker: 'Tuning problem',
-    title: 'Motion feels too strong',
+    title: 'Motion feels dangerous',
     badge: 'Stop and retune',
-    response: 'Stop the test, use the E-stop if needed, and reduce software limits or motion profile strength before continuing.',
+    response: 'Stop the test immediately and use the E-stop if needed, then reduce software limits or motion strength before running again.',
     backup: 'The system is built to be tuned gradually, not run at maximum on the first try.',
     honest: 'This is a tuning issue more than a hardware fault, so the safe response is to stop and adjust.'
   },
   'psu-short': {
     kicker: 'Electrical fault',
-    title: 'Short after PSU',
+    title: 'Main power wire shorts',
     badge: '60A main fuse',
     response: 'The 60A ANL fuse is placed right after the PSU output so a downstream short opens the main protection before the wire cooks.',
     backup: 'Putting the fuse close to the source keeps almost no high-current cable unfused.',
@@ -1324,15 +1324,15 @@ const SAFETY_CASES = {
   },
   'wire-damage': {
     kicker: 'Electrical fault',
-    title: 'Wire gets damaged',
-    badge: 'Fuse + wire sizing',
-    response: 'The main fuse, branch fuses, and 8 AWG main wire reduce the chance that damaged wiring turns into a worse failure.',
-    backup: 'This is why the deck calls out both fuse coordination and wire gauge, not just one or the other.',
-    honest: 'Protection lowers risk, but damaged wiring is still a stop-and-repair situation, not something to keep running through.'
+    title: 'Wire starts smoking',
+    badge: 'Immediate power cut',
+    response: 'If a wire starts smoking, hit the E-stop immediately and cut wall power. The fuses and wire sizing are there to reduce the chance of this happening in the first place.',
+    backup: 'Main fuse, branch fuses, and proper wire gauge are all meant to stop an electrical fault before it becomes a worse fire event.',
+    honest: 'Once smoke is visible, the answer is no longer “keep testing.” It becomes a stop-now, inspect-now situation.'
   },
   'motor-stall': {
     kicker: 'Mechanical / electrical',
-    title: 'Motor stalls',
+    title: 'Motor jams hard',
     badge: 'Branch protection + stop test',
     response: 'A stall can drive current up, so branch protection and the controller help prevent that from becoming unlimited current.',
     backup: 'The operator can also hit the E-stop immediately if the rig stops moving correctly.',
@@ -1340,7 +1340,7 @@ const SAFETY_CASES = {
   },
   'regen-spike': {
     kicker: 'Electrical behavior',
-    title: 'Regen voltage spike',
+    title: 'Voltage spike on braking',
     badge: 'Sabertooth regen handling',
     response: 'When the rig slows a motor, the motor can act like a generator. The Sabertooth is chosen partly because it handles regenerative braking more cleanly.',
     backup: 'That helps keep voltage spikes from hitting the rest of the system as harshly.',
@@ -1348,11 +1348,11 @@ const SAFETY_CASES = {
   },
   'psu-overload': {
     kicker: 'Electrical fault',
-    title: 'PSU overload',
-    badge: 'Current limit + fuse path',
-    response: 'The PSU and fuse path prevent the system from becoming an unlimited current source if demand goes wrong.',
-    backup: 'Using a known 12V 50A unit with the rest of the power path sized around it is part of that protection logic.',
-    honest: 'If the PSU is being overloaded in real use, that means the setup or tuning still needs to be corrected.'
+    title: 'PSU smells hot',
+    badge: 'Stop and inspect',
+    response: 'If the PSU smells hot or abnormal, stop the run and cut power. The correct response is inspection, not trusting it to keep going.',
+    backup: 'Using a known 12V 50A supply, proper fusing, and a driver that handles regen lowers the chance of the PSU being stressed badly.',
+    honest: 'Heat or burning smell is a warning sign, not something to ignore. The system should stay off until the cause is understood.'
   },
   'contactor-coil': {
     kicker: 'Fail-safe behavior',
@@ -1364,7 +1364,7 @@ const SAFETY_CASES = {
   },
   'controller-fault': {
     kicker: 'Electronics fault',
-    title: 'Controller faults',
+    title: 'Controller keeps driving',
     badge: 'Contactor still cuts motor power',
     response: 'Even if the motor controller misbehaves, the E-stop and contactor are still upstream hardware that can remove motor power.',
     backup: 'That is the reason a real hard shutdown path exists instead of trusting the controller by itself.',
@@ -1380,7 +1380,7 @@ const SAFETY_CASES = {
   },
   'one-side-fails': {
     kicker: 'Mechanical / control mismatch',
-    title: 'One side stops, one side moves',
+    title: 'One side moves by itself',
     badge: 'E-stop + fixed base',
     response: 'If one side keeps moving and the other does not, the safe response is the E-stop so the rig does not continue into a bad pose.',
     backup: 'The motion range is small and the base stays fixed, which helps keep the failure less violent than a larger platform.',
@@ -1388,7 +1388,7 @@ const SAFETY_CASES = {
   },
   'power-outage': {
     kicker: 'Loss of power',
-    title: 'Power outage',
+    title: 'House power cuts out',
     badge: 'Motors de-energize',
     response: 'If building power is lost, the motors lose power too. The rig is not a high-travel platform that can keep driving itself without power.',
     backup: 'The low motion range and fixed floor base help here.',
@@ -1396,7 +1396,7 @@ const SAFETY_CASES = {
   },
   'maintenance': {
     kicker: 'Human procedure',
-    title: 'Need to work on the rig',
+    title: 'Hand or tool is inside',
     badge: 'Power down first',
     response: 'Before touching wiring or mechanisms, the correct safe state is E-stop, full power down, and unplugged PSU.',
     backup: 'The system is designed with a clear power path, so there is an obvious way to make it electrically dead before work.',
@@ -1412,19 +1412,19 @@ const SAFETY_CASES = {
   },
   'child-pet': {
     kicker: 'Environment risk',
-    title: 'Child or pet near the rig',
+    title: 'Child or pet gets close',
     badge: 'Operator supervision',
     response: 'The operator should stop the rig and use the E-stop if anything enters the area.',
     backup: 'The base stays fixed and the motion range is limited, which helps, but supervision is still the main protection here.',
     honest: 'There is no automatic child or pet detection in this design, so family-safe use depends on responsible operation.'
   },
   'overheat': {
-    kicker: 'Thermal risk',
-    title: 'Something overheats',
-    badge: 'Stop and cool down',
-    response: 'If a motor, wire, driver, or PSU starts overheating, stop the session and let the system cool before continuing.',
-    backup: 'Choosing rated parts, proper wire sizes, and fuses lowers the chance of overheating turning into something worse.',
-    honest: 'Heat is a warning, not something to ignore. The correct answer is to stop and find the cause before running again.'
+    kicker: 'Fire emergency',
+    title: 'Something catches fire',
+    badge: 'E-stop + wall power + extinguisher',
+    response: 'If there is actual flame, hit the E-stop, cut wall power, and use an extinguisher if it is safe to do so. Do not keep the rig powered while hoping software will solve it.',
+    backup: 'The fuse path, wire sizing, contactor, and conservative power design are there to reduce the chance of reaching this point in the first place.',
+    honest: 'Once there is real fire, this is no longer a normal control problem. It becomes a human emergency response situation.'
   }
 };
 
@@ -1482,7 +1482,7 @@ function setSafetyCase(key, btn){
 }
 
 function $$(id){return document.getElementById(id)}
-setSafetyCase('panic-stop', document.querySelector(".scenario-btn[onclick*='panic-stop']"));
+setSafetyCase('overheat', document.querySelector(".scenario-btn[onclick*='overheat']"));
 
 // ── ROLL ANIMATION ──────────────────────────────────────────────────────────
 // Constants match the actual rig geometry: 279mm crank, 385mm linkage, ±8.8° max tilt.
