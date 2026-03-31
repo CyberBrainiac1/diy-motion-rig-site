@@ -86,18 +86,12 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 .speaker-notes p{margin:0;font-size:.8rem;line-height:1.6;color:#475569}
 .speaker-notes p + p{margin-top:.35rem}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
-.viewer-badge{position:fixed;top:calc(12px + env(safe-area-inset-top));left:calc(12px + env(safe-area-inset-left));z-index:190;display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.94);border:1px solid #e5e7eb;box-shadow:0 10px 28px rgba(15,23,42,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b;pointer-events:none}
-.viewer-badge img{display:block;height:18px;width:auto}
-.viewer-fallback{display:none;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b}
-.viewer-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:vdot 2s ease-in-out infinite}
-@keyframes vdot{0%,100%{opacity:1}50%{opacity:.35}}
-@media (max-width:640px){.build-ver{top:calc(8px + env(safe-area-inset-top));right:calc(8px + env(safe-area-inset-right));font-size:9px;padding:5px 8px}.viewer-badge{top:calc(8px + env(safe-area-inset-top));left:calc(8px + env(safe-area-inset-left));font-size:9px;padding:5px 8px}}
+@media (max-width:640px){.build-ver{top:calc(8px + env(safe-area-inset-top));right:calc(8px + env(safe-area-inset-right));font-size:9px;padding:5px 8px}}
 </style>
 </head>
 <body>
 <div id="prog"></div>
 <div class="build-ver">HTML updated <strong id="build-version">checking...</strong></div>
-<div class="viewer-badge"><span class="viewer-dot"></span><img id="visitor-badge-img" alt="Unique visitors badge"><span id="viewer-count" class="viewer-fallback">? unique visitors</span></div>
 <div id="deck">
 
 
@@ -1290,16 +1284,7 @@ function setBuildBadge(){
     el.textContent=`${y}-${m}-${day} ${t}`;
   }else el.textContent='unknown';
 }
-window.addEventListener('load',()=>{setBuildBadge();initCAD();window.addEventListener('resize',resizeCAD);loadViewerCount();});
-function loadViewerCount(){
-  const img=document.getElementById('visitor-badge-img');
-  const fallback=document.getElementById('viewer-count');
-  if(!img||!fallback)return;
-  const sitePath=encodeURIComponent('https://cyberbrainiac1.github.io/diy-motion-rig-site/');
-  img.src=`https://api.visitorbadge.io/api/visitors?path=${sitePath}&label=unique%20visitors&countColor=%232563eb&t=${Date.now()}`;
-  img.onload=()=>{fallback.style.display='none';img.style.display='block';};
-  img.onerror=()=>{img.style.display='none';fallback.style.display='inline';};
-}
+window.addEventListener('load',()=>{setBuildBadge();initCAD();window.addEventListener('resize',resizeCAD);});
 </script>
 </body>
 </html>
