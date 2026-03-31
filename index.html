@@ -169,6 +169,60 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   <div class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-xl text-center text-xs text-gray-500">
     <i class="fa-solid fa-link text-blue-500 mr-1"></i>I started this design after seeing other motion systems that use a <strong class="text-gray-700">front pivot + rear crank-linkage</strong> strategy. Similar linkage ideas show up in compact seat movers, DIY motion platforms, and other crank-and-rod tilt systems. <strong class="text-gray-700">My version adapts that idea into my own full-rig design.</strong>
   </div>
+  <div class="grid md:grid-cols-3 gap-3 mt-4">
+    <div class="card p-3">
+      <div class="text-[11px] font-bold text-blue-600 uppercase tracking-wide mb-2">Common Motion Idea</div>
+      <svg viewBox="0 0 220 120" width="100%" aria-label="Simple seat mover idea with front pivot and rear lift">
+        <line x1="18" y1="96" x2="202" y2="96" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+        <rect x="26" y="84" width="168" height="8" rx="3" fill="#FCD34D" stroke="#F59E0B" stroke-width="2"/>
+        <circle cx="62" cy="80" r="6" fill="#7C3AED"/>
+        <line x1="62" y1="80" x2="156" y2="64" stroke="#2563EB" stroke-width="5" stroke-linecap="round"/>
+        <rect x="116" y="40" width="38" height="20" rx="5" fill="#E5E7EB" stroke="#64748B" stroke-width="2"/>
+        <line x1="136" y1="60" x2="136" y2="64" stroke="#64748B" stroke-width="3" stroke-linecap="round"/>
+        <line x1="168" y1="88" x2="156" y2="64" stroke="#60A5FA" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="168" cy="88" r="8" fill="#374151"/>
+        <text x="62" y="112" text-anchor="middle" font-size="10" fill="#7C3AED" font-family="Inter, sans-serif">front pivot</text>
+        <text x="152" y="18" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter, sans-serif">seat or rig frame</text>
+      </svg>
+      <p class="text-xs text-gray-500 leading-relaxed mt-2">A lot of motion systems use one fixed front pivot and lift the back of the frame.</p>
+    </div>
+    <div class="card p-3">
+      <div class="text-[11px] font-bold text-amber-600 uppercase tracking-wide mb-2">Crank + Rod Motion</div>
+      <svg viewBox="0 0 220 120" width="100%" aria-label="Simple crank and connecting rod diagram">
+        <line x1="24" y1="95" x2="196" y2="95" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="62" cy="84" r="14" fill="#374151"/>
+        <circle cx="62" cy="84" r="5" fill="#94A3B8"/>
+        <line x1="62" y1="84" x2="92" y2="64" stroke="#6B7280" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="92" cy="64" r="5" fill="#9CA3AF"/>
+        <line x1="92" y1="64" x2="146" y2="48" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
+        <rect x="146" y="34" width="40" height="12" rx="4" fill="#E0E7FF" stroke="#2563EB" stroke-width="2"/>
+        <path d="M38 58 C48 38, 76 34, 88 48" fill="none" stroke="#D97706" stroke-width="4" stroke-linecap="round"/>
+        <path d="M88 48 L78 48 L82 38 Z" fill="#D97706"/>
+        <text x="62" y="112" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter, sans-serif">motor turns crank</text>
+        <text x="152" y="112" text-anchor="middle" font-size="10" fill="#2563EB" font-family="Inter, sans-serif">rod pushes frame</text>
+      </svg>
+      <p class="text-xs text-gray-500 leading-relaxed mt-2">The motor spins a short crank arm, and the rod turns that rotation into tilt movement.</p>
+    </div>
+    <div class="card p-3">
+      <div class="text-[11px] font-bold text-brand uppercase tracking-wide mb-2">My Full-Rig Version</div>
+      <svg viewBox="0 0 220 120" width="100%" aria-label="Simple full rig adaptation diagram">
+        <line x1="16" y1="98" x2="204" y2="98" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+        <rect x="24" y="86" width="172" height="8" rx="3" fill="#FCD34D" stroke="#F59E0B" stroke-width="2"/>
+        <circle cx="70" cy="82" r="6" fill="#7C3AED"/>
+        <line x1="70" y1="82" x2="168" y2="60" stroke="#2563EB" stroke-width="5" stroke-linecap="round"/>
+        <rect x="102" y="36" width="40" height="22" rx="4" fill="#E5E7EB" stroke="#64748B" stroke-width="2"/>
+        <line x1="120" y1="58" x2="120" y2="60" stroke="#64748B" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="96" cy="34" r="11" fill="#F8FAFC" stroke="#64748B" stroke-width="2"/>
+        <line x1="96" y1="34" x2="102" y2="34" stroke="#64748B" stroke-width="2"/>
+        <line x1="168" y1="90" x2="158" y2="62" stroke="#60A5FA" stroke-width="4" stroke-linecap="round"/>
+        <line x1="182" y1="89" x2="176" y2="70" stroke="#60A5FA" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="168" cy="90" r="8" fill="#374151"/>
+        <circle cx="182" cy="89" r="8" fill="#374151"/>
+        <text x="110" y="112" text-anchor="middle" font-size="10" fill="#64748B" font-family="Inter, sans-serif">seat + wheel + pedals move together</text>
+      </svg>
+      <p class="text-xs text-gray-500 leading-relaxed mt-2">I kept that core strategy, but applied it to my own full-rig layout instead of just moving the seat.</p>
+    </div>
+  </div>
   <div class="mt-8 pt-7 border-t border-gray-100">
     <p class="text-xl md:text-2xl text-gray-800 font-medium leading-relaxed max-w-3xl">"I want to build something that gives me a realistic driving experience and is fun, but also something that teaches me how real systems are designed, powered, tested, and improved."</p>
   </div>
