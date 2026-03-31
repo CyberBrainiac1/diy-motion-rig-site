@@ -35,6 +35,15 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 .tag{display:inline-block;padding:2px 10px;border-radius:100px;font-size:11px;font-weight:600;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8}
 .sec{display:inline-flex;align-items:center;gap:6px;background:#f3f4f6;border:1px solid #e5e7eb;color:#6b7280;font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:100px;margin-bottom:1.2rem}
 .math{font-family:'SF Mono',Consolas,monospace;background:#f9fafb;border:1px solid #e5e7eb;padding:.4rem .85rem;border-radius:8px;color:#2563eb;font-size:.88rem;display:inline-block;white-space:nowrap}
+.formula-btn{appearance:none;font:inherit;text-align:left;cursor:pointer;transition:border-color .16s ease,background .16s ease,box-shadow .16s ease}
+.formula-btn:hover{border-color:#bfdbfe;background:#eff6ff}
+.formula-btn:focus-visible{outline:2px solid #93c5fd;outline-offset:2px}
+.formula-btn.active{border-color:#93c5fd;background:#eff6ff;box-shadow:0 8px 18px rgba(37,99,235,.08)}
+.formula-work{display:none;margin:.2rem 0 .15rem;padding:.8rem .9rem;border-radius:10px;border:1px solid #dbeafe;background:linear-gradient(180deg,#f8fbff 0%,#eff6ff 100%)}
+.formula-work.open{display:block}
+.formula-work-title{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2563eb;margin-bottom:.35rem}
+.formula-work-line{font-family:'SF Mono',Consolas,monospace;font-size:.76rem;line-height:1.6;color:#1d4ed8}
+.formula-work-copy{margin-top:.4rem;font-size:.76rem;line-height:1.55;color:#475569}
 
 /* mode buttons */
 .mbtn{width:100%;text-align:left;padding:.85rem 1rem;border-radius:10px;border:1.5px solid #e5e7eb;background:#fff;cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent;display:block}
@@ -476,6 +485,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
   <div class="sec"><i class="fa-solid fa-flask text-brand"></i>Simple Physics</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">Simple physics behind the motion.</h2>
   <p class="text-gray-500 text-sm mb-5">These are the same equations from class, but each one matches something easy to picture in real life: a clock hand, a fixed-length rod, a door hinge, and sharing a heavy box.</p>
+  <p class="text-xs text-gray-400 mb-4">Click a formula to see the exact numbers I used in the rig calculations.</p>
   <div class="grid md:grid-cols-4 gap-3 mb-4">
     <div class="card-blue rounded-xl p-3">
       <div class="text-[11px] font-bold text-blue-700 uppercase tracking-wide mb-1.5">Clock Hand</div>
@@ -503,7 +513,15 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
         <span class="tag">Like a clock hand</span>
       </div>
-      <div class="math mb-2">Z<sub>end</sub> = Z<sub>motor</sub> + 279·sin(90°+θ)</div>
+      <button type="button" class="math formula-btn mb-2" data-formula-btn="rot" onclick="tFormula('rot',this)">Z<sub>end</sub> = Z<sub>motor</sub> + 279·sin(90°+θ)</button>
+      <div id="formula-rot" class="formula-work">
+        <div class="formula-work-title">Exact calc I used</div>
+        <div class="formula-work-line">Z<sub>motor</sub> = 128.9 mm</div>
+        <div class="formula-work-line">r = 279 mm</div>
+        <div class="formula-work-line">At θ = 0°: Z<sub>end</sub> = 128.9 + 279·sin(90°)</div>
+        <div class="formula-work-line">Z<sub>end</sub> = 128.9 + 279 = 407.9 mm</div>
+        <div class="formula-work-copy">That gives the crank-tip height for the reference pose. From there, every other motor angle moves that point on the same 279 mm radius circle.</div>
+      </div>
       <p class="text-xs text-gray-600 leading-relaxed">As the motor turns, the crank end moves up and down in a circle. That is the first step that creates motion in the rig.</p>
     </div>
     <div class="card p-4">
@@ -514,7 +532,17 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
         <span class="tag">Like a ruler</span>
       </div>
-      <div class="math mb-2">L² = ΔX² + ΔY² + ΔZ²</div>
+      <button type="button" class="math formula-btn mb-2" data-formula-btn="link" onclick="tFormula('link',this)">L² = ΔX² + ΔY² + ΔZ²</button>
+      <div id="formula-link" class="formula-work">
+        <div class="formula-work-title">Exact calc I used</div>
+        <div class="formula-work-line">L = 385 mm</div>
+        <div class="formula-work-line">Z<sub>tab</sub> = 702.9 mm, Z<sub>end</sub> = 407.9 mm</div>
+        <div class="formula-work-line">ΔZ = 702.9 - 407.9 = 295.0 mm</div>
+        <div class="formula-work-line">385² = ΔX² + 0² + 295²</div>
+        <div class="formula-work-line">148225 = ΔX² + 87025</div>
+        <div class="formula-work-line">ΔX = √61200 = 247.4 mm</div>
+        <div class="formula-work-copy">That is the kind of geometry check that proves the 385 mm rod length and frame pick-up point can actually meet without cheating the linkage length.</div>
+      </div>
       <p class="text-xs text-gray-600 leading-relaxed">The rod cannot magically get longer or shorter. That fixed length forces the upper frame to a real, predictable position.</p>
     </div>
     <div class="card p-4">
@@ -525,7 +553,16 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
         <span class="tag">Like a door hinge</span>
       </div>
-      <div class="math mb-2">φ = arctan(ΔZ ÷ 900mm) ≈ ±8.8°</div>
+      <button type="button" class="math formula-btn mb-2" data-formula-btn="tilt" onclick="tFormula('tilt',this)">φ = arctan(ΔZ ÷ 900mm) ≈ ±8.8°</button>
+      <div id="formula-tilt" class="formula-work">
+        <div class="formula-work-title">Exact calc I used</div>
+        <div class="formula-work-line">Rear lever arm from pivot ≈ 900 mm</div>
+        <div class="formula-work-line">If rear lift is 141 mm:</div>
+        <div class="formula-work-line">φ = arctan(141 ÷ 900)</div>
+        <div class="formula-work-line">φ = arctan(0.1567) = 8.90°</div>
+        <div class="formula-work-line">Rounded in the deck: about 8.8° to 8.9° max tilt</div>
+        <div class="formula-work-copy">That is why a rear lift of only about 140 mm is enough to create a noticeable full-rig tilt without needing huge motion.</div>
+      </div>
       <p class="text-xs text-gray-600 leading-relaxed">A rear vertical change of about 141mm becomes about 8.8 degrees of tilt, which is enough to feel braking, acceleration, and cornering cues.</p>
     </div>
     <div class="card p-4">
@@ -536,7 +573,17 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
         <span class="tag">Like sharing a box</span>
       </div>
-      <div class="math mb-2">F<sub>rear</sub> = W × (d<sub>CG</sub>/d) ≈ 54 lb</div>
+      <button type="button" class="math formula-btn mb-2" data-formula-btn="load" onclick="tFormula('load',this)">F<sub>rear</sub> = W × (d<sub>CG</sub>/d) ≈ 54 lb</button>
+      <div id="formula-load" class="formula-work">
+        <div class="formula-work-title">Exact calc I used</div>
+        <div class="formula-work-line">W ≈ 180 lb total</div>
+        <div class="formula-work-line">Pivot at X = 200 mm, CG at X ≈ 800 mm</div>
+        <div class="formula-work-line">d<sub>CG</sub> = 800 - 200 = 600 mm</div>
+        <div class="formula-work-line">Rear support line ≈ 1000 mm behind the pivot</div>
+        <div class="formula-work-line">Rear total = 180 · (600 ÷ 1000) = 108 lb</div>
+        <div class="formula-work-line">Per motor = 108 ÷ 2 = 54 lb</div>
+        <div class="formula-work-copy">So the front pivot is doing real work. Each motor is sized against about 54 lb of rear load, not the full 180 lb by itself.</div>
+      </div>
       <p class="text-xs text-gray-600 leading-relaxed">Because the front pivot holds part of the rig, each rear motor only sees about 54 lb instead of the full combined weight.</p>
     </div>
     <div class="card p-4">
@@ -547,7 +594,16 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
         <span class="tag">Force × lever arm</span>
       </div>
-      <div class="math mb-2">τ = F × r</div>
+      <button type="button" class="math formula-btn mb-2" data-formula-btn="torque" onclick="tFormula('torque',this)">τ = F × r</button>
+      <div id="formula-torque" class="formula-work">
+        <div class="formula-work-title">Exact calc I used</div>
+        <div class="formula-work-line">F ≈ 54 lbf per motor = 240.2 N</div>
+        <div class="formula-work-line">r = 279 mm = 0.279 m</div>
+        <div class="formula-work-line">τ = 240.2 · 0.279</div>
+        <div class="formula-work-line">τ = 67.0 N·m</div>
+        <div class="formula-work-line">That is also about 49.4 lb·ft at the crank</div>
+        <div class="formula-work-copy">This is the force-times-lever-arm check behind the motor choice. It turns the load estimate into a real torque target instead of a guess.</div>
+      </div>
       <p class="text-xs text-gray-600 leading-relaxed">After estimating the rear load per motor, I multiply that force by the crank radius to estimate required torque. That is how I checked the 250W motors were realistic for the rig instead of just a guess.</p>
     </div>
   </div>
@@ -979,6 +1035,16 @@ document.addEventListener('touchend',e=>{
 
 // ── FAQ ─────────────────────────────────────────────────────────────────────
 function tFaq(btn){btn.parentElement.classList.toggle('open')}
+function tFormula(id, btn){
+  const panel = document.getElementById('formula-' + id);
+  if(!panel) return;
+  const isOpen = panel.classList.contains('open');
+  document.querySelectorAll('.formula-work').forEach(el=>el.classList.remove('open'));
+  document.querySelectorAll('.formula-btn').forEach(el=>el.classList.remove('active'));
+  if(isOpen) return;
+  panel.classList.add('open');
+  if(btn) btn.classList.add('active');
+}
 function setMotionPane(mode, btn){
   document.querySelectorAll('.motion-tab').forEach(tab=>{
     tab.classList.remove('sel');
