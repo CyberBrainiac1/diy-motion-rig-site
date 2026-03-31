@@ -468,61 +468,53 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <div class="si">
   <div class="sec"><i class="fa-solid fa-flag-checkered text-brand"></i>Driver Experience</div>
   <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">What the user would actually feel.</h2>
-  <p class="text-gray-500 text-sm mb-6">This rig does <strong class="text-gray-700">not</strong> create full real-car G-forces, but it can recreate the most important <strong class="text-gray-700">motion cues</strong> your body notices in a race car: braking, acceleration, cornering load transfer, curbs, hills, and quick direction changes.</p>
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
-    <div class="card">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Hard Braking</div>
-      <p class="text-xs text-gray-500 leading-relaxed"><strong class="text-gray-700">User action:</strong> slam the brakes at the end of a straight.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Rig cue:</strong> the frame tips slightly forward in pitch.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Real-life feeling:</strong> like the front of the car loading up under braking.</p>
+  <p class="text-gray-500 text-sm mb-6">This is the honest checklist. A <strong class="text-gray-700">2DOF pitch + roll rig</strong> can replicate most of the <strong class="text-gray-700">common driving cues</strong> people notice in normal racing, but it cannot fully copy the niche cases that need <strong class="text-gray-700">yaw</strong>, <strong class="text-gray-700">heave</strong>, or full sustained <strong class="text-gray-700">G-force</strong>.</p>
+  <div class="grid md:grid-cols-3 gap-3 mb-4">
+    <div class="rounded-2xl border border-emerald-200 bg-emerald-50/70 p-4">
+      <div class="text-xs font-bold text-emerald-700 uppercase tracking-wide mb-3">Replicates Well In V1</div>
+      <div class="space-y-3">
+        <div class="flex gap-2.5"><i class="fa-solid fa-check text-emerald-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Hard braking</div><p class="text-xs text-gray-600 leading-relaxed">Forward pitch gives the nose-dive feeling you notice at the end of a straight.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-check text-emerald-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Hard acceleration</div><p class="text-xs text-gray-600 leading-relaxed">Backward pitch gives the squat feeling when power goes down.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-check text-emerald-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Normal cornering load transfer</div><p class="text-xs text-gray-600 leading-relaxed">Roll gives the lean and side-load cue you feel in most turns.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-check text-emerald-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Brake-to-turn transitions</div><p class="text-xs text-gray-600 leading-relaxed">Pitch and roll together can show the car loading forward and then to one side.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-check text-emerald-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Fast left-right direction changes</div><p class="text-xs text-gray-600 leading-relaxed">Quick roll reversal makes chicanes and fast steering corrections feel alive.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-check text-emerald-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Hills and crests</div><p class="text-xs text-gray-600 leading-relaxed">Pitch changes can show the car climbing, dropping, or cresting a hill.</p></div></div>
+      </div>
     </div>
-    <div class="card">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Hard Acceleration</div>
-      <p class="text-xs text-gray-500 leading-relaxed"><strong class="text-gray-700">User action:</strong> step on throttle coming out of a corner.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Rig cue:</strong> the frame tips back slightly.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Real-life feeling:</strong> like the rear of the car squatting under power.</p>
+    <div class="rounded-2xl border border-amber-200 bg-amber-50/70 p-4">
+      <div class="text-xs font-bold text-amber-700 uppercase tracking-wide mb-3">Can Hint At, But Not Fully</div>
+      <div class="space-y-3">
+        <div class="flex gap-2.5"><i class="fa-solid fa-minus text-amber-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Curbs and bumps</div><p class="text-xs text-gray-600 leading-relaxed">The rig can give a quick pulse, but not the exact wheel-by-wheel hit of a real car suspension.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-minus text-amber-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Understeer or oversteer hints</div><p class="text-xs text-gray-600 leading-relaxed">You can feel some change through the pitch and roll behavior, but not the full rear-slip or front-push story by itself.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-minus text-amber-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Road shape and camber</div><p class="text-xs text-gray-600 leading-relaxed">It can suggest the road tilting, but it is still a simplified cueing system rather than a full chassis simulator.</p></div></div>
+      </div>
     </div>
-    <div class="card">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Corner Entry</div>
-      <p class="text-xs text-gray-500 leading-relaxed"><strong class="text-gray-700">User action:</strong> turn in fast for a real corner.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Rig cue:</strong> the platform rolls to one side.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Real-life feeling:</strong> like body roll and weight shifting to the outside tires.</p>
-    </div>
-    <div class="card">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Curbs & Bumps</div>
-      <p class="text-xs text-gray-500 leading-relaxed"><strong class="text-gray-700">User action:</strong> clip a curb or run over a rough edge.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Rig cue:</strong> a quick pitch or roll pulse.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Real-life feeling:</strong> a short jolt instead of the rig staying perfectly flat.</p>
-    </div>
-    <div class="card">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Hills & Crests</div>
-      <p class="text-xs text-gray-500 leading-relaxed"><strong class="text-gray-700">User action:</strong> go uphill, downhill, or over a crest.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Rig cue:</strong> pitch angle changes with the road profile.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Real-life feeling:</strong> the car's nose pointing up or down instead of staying visually flat.</p>
-    </div>
-    <div class="card">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Fast Left-Right Change</div>
-      <p class="text-xs text-gray-500 leading-relaxed"><strong class="text-gray-700">User action:</strong> quick chicane or fast steering correction.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Rig cue:</strong> roll reverses direction quickly.</p>
-      <p class="text-xs text-gray-500 leading-relaxed mt-2"><strong class="text-gray-700">Real-life feeling:</strong> like the car loading one way, then snapping back the other way.</p>
+    <div class="rounded-2xl border border-rose-200 bg-rose-50/70 p-4">
+      <div class="text-xs font-bold text-rose-700 uppercase tracking-wide mb-3">Cannot Truly Replicate In V1</div>
+      <div class="space-y-3">
+        <div class="flex gap-2.5"><i class="fa-solid fa-xmark text-rose-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Full sustained G-forces</div><p class="text-xs text-gray-600 leading-relaxed">It can cue the start of braking and cornering, but it cannot pin your body with real continuous force.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-xmark text-rose-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Rear stepping out or drifting yaw</div><p class="text-xs text-gray-600 leading-relaxed">That needs actual yaw or traction-loss movement, which this first version does not have.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-xmark text-rose-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Big vertical jumps and landings</div><p class="text-xs text-gray-600 leading-relaxed">There is no heave axis, so it cannot lift and drop the whole rig vertically like a 3DOF or 4DOF system.</p></div></div>
+        <div class="flex gap-2.5"><i class="fa-solid fa-xmark text-rose-600 mt-0.5 text-xs"></i><div><div class="text-sm font-semibold text-gray-900">Tiny road texture and vibration detail</div><p class="text-xs text-gray-600 leading-relaxed">It will not reproduce every small ripple, engine buzz, or fine tire texture by motion alone.</p></div></div>
+      </div>
     </div>
   </div>
   <div class="grid md:grid-cols-2 gap-3">
     <div class="card-blue rounded-xl p-4">
-      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Why this still feels real</div>
-      <p class="text-sm text-blue-900 leading-relaxed">The goal is not to throw the user around. The goal is to recreate the <strong>important cues</strong> the brain uses to understand what the car is doing: front-to-back weight transfer and side-to-side load transfer.</p>
+      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Why Most Common Driving Still Feels Real</div>
+      <p class="text-sm text-blue-900 leading-relaxed">Most normal race driving is braking, throttle application, corner entry, corner exit, and quick direction changes. Those are mostly <strong>pitch + roll problems</strong>, which is why this rig covers more of the everyday driving experience than the missing niche cases might suggest.</p>
     </div>
     <div class="card rounded-xl p-4">
-      <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">What it does not fully copy yet</div>
-      <p class="text-sm text-gray-600 leading-relaxed">It does not create full sustained G-forces, full yaw rotation, or every small road texture. It is a focused <strong>2DOF cueing system</strong> that gives the most important feelings first.</p>
+      <div class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">The Honest Limit</div>
+      <p class="text-sm text-gray-600 leading-relaxed">The missing cases are the ones that need extra axes and much bigger hardware: <strong>yaw</strong>, <strong>heave</strong>, traction-loss motion, or strong sustained forces. So this V1 is honest: it covers the majority of the important driving cues first, not every rare one.</p>
     </div>
   </div>
 </div>
   <div class="speaker-notes">
     <h3>Speaker Notes</h3>
-    <p>This is the family slide. Translate everything into driving feelings, not engineering words.</p>
-    <p>The strongest examples are braking, acceleration, corner entry, curbs, hills, and quick left-right transitions.</p>
-    <p>Be honest that it does not create full real-car G-forces. The point is recreating the most important motion cues in a compact rig.</p>
+    <p>This should read like an honest checklist, not a sales pitch. Start with the green column and say most everyday racing actions are there.</p>
+    <p>Use the yellow column to show I am not pretending this is perfect: curbs, understeer/oversteer, and road shape are only hinted at.</p>
+    <p>The red column is the honest limit: no full sustained G-force, no true yaw drift feeling, no heave axis, and no tiny texture detail.</p>
   </div>
 </div>
 
