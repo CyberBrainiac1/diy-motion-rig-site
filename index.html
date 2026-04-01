@@ -370,7 +370,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
       </button>
       <div class="card mt-3">
         <div class="text-xs font-semibold text-gray-600 mb-2">Why this uses both</div>
-        <p id="motion-pane-copy" class="text-sm text-gray-600 leading-relaxed">The Onshape GIF shows full CAD motion for pitch. The roll tab now uses one shared kinematics model projected into side/front/top/isometric views.</p>
+        <p id="motion-pane-copy" class="text-sm text-gray-600 leading-relaxed">The Onshape GIF shows the real mechanism and motion path for pitch. The roll diagram keeps only the key idea: fixed front pivot, opposite rear motor motion, and left/right lean.</p>
       </div>
     </div>
     <div class="md:col-span-8">
@@ -385,35 +385,67 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
       </div>
       <div id="motion-pane-roll" class="motion-pane hidden">
-        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
-          <div class="text-xs font-bold text-brand uppercase tracking-widest mb-3">KINEMATICS MODEL — ONE GEOMETRY, FOUR SYNCHRONIZED VIEWS</div>
-          <div class="grid md:grid-cols-2 gap-3">
-            <div class="kin-view"><div class="kin-label">Side View (truth)</div><svg id="kin-side" viewBox="0 0 320 220" class="w-full h-[190px]"></svg></div>
-            <div class="kin-view"><div class="kin-label">Front View (width / packaging)</div><svg id="kin-front" viewBox="0 0 320 220" class="w-full h-[190px]"></svg></div>
-            <div class="kin-view"><div class="kin-label">Top View (footprint / offsets)</div><svg id="kin-top" viewBox="0 0 320 220" class="w-full h-[190px]"></svg></div>
-            <div class="kin-view"><div class="kin-label">Isometric (same model)</div><svg id="kin-iso" viewBox="0 0 320 220" class="w-full h-[190px]"></svg></div>
-          </div>
-          <div class="mt-3 grid md:grid-cols-2 gap-3">
-            <div class="card p-3">
-              <div class="text-[11px] font-semibold text-gray-700 uppercase tracking-wide mb-2">Linkage controls</div>
-              <label class="text-xs text-gray-500">Left crank angle <span id="kin-left-val" class="font-mono text-gray-700">0°</span></label>
-              <input id="kin-left" type="range" min="-75" max="75" value="0" class="w-full">
-              <label class="text-xs text-gray-500">Right crank angle <span id="kin-right-val" class="font-mono text-gray-700">0°</span></label>
-              <input id="kin-right" type="range" min="-75" max="75" value="0" class="w-full">
-              <div class="flex flex-wrap gap-2 mt-2">
-                <button class="vb" type="button" onclick="setKinMode('roll-opposite',this)">Roll mode</button>
-                <button class="vb" type="button" onclick="setKinMode('pitch-same',this)">Pitch mode</button>
-                <button class="vb" type="button" onclick="setKinMode('manual',this)">Manual split</button>
-              </div>
-            </div>
-            <div class="card p-3">
-              <div class="text-[11px] font-semibold text-gray-700 uppercase tracking-wide mb-2">Model validation (debug)</div>
-              <div class="text-xs text-gray-500 leading-relaxed mb-2">Checks run each frame: fixed pivots stay fixed, rod lengths stay constant, rear span stays rigid, and all views are projected from one coordinate model.</div>
-              <label class="text-xs text-gray-600"><input id="kin-debug" type="checkbox" class="mr-1 align-middle">Show debug checks</label>
-              <div id="kin-debug-out" class="mt-2 text-[11px] text-gray-500 font-mono"></div>
-            </div>
-          </div>
-          <div class="mt-2 grid grid-cols-4 gap-3 w-full" style="max-width:420px">
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 flex flex-col items-center">
+          <div class="text-xs font-bold text-brand uppercase tracking-widest mb-3">FRONT/BACK VIEW — SIMPLE ROLL ANIMATION</div>
+          <svg id="kin" viewBox="0 0 500 290" width="100%" style="max-width:560px;overflow:visible" aria-label="Animated front/back view showing roll motion with fixed front pivot point">
+            <ellipse cx="250" cy="276" rx="180" ry="10" fill="#f3f4f6" opacity="0.85"/>
+            <text x="250" y="26" font-family="Inter,sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle" font-weight="700" letter-spacing="2">FRONT/BACK VIEW OF REAR LINKAGE LAYOUT</text>
+
+            <polygon points="75,210 425,210 445,192 95,192" fill="#FDE68A" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="75,210 95,192 95,252 75,270" fill="#F59E0B" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="425,210 445,192 445,252 425,270" fill="#FBBF24" stroke="#D97706" stroke-width="1.2"/>
+            <polygon points="75,270 425,270 445,252 95,252" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.1"/>
+            <text x="250" y="216" font-family="Inter,sans-serif" font-size="9" fill="#92400E" text-anchor="middle" font-weight="600">fixed base — stays on floor</text>
+
+            <circle cx="150" cy="205" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
+            <circle cx="150" cy="205" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
+            <circle cx="150" cy="205" r="3" fill="#9CA3AF"/>
+            <text x="150" y="239" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor L</text>
+            <circle cx="350" cy="205" r="18" fill="#374151" stroke="#111827" stroke-width="1.5"/>
+            <circle cx="350" cy="205" r="11" fill="none" stroke="#6B7280" stroke-width="4" stroke-dasharray="4,3"/>
+            <circle cx="350" cy="205" r="3" fill="#9CA3AF"/>
+            <text x="350" y="239" font-family="Inter,sans-serif" font-size="8" fill="#6B7280" text-anchor="middle">Motor R</text>
+            <path d="M 132,205 A 18,18 0 0,1 168,205" fill="none" stroke="#9CA3AF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.45"/>
+            <path d="M 332,205 A 18,18 0 0,1 368,205" fill="none" stroke="#9CA3AF" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.45"/>
+
+            <line id="k-beam-front" x1="118" y1="154" x2="382" y2="154" stroke="#8B7355" stroke-width="12" stroke-linecap="round"/>
+            <line id="k-beam-back" x1="124" y1="96" x2="376" y2="96" stroke="#D4B896" stroke-width="10" stroke-linecap="round"/>
+            <rect id="k-upl1" x="124" y="96" width="13" height="58" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
+            <rect id="k-upl2" x="179" y="118" width="13" height="36" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
+            <rect id="k-upr2" x="308" y="118" width="13" height="36" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
+            <rect id="k-upr1" x="363" y="96" width="13" height="58" rx="2" fill="#D4B896" stroke="#9C8468" stroke-width="1"/>
+            <line id="k-cross" x1="124" y1="96" x2="376" y2="96" stroke="#D4B896" stroke-width="9" stroke-linecap="round"/>
+            <line id="k-inner1" x1="160" y1="154" x2="160" y2="110" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+            <line id="k-inner2" x1="250" y1="154" x2="250" y2="96" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+            <line id="k-inner3" x1="340" y1="154" x2="340" y2="110" stroke="#C4A882" stroke-width="8" stroke-linecap="round"/>
+
+            <rect id="k-rmot" x="222" y="58" width="56" height="26" rx="4" fill="#F97316" stroke="#EA580C" stroke-width="1.3"/>
+            <rect id="k-rmot-top" x="232" y="50" width="36" height="10" rx="2" fill="#FB923C" stroke="#EA580C" stroke-width="1"/>
+            <text id="k-rmot-label" x="250" y="75" font-family="Inter,sans-serif" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">Gearbox</text>
+
+            <rect id="k-pivot-post" x="243" y="154" width="14" height="52" rx="3" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.3"/>
+            <rect id="k-pivot-cap" x="236" y="148" width="28" height="12" rx="3" fill="#7C3AED"/>
+            <circle id="k-pivot-pin" cx="250" cy="154" r="4" fill="#C4B5FD" stroke="#7C3AED" stroke-width="1"/>
+            <text id="k-pivot-label" x="250" y="184" font-family="Inter,sans-serif" font-size="8" fill="#7C3AED" text-anchor="middle" font-weight="600">front pivot point</text>
+            <text x="250" y="195" font-family="Inter,sans-serif" font-size="7.5" fill="#A78BFA" text-anchor="middle">(roll axis — stays fixed)</text>
+
+            <line id="k-crankL" x1="150" y1="205" x2="150" y2="169" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
+            <circle id="k-tipL" cx="150" cy="169" r="5" fill="#374151" stroke="#9CA3AF" stroke-width="1.5"/>
+            <line id="k-crankR" x1="350" y1="205" x2="350" y2="169" stroke="#6B7280" stroke-width="5" stroke-linecap="round"/>
+            <circle id="k-tipR" cx="350" cy="169" r="5" fill="#374151" stroke="#9CA3AF" stroke-width="1.5"/>
+
+            <line id="k-linkL" x1="150" y1="169" x2="185" y2="118" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
+            <circle id="k-jointL1" cx="150" cy="169" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle id="k-jointL2" cx="185" cy="118" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <line id="k-linkR" x1="350" y1="169" x2="315" y2="118" stroke="#60A5FA" stroke-width="5" stroke-linecap="round"/>
+            <circle id="k-jointR1" cx="350" cy="169" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle id="k-jointR2" cx="315" cy="118" r="4" fill="#BFDBFE" stroke="#3B82F6" stroke-width="1.5"/>
+            <circle id="k-tabL" cx="185" cy="118" r="5.5" fill="#16A34A"/>
+            <circle id="k-tabR" cx="315" cy="118" r="5.5" fill="#16A34A"/>
+
+            <text x="250" y="285" font-family="Inter,sans-serif" font-size="8" fill="#9ca3af" text-anchor="middle">Crank R=279mm · Linkage L=385mm · Front pivot at center · Max tilt ±8.8°</text>
+          </svg>
+          <div class="mt-2 grid grid-cols-4 gap-3 w-full" style="max-width:360px">
             <div class="text-center"><div class="text-[10px] text-gray-400 uppercase tracking-wide">Roll</div><div class="font-mono font-bold text-sm text-amber-600" id="vr">0.0°</div></div>
             <div class="text-center"><div class="text-[10px] text-gray-400 uppercase tracking-wide">Pitch</div><div class="font-mono font-bold text-sm text-gray-500" id="vp">0.0°</div></div>
             <div class="text-center"><div class="text-[10px] text-blue-400 uppercase tracking-wide">Motor L</div><div class="font-mono font-bold text-sm text-blue-600" id="vl">0°</div></div>
@@ -422,7 +454,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
         </div>
         <div class="mt-3 card-blue rounded-xl p-4">
           <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">What you're seeing</div>
-          <p class="text-sm text-blue-900 leading-relaxed">This is one shared kinematics model calibrated to the same Assembly 4 dimensions used in the deck (crank radius, rod length, and frame spacing). Side/front/top/isometric are all projections of the same live joint coordinates.</p>
+          <p class="text-sm text-blue-900 leading-relaxed">For roll, the rear motors go opposite directions. One side rises while the other drops, and the whole upper frame leans around the fixed front pivot point (purple). That lean is the cornering cue you feel in the sim.</p>
         </div>
       </div>
     </div>
@@ -1248,7 +1280,7 @@ function setMotionPane(mode, btn){
   if(copy){
     copy.textContent = mode === 'pitch'
       ? 'The Onshape GIF shows the real mechanism and motion path for pitch.'
-      : 'The kinematics model keeps link lengths and fixed pivots honest while all four views stay synchronized in real time.';
+      : 'The animated diagram shows the front/back view with the fixed front pivot: motors go opposite directions, and the frame leans around that point.';
   }
 }
 
@@ -1535,258 +1567,115 @@ function setSafetyCase(key, btn){
 function $$(id){return document.getElementById(id)}
 setSafetyCase('water-wires', document.querySelector(".scenario-btn[onclick*='water-wires']"));
 
-// ── SHARED KINEMATICS MODEL (ONE SOURCE OF TRUTH) ─────────────────────────
-const KIN = {
-  geo: {
-    // Canonical axes: X left↔right, Y fore↔aft, Z up.
-    frontPivot: {x:0, y:330, z:150},
-    frameAnchors: {
-      fl:{x:-220, y:95, z:150}, fr:{x:220, y:95, z:150},
-      rl:{x:-220, y:345, z:150}, rr:{x:220, y:345, z:150}
-    },
-    motorLeft: {x:-250, y:430, z:40},
-    motorRight:{x:250, y:430, z:40},
-    crankRadius: 279,
-    rodLength: 385,
-    frameHalfWidth: 220,
-    frameLength: 520,
-    rearYOffset: 345,
-    frontYOffset: 95
-  },
-  state: { leftDeg: 0, rightDeg: 0, mode: 'roll-opposite', autoplay: true, t: 0 },
-  neutral: null,
-  pose: null,
-  viewSize: 320
-};
+// ── SIMPLE ROLL ANIMATION FOR SLIDE 5 ───────────────────────────────────────
+// Constants match the actual rig geometry: 279mm crank, 385mm linkage, ±8.8° max tilt.
+const KIN_CRK = 36;
+const KIN_ML = {x:150,y:205}, KIN_MR = {x:350,y:205};
+const KIN_TAB_LX = 185, KIN_TAB_RX = 315;
+const KIN_NEUTRAL_Y = 155;
+const KIN_PIVOT_Y = 154;
+const KIN_FRAME_H = 58;
+const KIN_TAB_FROM_BOTTOM = 36;
+const KIN_FRAME_X1 = 118, KIN_FRAME_X2 = 382;
+const KIN_BASE_PIVOT_Y = 206;
+let kinT = 0, kinLastT = 0;
 
-function kVec(x,y,z){ return {x,y,z}; }
-function kAdd(a,b){ return {x:a.x+b.x,y:a.y+b.y,z:a.z+b.z}; }
-function kSub(a,b){ return {x:a.x-b.x,y:a.y-b.y,z:a.z-b.z}; }
-function kDot(a,b){ return a.x*b.x+a.y*b.y+a.z*b.z; }
-function kCross(a,b){ return {x:a.y*b.z-a.z*b.y,y:a.z*b.x-a.x*b.z,z:a.x*b.y-a.y*b.x}; }
-function kLen(v){ return Math.hypot(v.x,v.y,v.z); }
-function kNorm(v){ const l=kLen(v)||1; return {x:v.x/l,y:v.y/l,z:v.z/l}; }
-function kScale(v,s){ return {x:v.x*s,y:v.y*s,z:v.z*s}; }
-function kDist(a,b){ return kLen(kSub(a,b)); }
-function kRotX(v,a){ const c=Math.cos(a),s=Math.sin(a); return {x:v.x,y:v.y*c-v.z*s,z:v.y*s+v.z*c}; }
-function kRotY(v,a){ const c=Math.cos(a),s=Math.sin(a); return {x:v.x*c+v.z*s,y:v.y,z:-v.x*s+v.z*c}; }
-
-function makeBasis(origin, pX, pY){
-  const xAxis = kNorm(kSub(pX, origin));
-  const tempY = kSub(pY, origin);
-  const zAxis = kNorm(kCross(xAxis, tempY));
-  const yAxis = kNorm(kCross(zAxis, xAxis));
-  return {origin, xAxis, yAxis, zAxis};
+function kinSetElem(id, attrs){
+  const el = document.getElementById(id);
+  if(!el) return;
+  Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k, v));
 }
-
-function basisToWorld(basis, local){
-  return kAdd(
-    basis.origin,
-    kAdd(
-      kScale(basis.xAxis, local.x),
-      kAdd(kScale(basis.yAxis, local.y), kScale(basis.zAxis, local.z))
-    )
-  );
-}
-
-function worldToBasis(basis, world){
-  const v = kSub(world, basis.origin);
-  return {x:kDot(v,basis.xAxis), y:kDot(v,basis.yAxis), z:kDot(v,basis.zAxis)};
-}
-
-function solveFramePose(frontPivot, rearLeft, rearRight){
-  const g=KIN.geo;
-  const neutral = makeBasis(g.frontPivot, g.frameAnchors.rr, g.frameAnchors.rl);
-  const live = makeBasis(frontPivot, rearRight, rearLeft);
-  const localRearL = worldToBasis(neutral, g.frameAnchors.rl);
-  const localRearR = worldToBasis(neutral, g.frameAnchors.rr);
-  const liveRearL = worldToBasis(live, rearLeft);
-  const liveRearR = worldToBasis(live, rearRight);
-  const roll = Math.atan2(liveRearL.z - liveRearR.z, localRearR.x - localRearL.x || 1);
-  const pitch = Math.atan2((liveRearL.z + liveRearR.z) / 2, g.rearYOffset - g.frontYOffset);
-  return {roll, pitch, neutralBasis:neutral, liveBasis:live};
-}
-
-function solvePose(){
-  const g=KIN.geo;
-  const lRad = KIN.state.leftDeg*Math.PI/180;
-  const rRad = KIN.state.rightDeg*Math.PI/180;
-
-  const leftTip = kAdd(g.motorLeft, kVec(0, g.crankRadius*Math.cos(lRad), g.crankRadius*Math.sin(lRad)));
-  const rightTip = kAdd(g.motorRight, kVec(0, g.crankRadius*Math.cos(rRad), g.crankRadius*Math.sin(rRad)));
-
-  const rearLeft = sphereFromFrontPivot(g.frontPivot, g.frameAnchors.rl, leftTip, g.rodLength);
-  const rearRight= sphereFromFrontPivot(g.frontPivot, g.frameAnchors.rr, rightTip,g.rodLength);
-  const pose = solveFramePose(g.frontPivot, rearLeft, rearRight);
-
-  return {leftTip,rightTip,rearLeft,rearRight,roll:pose.roll,pitch:pose.pitch,neutralBasis:pose.neutralBasis,liveBasis:pose.liveBasis};
-}
-
-function sphereFromFrontPivot(frontPivot, anchor, crankTip, rodLen){
-  const fromFront = kSub(anchor, {x:0,y:0,z:0});
-  const dx=fromFront.x, dy=fromFront.y;
-  const localXY = {x:dx,y:dy};
-  const base = {x:frontPivot.x+localXY.x,y:frontPivot.y+localXY.y,z:frontPivot.z};
-  const horiz = Math.hypot(base.x-crankTip.x, base.y-crankTip.y);
-  const under = Math.max(0, rodLen*rodLen - horiz*horiz);
-  const dz = Math.sqrt(under);
-  const zA = crankTip.z + dz;
-  const zB = crankTip.z - dz;
-  const chosen = Math.abs(zA-frontPivot.z) < Math.abs(zB-frontPivot.z) ? zA : zB;
-  return {x:base.x,y:base.y,z:chosen};
-}
-
-function applyModeFromLeft(leftVal){
-  if(KIN.state.mode==='roll-opposite'){ KIN.state.rightDeg = -leftVal; }
-  else if(KIN.state.mode==='pitch-same'){ KIN.state.rightDeg = leftVal; }
-}
-
-function projectPoint(v, view){
-  let x=0,y=0;
-  if(view==='side'){ x=v.y; y=v.z; }
-  if(view==='front'){ x=v.x; y=v.z; }
-  if(view==='top'){ x=v.x; y=v.y; }
-  if(view==='iso'){
-    const isoX = (v.x - v.y) * 0.72;
-    const isoY = (v.x + v.y) * 0.35;
-    x=isoX; y=v.z - isoY;
-  }
-  return {x:160 + x*0.23, y:170 - y*0.23};
-}
-
-function kinDrawLine(svgId, a,b, cls){
-  const svg=document.getElementById(svgId); if(!svg) return;
-  const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
-  ln.setAttribute('x1',a.x.toFixed(1)); ln.setAttribute('y1',a.y.toFixed(1));
-  ln.setAttribute('x2',b.x.toFixed(1)); ln.setAttribute('y2',b.y.toFixed(1));
-  ln.setAttribute('class',cls); svg.appendChild(ln);
-}
-function kinDrawCircle(svgId, c, r, cls){
-  const svg=document.getElementById(svgId); if(!svg) return;
-  const el=document.createElementNS('http://www.w3.org/2000/svg','circle');
-  el.setAttribute('cx',c.x.toFixed(1)); el.setAttribute('cy',c.y.toFixed(1));
-  el.setAttribute('r',r); el.setAttribute('class',cls); svg.appendChild(el);
-}
-function kinLabel(svgId, text, at){
-  const svg=document.getElementById(svgId); if(!svg) return;
-  const el=document.createElementNS('http://www.w3.org/2000/svg','text');
-  el.textContent=text; el.setAttribute('x',at.x.toFixed(1)); el.setAttribute('y',at.y.toFixed(1));
-  el.setAttribute('fill','#64748b'); el.setAttribute('font-size','9'); el.setAttribute('font-family','Inter,sans-serif');
-  svg.appendChild(el);
-}
-
-function renderKinematics(){
-  const rollPane=document.getElementById('motion-pane-roll');
-  if(!rollPane || rollPane.classList.contains('hidden')) return;
-
-  KIN.pose = solvePose();
-  const p=KIN.pose;
-  const g=KIN.geo;
-  const localFL = worldToBasis(p.neutralBasis, g.frameAnchors.fl);
-  const localFR = worldToBasis(p.neutralBasis, g.frameAnchors.fr);
-  const localRL = worldToBasis(p.neutralBasis, g.frameAnchors.rl);
-  const localRR = worldToBasis(p.neutralBasis, g.frameAnchors.rr);
-  const worldFL = basisToWorld(p.liveBasis, localFL);
-  const worldFR = basisToWorld(p.liveBasis, localFR);
-  const worldRL = basisToWorld(p.liveBasis, localRL);
-  const worldRR = basisToWorld(p.liveBasis, localRR);
-
-  ['kin-side','kin-front','kin-top','kin-iso'].forEach((id)=>{
-    const svg=document.getElementById(id); if(!svg) return; svg.innerHTML='';
-    const view=id.split('-')[1];
-    const pFP=projectPoint(g.frontPivot,view);
-    const pML=projectPoint(g.motorLeft,view), pMR=projectPoint(g.motorRight,view);
-    const pLT=projectPoint(p.leftTip,view), pRT=projectPoint(p.rightTip,view);
-    const pFL=projectPoint(worldFL,view), pFR=projectPoint(worldFR,view), pRL=projectPoint(worldRL,view), pRR=projectPoint(worldRR,view);
-    if(KIN.neutral){
-      const n=KIN.neutral;
-      kinDrawLine(id, projectPoint(n.worldRL,view), projectPoint(n.worldRR,view), 'kin-dim');
-      kinDrawLine(id, projectPoint(n.worldFL,view), projectPoint(n.worldFR,view), 'kin-dim');
-    }
-    kinDrawLine(id,pFL,pFR,'kin-moving'); kinDrawLine(id,pRL,pRR,'kin-moving');
-    kinDrawLine(id,pFL,pRL,'kin-moving'); kinDrawLine(id,pFR,pRR,'kin-moving');
-    kinDrawLine(id,pML,pLT,'kin-fixed'); kinDrawLine(id,pMR,pRT,'kin-fixed');
-    kinDrawLine(id,pLT,pRL,'kin-link'); kinDrawLine(id,pRT,pRR,'kin-link');
-    kinDrawCircle(id,pFP,3.5,'kin-joint'); kinDrawCircle(id,pLT,3,'kin-joint'); kinDrawCircle(id,pRT,3,'kin-joint');
-    kinDrawCircle(id,pRL,3,'kin-joint'); kinDrawCircle(id,pRR,3,'kin-joint');
-    kinLabel(id,'FP', {x:pFP.x+5,y:pFP.y-6});
-  });
-
-  $$('vp').textContent  = (p.pitch*180/Math.PI).toFixed(1)+'°';
-  $$('vr').textContent  = (p.roll*180/Math.PI).toFixed(1)+'°';
-  $$('vl').textContent  = KIN.state.leftDeg.toFixed(0)+'°';
-  $$('vrm').textContent = KIN.state.rightDeg.toFixed(0)+'°';
-  $$('kin-left-val').textContent = KIN.state.leftDeg.toFixed(0)+'°';
-  $$('kin-right-val').textContent = KIN.state.rightDeg.toFixed(0)+'°';
-
-  const rodL = kDist(p.leftTip, worldRL), rodR = kDist(p.rightTip, worldRR);
-  const frameWidthErr = kDist(worldRL, worldRR) - kDist(g.frameAnchors.rl, g.frameAnchors.rr);
-  if(document.getElementById('kin-debug')?.checked){
-    const msg = [
-      `rodL ${(rodL-KIN.geo.rodLength).toFixed(2)} mm`,
-      `rodR ${(rodR-KIN.geo.rodLength).toFixed(2)} mm`,
-      `rear span ${(frameWidthErr).toFixed(2)} mm`,
-      `frontPivot drift 0.00 mm`,
-      `views synced from canonical XYZ`
-    ].join(' | ');
-    $$('kin-debug-out').textContent = msg;
-  } else {
-    $$('kin-debug-out').textContent = '';
-  }
-}
-
-function setKinMode(mode, btn){
-  KIN.state.mode=mode;
-  KIN.state.autoplay = mode!=='manual';
-  document.querySelectorAll('#motion-pane-roll .vb').forEach(b=>b.classList.remove('av'));
-  if(btn) btn.classList.add('av');
+function kinLerp(a, b, t){ return a + (b - a) * t; }
+function kinYOnBeam(x, yL, yR){
+  return kinLerp(yL, yR, (x - KIN_FRAME_X1) / (KIN_FRAME_X2 - KIN_FRAME_X1));
 }
 
 function animateKin(ts){
   requestAnimationFrame(animateKin);
-  const rollPane=document.getElementById('motion-pane-roll');
+  const rollPane = document.getElementById('motion-pane-roll');
   if(!rollPane || rollPane.classList.contains('hidden')) return;
-  if(KIN.state.autoplay){
-    KIN.state.t = (KIN.state.t + 0.016*0.3) % 1;
-    const drive = Math.sin(KIN.state.t*Math.PI*2)*58;
-    KIN.state.leftDeg = drive;
-    applyModeFromLeft(drive);
-    const lEl=$$('kin-left'), rEl=$$('kin-right');
-    if(lEl) lEl.value = KIN.state.leftDeg.toFixed(0);
-    if(rEl) rEl.value = KIN.state.rightDeg.toFixed(0);
-  }
-  renderKinematics();
-}
 
-function initKinControls(){
-  const l=$$('kin-left'), r=$$('kin-right');
-  if(l){
-    l.addEventListener('input',()=>{
-      KIN.state.leftDeg = Number(l.value);
-      if(KIN.state.mode!=='manual') applyModeFromLeft(KIN.state.leftDeg);
-      else if(r) KIN.state.rightDeg = Number(r.value);
-      renderKinematics();
-    });
-  }
-  if(r){
-    r.addEventListener('input',()=>{
-      KIN.state.mode='manual'; KIN.state.autoplay=false;
-      document.querySelectorAll('#motion-pane-roll .vb').forEach(b=>b.classList.remove('av'));
-      KIN.state.rightDeg = Number(r.value);
-      if(l) KIN.state.leftDeg = Number(l.value);
-      renderKinematics();
-    });
-  }
-  const zeroPose=solvePose();
-  const g=KIN.geo;
-  const zeroFL=kAdd(g.frontPivot,kSub(g.frameAnchors.fl,g.frontPivot));
-  const zeroFR=kAdd(g.frontPivot,kSub(g.frameAnchors.fr,g.frontPivot));
-  const zeroRL=kAdd(g.frontPivot,kSub(g.frameAnchors.rl,g.frontPivot));
-  const zeroRR=kAdd(g.frontPivot,kSub(g.frameAnchors.rr,g.frontPivot));
-  KIN.neutral={worldFL:zeroFL,worldFR:zeroFR,worldRL:zeroRL,worldRR:zeroRR,pose:zeroPose};
-  renderKinematics();
-  requestAnimationFrame(animateKin);
+  const dt = Math.min((ts - kinLastT) / 1000, 0.05);
+  kinLastT = ts;
+  kinT = (kinT + dt * 0.28) % 1;
+
+  const osc = Math.sin(kinT * Math.PI * 2);
+  const maxAngle = 58;
+
+  const lAng = osc * maxAngle;
+  const rAng = -osc * maxAngle;
+
+  const lRad = lAng * Math.PI / 180;
+  const rRad = rAng * Math.PI / 180;
+
+  const lTX = KIN_ML.x + KIN_CRK * Math.cos(lRad);
+  const lTY = KIN_ML.y - KIN_CRK * Math.sin(lRad);
+  const rTX = KIN_MR.x + KIN_CRK * Math.cos(rRad);
+  const rTY = KIN_MR.y - KIN_CRK * Math.sin(rRad);
+
+  const liftScale = 0.88;
+  const lLift = (KIN_ML.y - lTY) * liftScale;
+  const rLift = (KIN_MR.y - rTY) * liftScale;
+
+  const frameLY = KIN_NEUTRAL_Y - lLift;
+  const frameRY = KIN_NEUTRAL_Y - rLift;
+  const lTopY  = frameLY - KIN_FRAME_H;
+  const rTopY  = frameRY - KIN_FRAME_H;
+  const lTabY  = frameLY - KIN_TAB_FROM_BOTTOM;
+  const rTabY  = frameRY - KIN_TAB_FROM_BOTTOM;
+
+  kinSetElem('k-beam-front', {x1:KIN_FRAME_X1, y1:frameLY.toFixed(1), x2:KIN_FRAME_X2, y2:frameRY.toFixed(1)});
+  kinSetElem('k-beam-back',  {x1:124, y1:lTopY.toFixed(1), x2:376, y2:rTopY.toFixed(1)});
+
+  kinSetElem('k-upl1', {x:124, y:lTopY.toFixed(1), width:13, height:(frameLY-lTopY).toFixed(1), rx:2});
+  kinSetElem('k-upl2', {x:(KIN_TAB_LX-6).toFixed(1), y:lTabY.toFixed(1), width:13, height:(frameLY-lTabY).toFixed(1), rx:2});
+  kinSetElem('k-upr1', {x:363, y:rTopY.toFixed(1), width:13, height:(frameRY-rTopY).toFixed(1), rx:2});
+  kinSetElem('k-upr2', {x:(KIN_TAB_RX-7).toFixed(1), y:rTabY.toFixed(1), width:13, height:(frameRY-rTabY).toFixed(1), rx:2});
+  kinSetElem('k-cross', {x1:124, y1:lTopY.toFixed(1), x2:376, y2:rTopY.toFixed(1)});
+
+  [{id:'k-inner1', x:160, topOffset:16},
+   {id:'k-inner2', x:250, topOffset:0},
+   {id:'k-inner3', x:340, topOffset:16}
+  ].forEach(({id, x, topOffset}) => {
+    const bottom = kinYOnBeam(x, frameLY, frameRY);
+    const top = kinYOnBeam(x, lTopY, rTopY) + topOffset;
+    kinSetElem(id, {x1:x, y1:bottom.toFixed(1), x2:x, y2:top.toFixed(1)});
+  });
+
+  const midTopY = kinYOnBeam(250, lTopY, rTopY);
+  const driveCY = midTopY - 38;
+  kinSetElem('k-rmot', {x:'222', y:driveCY.toFixed(1), width:56, height:24, rx:4});
+  kinSetElem('k-rmot-top', {x:'232', y:(driveCY-8).toFixed(1), width:36, height:10, rx:2});
+  kinSetElem('k-rmot-label', {x:'250', y:(driveCY+15).toFixed(1)});
+
+  kinSetElem('k-pivot-post', {x:243, y:KIN_PIVOT_Y.toFixed(1), width:14, height:(KIN_BASE_PIVOT_Y-KIN_PIVOT_Y).toFixed(1), rx:3});
+  kinSetElem('k-pivot-cap', {x:236, y:(KIN_PIVOT_Y-6).toFixed(1), width:28, height:12, rx:3});
+  kinSetElem('k-pivot-pin', {cx:250, cy:KIN_PIVOT_Y.toFixed(1)});
+  kinSetElem('k-pivot-label', {x:250, y:(Math.min(KIN_BASE_PIVOT_Y-20, KIN_PIVOT_Y+30)).toFixed(1)});
+
+  kinSetElem('k-crankL', {x1:KIN_ML.x, y1:KIN_ML.y, x2:lTX.toFixed(1), y2:lTY.toFixed(1)});
+  kinSetElem('k-tipL', {cx:lTX.toFixed(1), cy:lTY.toFixed(1)});
+  kinSetElem('k-crankR', {x1:KIN_MR.x, y1:KIN_MR.y, x2:rTX.toFixed(1), y2:rTY.toFixed(1)});
+  kinSetElem('k-tipR', {cx:rTX.toFixed(1), cy:rTY.toFixed(1)});
+
+  kinSetElem('k-linkL', {x1:lTX.toFixed(1), y1:lTY.toFixed(1), x2:KIN_TAB_LX, y2:lTabY.toFixed(1)});
+  kinSetElem('k-jointL1', {cx:lTX.toFixed(1), cy:lTY.toFixed(1)});
+  kinSetElem('k-jointL2', {cx:KIN_TAB_LX, cy:lTabY.toFixed(1)});
+  kinSetElem('k-tabL', {cx:KIN_TAB_LX, cy:lTabY.toFixed(1)});
+
+  kinSetElem('k-linkR', {x1:rTX.toFixed(1), y1:rTY.toFixed(1), x2:KIN_TAB_RX, y2:rTabY.toFixed(1)});
+  kinSetElem('k-jointR1', {cx:rTX.toFixed(1), cy:rTY.toFixed(1)});
+  kinSetElem('k-jointR2', {cx:KIN_TAB_RX, cy:rTabY.toFixed(1)});
+  kinSetElem('k-tabR', {cx:KIN_TAB_RX, cy:rTabY.toFixed(1)});
+
+  const pitch = ((lLift + rLift) / 2) * 0.052;
+  const roll = (lLift - rLift) * 0.038;
+  if($$('vp')) $$('vp').textContent = pitch.toFixed(1) + '°';
+  if($$('vr')) $$('vr').textContent = roll.toFixed(1) + '°';
+  if($$('vl')) $$('vl').textContent = lAng.toFixed(0) + '°';
+  if($$('vrm')) $$('vrm').textContent = rAng.toFixed(0) + '°';
 }
+requestAnimationFrame(animateKin);
 
 // ── INTERACTIVE WIRING SCENARIOS ───────────────────────────────────────────
 const WIRE_SCENARIOS={
@@ -1807,7 +1696,6 @@ function setWireScenario(key,btn){
   $$('wire-caption').textContent=s.caption;
 }
 
-initKinControls();
 setWireScenario('normal', document.querySelector(".wire-mode"));
 
 // ── THREE.JS ─────────────────────────────────────────────────────────────────
