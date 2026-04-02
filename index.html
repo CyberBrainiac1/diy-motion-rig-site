@@ -1102,6 +1102,70 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
+  SLIDE 11 — WHY THESE PARTS ARE MAINSTREAM
+══════════════════════════════════════════════════════════════════ -->
+<div class="slide" data-l="Mainstream Parts">
+<div class="si">
+  <div class="sec"><i class="fa-solid fa-layer-group text-brand"></i>Part Choice Confidence</div>
+  <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-3">The core hardware is mainstream in the DIY motion-sim ecosystem.</h2>
+  <p class="text-gray-500 text-sm mb-6">I intentionally selected parts that are common in builds, widely documented, and easy to replace. That lowers integration risk and makes troubleshooting much easier than using obscure one-off components.</p>
+  <div class="card-blue rounded-xl p-3 mb-5">
+    <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-1.5">Market snapshot from current listings</div>
+    <p class="text-sm text-blue-900 leading-relaxed">Across the listings shown, these parts appear from multiple sellers at similar price bands: <strong>MY1016Z2-style motors</strong> around the low-to-mid $30s and up depending on variant, <strong>Sabertooth-class controllers</strong> often around ~$125 new (with some lower used listings), and <strong>Mean Well LRS-600-12</strong> commonly around the ~$60 range. The exact seller changes, but the part families are clearly mainstream and repeatedly available.</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-4 mb-5">
+    <div class="card">
+      <div class="w-8 h-8 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-center mb-2"><i class="fa-solid fa-gear text-blue-600 text-xs"></i></div>
+      <div class="text-xs font-bold text-blue-600 uppercase tracking-wide mb-1.5">Drive Motor</div>
+      <div class="font-semibold text-gray-900 text-sm mb-2">12V 250W MY1016Z2-style DC motor</div>
+      <p class="text-xs text-gray-500 leading-relaxed">This motor format is one of the most common choices in budget 2DOF rigs and scooter-based motion projects. Different sellers list it with minor casing or voltage variants, but the core MY1016Z2-style platform is very widely used and easy to source.</p>
+    </div>
+    <div class="card">
+      <div class="w-8 h-8 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-center mb-2"><i class="fa-solid fa-microchip text-blue-600 text-xs"></i></div>
+      <div class="text-xs font-bold text-blue-600 uppercase tracking-wide mb-1.5">Motor Controller</div>
+      <div class="font-semibold text-gray-900 text-sm mb-2">Sabertooth 2×32</div>
+      <p class="text-xs text-gray-500 leading-relaxed">The Sabertooth is one of the best-known dual-channel controllers in DIY motion builds. It shows up across many project logs because it supports high current, regenerative braking, and has a large tuning/usage knowledge base.</p>
+    </div>
+    <div class="card">
+      <div class="w-8 h-8 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-center mb-2"><i class="fa-solid fa-bolt text-blue-600 text-xs"></i></div>
+      <div class="text-xs font-bold text-blue-600 uppercase tracking-wide mb-1.5">Power Supply</div>
+      <div class="font-semibold text-gray-900 text-sm mb-2">Mean Well LRS-600-12</div>
+      <p class="text-xs text-gray-500 leading-relaxed">Mean Well LRS supplies are mainstream industrial power hardware with broad availability from electronics distributors. Using a common PSU family makes electrical specs, wiring examples, and future replacements much easier.</p>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-4 mb-5">
+    <div class="card card-blue">
+      <div class="text-xs font-bold text-blue-700 uppercase tracking-wide mb-2">Other Important Mainstream Parts</div>
+      <ul class="space-y-2 text-sm text-blue-900 leading-relaxed">
+        <li><strong>ANL main fuse + branch fusing:</strong> standard protection approach used across high-current 12V systems.</li>
+        <li><strong>Contactor + 22mm E-stop:</strong> common industrial safety pattern for hard power drop.</li>
+        <li><strong>Rod ends / heim joints + steel linkages:</strong> standard mechanical interfaces for motion linkages.</li>
+        <li><strong>Conventional wire gauges, ferrules, ring terminals:</strong> easy to source at automotive/electrical suppliers.</li>
+      </ul>
+    </div>
+    <div class="card card-orange">
+      <div class="text-xs font-bold text-orange-700 uppercase tracking-wide mb-2">Why this matters to the investor</div>
+      <ul class="space-y-2 text-sm text-orange-900 leading-relaxed">
+        <li>Lower risk: fewer unknown integration surprises.</li>
+        <li>Faster build: established community wiring + setup patterns.</li>
+        <li>Easier maintenance: replacement parts are not niche or rare.</li>
+        <li>Better learning: I can compare my results against known benchmarks from many similar builds.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="speaker-notes">
+    <h3>Speaker Notes</h3>
+    <p>Use this slide to explain that "mainstream" is a design strategy, not just popularity. Common parts reduce technical risk and make the project more buildable on a student budget.</p>
+    <p>Use the listing snapshot callout first: the key point is repeated availability across sellers and similar pricing bands, not one perfect product listing.</p>
+    <p>Call out the three pillars: MY1016Z2-style motors, Sabertooth controller, and Mean Well PSU. Then mention that safety components are also standard industrial patterns.</p>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
   SLIDE 11 — BOM
 ══════════════════════════════════════════════════════════════════ -->
 <div class="slide" data-l="Cost Breakdown">
